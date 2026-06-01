@@ -1,7 +1,908 @@
 {
-  "updated": "2026-05-31T05:50:59.659874Z",
+  "updated": "2026-06-01T19:25:23.731329Z",
   "source": "공공데이터포털 (LH 분양임대공고문 조회) 자동 갱신",
   "lookbackDays": 60,
-  "count": 0,
-  "notices": []
+  "count": 90,
+  "notices": [
+    {
+      "title": "[인천지역본부] 26년 3차 청년 매입임대 예비입주자 모집공고(인천,부천)",
+      "category": "주거복지",
+      "subtype": "매입임대",
+      "region": "인천광역시 외",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.02",
+      "status": "접수중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020020&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
+    },
+    {
+      "title": "[인천지역본부]26년 3차 신혼·신생아Ⅱ(전세형) 예비입주자 모집공고(인천,부천)",
+      "category": "주거복지",
+      "subtype": "매입임대",
+      "region": "인천광역시 외",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.02",
+      "status": "접수중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020004&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
+    },
+    {
+      "title": "[인천지역본부]26년 3차 신혼·신생아Ⅰ 예비입주자 모집공고(인천,부천)",
+      "category": "주거복지",
+      "subtype": "매입임대",
+      "region": "인천광역시 외",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.02",
+      "status": "접수중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300019997&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
+    },
+    {
+      "title": "순천도시첨단산업단지 상업용지 및 지원시설용지 입찰 공급 공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "전라남도",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.02",
+      "status": "접수중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007538&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "[서울지역본부] 26년 1차 비분양전환형 든든전세주택 입주자 모집공고",
+      "category": "주거복지",
+      "subtype": "매입임대",
+      "region": "서울특별시",
+      "posted": "2026.05.22",
+      "deadline": "2026.06.04",
+      "status": "접수중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300019992&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
+    },
+    {
+      "title": "[정정공고]울산다운2 A-6블록 행복주택 입주자격완화 추가모집",
+      "category": "임대주택",
+      "subtype": "행복주택",
+      "region": "울산광역시",
+      "posted": "2026.05.26",
+      "deadline": "2026.06.02",
+      "status": "접수중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020026&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=10&mi=1026"
+    },
+    {
+      "title": "[정정공고]울산다운2 A-5블록 국민임대 입주자 추가모집(소득기준 완화)",
+      "category": "임대주택",
+      "subtype": "국민임대",
+      "region": "울산광역시",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.02",
+      "status": "접수중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020044&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=07&mi=1026"
+    },
+    {
+      "title": "[토지리턴제]김포한강 도시지원시설용지 공급공고(5년 무이자)",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.08",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007546&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "[토지리턴제]고양삼송 도시지원시설용지 공급공고(5년 무이자)",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.04",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007545&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "[대구 달서구]기존주택 등 매입임대주택 예비입주자 모집 공고",
+      "category": "주거복지",
+      "subtype": "매입임대",
+      "region": "대구광역시",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.12",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300019994&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
+    },
+    {
+      "title": "물금2 천년나무(17형) 행복주택 선착순 동호지정 모집(입주자격완화,선게약 후검증)",
+      "category": "임대주택",
+      "subtype": "행복주택",
+      "region": "경상남도",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.30",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020009&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=10&mi=1026"
+    },
+    {
+      "title": "[정정공고] 인천가정2 준주거 및 루원시티 준주거, 주유소 용지 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "인천광역시",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.23",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007547&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "파주운정3 A34BL(초롱꽃마을3단지) LH희망상가 입점자 모집공고(공공지원형)",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "경기도",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.04",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020016&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
+      "title": "김포장기 B11BL(김포장기LH11단지) LH희망상가 입점자 모집공고(공공지원형)",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "경기도",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.04",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020015&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
+      "title": "김포양곡 C1BL(김포양곡LH2단지) LH희망상가 입점자 모집공고(공공지원형)",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "경기도",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.04",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020014&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
+      "title": "고양삼송 A24BL(고양삼송LH13단지) LH희망상가 입점자 모집공고(공공지원형)",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "경기도",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.04",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020013&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
+      "title": "고양삼송 A12BL(원흥마을12단지) LH희망상가 입점자 모집공고(공공지원형)",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "경기도",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.04",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020012&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
+      "title": "파주운정3 A1BL(별하람마을 4단지) LH희망상가 입점자 모집공고(공공지원형)",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "경기도",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.04",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020010&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
+      "title": "성남복정1지구 협의양도인택지(주거전용 단독주택) 1차 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.04",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007535&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "관악봉천 H-1BL 희망상가 선착순 수의계약 모집공고",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "서울특별시",
+      "posted": "2026.05.21",
+      "deadline": "2026.09.30",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020007&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
+      "title": "대구 북구, 중구 국민임대주택 예비입주자 모집",
+      "category": "임대주택",
+      "subtype": "국민임대",
+      "region": "대구광역시",
+      "posted": "2026.05.22",
+      "deadline": "2026.06.15",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300019998&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=07&mi=1026"
+    },
+    {
+      "title": "[정정공고]아산배방LH4단지 오피스텔(공공분양) 잔여세대 선착순 동호지정 공고",
+      "category": "분양주택",
+      "subtype": "분양주택",
+      "region": "충청남도",
+      "posted": "2026.05.22",
+      "deadline": "2027.05.20",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=0000061097&ccrCnntSysDsCd=02&uppAisTpCd=05&aisTpCd=05&mi=1027"
+    },
+    {
+      "title": "[정정공고] 성남복정1지구 협의양도인택지(주거전용 단독주택) 1차 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.22",
+      "deadline": "2026.06.04",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007552&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "영월주천 국민임대주택 예비입주자 모집",
+      "category": "임대주택",
+      "subtype": "국민임대",
+      "region": "강원특별자치도",
+      "posted": "2026.05.22",
+      "deadline": "2026.06.10",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300019950&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=07&mi=1026"
+    },
+    {
+      "title": "양주옥정 종교시설용지 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.26",
+      "deadline": "2026.06.04",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007565&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "양주옥정 복합시설용지 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.26",
+      "deadline": "2026.06.04",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007562&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "[계약조건 선택형] 양주옥정 근린생활시설용지 재공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.26",
+      "deadline": "2026.06.04",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007561&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "안성아양지구 단독·근린생활·상업·주유소용지 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.26",
+      "deadline": "2026.06.16",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007563&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "군산오룡 고령자복지주택(영구임대) 예비입주자 추가모집",
+      "category": "임대주택",
+      "subtype": "영구임대",
+      "region": "전북특별자치도",
+      "posted": "2026.05.26",
+      "deadline": "2026.06.10",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300019982&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=09&mi=1026"
+    },
+    {
+      "title": "인천논현 LH16단지 (인천논현4 1블록) 창업지원주택 입주자 모집[인정업종 확대, 선착순동호지정, 선계약후검증](입주자모집공고일 : 2026.05.26.)",
+      "category": "임대주택",
+      "subtype": "행복주택",
+      "region": "인천광역시",
+      "posted": "2026.05.26",
+      "deadline": "2026.06.09",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020025&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=10&mi=1026"
+    },
+    {
+      "title": "울산태화강변 A-1블록 영구임대주택 최초 입주자 모집",
+      "category": "임대주택",
+      "subtype": "영구임대",
+      "region": "울산광역시",
+      "posted": "2026.05.26",
+      "deadline": "2026.06.12",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020022&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=09&mi=1026"
+    },
+    {
+      "title": "인천남동도시첨단산업단지 복합용지 2차 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "인천광역시",
+      "posted": "2026.05.26",
+      "deadline": "2026.06.17",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007542&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "[서울지역본부] 다자녀 매입임대주택 예비입주자 모집공고",
+      "category": "주거복지",
+      "subtype": "매입임대",
+      "region": "서울특별시",
+      "posted": "2026.05.27",
+      "deadline": "2026.06.10",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020024&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
+    },
+    {
+      "title": "아산탕정·천안청수지구 분양용지(단독주택, 준주거, 주차장, 업무시설, 지원시설) 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "충청남도",
+      "posted": "2026.05.27",
+      "deadline": "2026.06.09",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007558&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "화성봉담2, 화성비봉지구 유치원용지 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.27",
+      "deadline": "2026.06.09",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007551&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "울산효문 지원시설용지 공급 공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "울산광역시",
+      "posted": "2026.05.27",
+      "deadline": "2026.06.08",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007548&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "[정정공고]울산태화강변 A-1블록 행복주택 입주자 최초모집(26.05.26 공고)",
+      "category": "임대주택",
+      "subtype": "행복주택",
+      "region": "울산광역시",
+      "posted": "2026.05.27",
+      "deadline": "2026.06.11",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020030&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=10&mi=1026"
+    },
+    {
+      "title": "김포한강 도시지원시설용지 공급공고(1년6개월거치 5년무이자)",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.11",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007576&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "고양지축 도시지원시설용지 공급공고(1년6개월거치 5년무이자)",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.16",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007575&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "과천지식정보타운 근린생활시설용지 재공급 공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.04",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007573&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "남양주왕숙 공공주택지구 근린생활시설용지 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.15",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007557&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "26년 2차 비분양전환형 든든전세주택 입주자 모집 공고(인천)",
+      "category": "주거복지",
+      "subtype": "매입임대",
+      "region": "인천광역시",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.09",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020028&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
+    },
+    {
+      "title": "[신규모집] 부평캐슬앤더샵퍼스트(청천1구역 주택재개발정비사업) 행복주택 입주자 모집",
+      "category": "임대주택",
+      "subtype": "행복주택",
+      "region": "인천광역시",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.11",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020033&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=10&mi=1026"
+    },
+    {
+      "title": "파주운정3 A12BL(해오름12) 10년 공공임대주택리츠 예비입주자모집(무순위)",
+      "category": "임대주택",
+      "subtype": "공공임대",
+      "region": "경기도",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.09",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=0000061104&ccrCnntSysDsCd=02&uppAisTpCd=06&aisTpCd=08&mi=1026"
+    },
+    {
+      "title": "행정중심복합도시 블록형단독주택용지 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "세종특별자치시",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.18",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007577&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "시흥거모 공공주택지구 협의양도인택지(주거전용단독주택용지) 1차 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.16",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007568&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "거창숙박시설 정비사업 A1BL 통합공공임대주택 입주자 모집 공고",
+      "category": "임대주택",
+      "subtype": "통합공공임대",
+      "region": "경상남도",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.11",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020032&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=48&mi=1026"
+    },
+    {
+      "title": "산청산청 1BL 통합공공임대주택 입주자 모집 공고",
+      "category": "임대주택",
+      "subtype": "통합공공임대",
+      "region": "경상남도",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.10",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300019969&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=48&mi=1026"
+    },
+    {
+      "title": "성남금토 주차장, 점포겸용 단독주택 및 성남신촌 주차장 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.11",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007566&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "인천검단지구 유치원, 종교용지 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "인천광역시",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.25",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007534&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "영동황간 통합공공임대주택 입주자 모집공고(공고_26.05.28)",
+      "category": "임대주택",
+      "subtype": "통합공공임대",
+      "region": "충청북도",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.10",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020035&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=48&mi=1026"
+    },
+    {
+      "title": "경남 통영시 일반 매입임대주택 예비입주자 모집 공고",
+      "category": "주거복지",
+      "subtype": "매입임대",
+      "region": "경상남도",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.19",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020000&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
+    },
+    {
+      "title": "26년 1차 부산울산 비분양전환형 든든전세 입주자 모집 공고",
+      "category": "주거복지",
+      "subtype": "매입임대",
+      "region": "부산광역시 외",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.10",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300019910&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
+    },
+    {
+      "title": "[정정공고] 남양주왕숙 공공주택지구 근린생활시설용지 공급공고(5년 무이자)",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.15",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007586&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "부도임대(경주금장로얄) 국민임대주택 입주자 최초 모집",
+      "category": "임대주택",
+      "subtype": "국민임대",
+      "region": "경상북도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.18",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020043&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=07&mi=1026"
+    },
+    {
+      "title": "양산시 매입임대 잔여주택 일반매각 선착순 동호지정 공고(상시, 유주택자 계약가능)",
+      "category": "분양주택",
+      "subtype": "분양주택",
+      "region": "경상남도",
+      "posted": "2026.05.29",
+      "deadline": "2026.12.31",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020037&ccrCnntSysDsCd=03&uppAisTpCd=05&aisTpCd=05&mi=1027"
+    },
+    {
+      "title": "구리갈매역세권 근린생활시설용지 공급공고(18개월 거치, 5년 무이자)",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.22",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007508&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "의정부고산 근린생활시설, 점포겸용 단독주택용지 및 의정부민락2 점포겸용 단독주택용지 공급공고(5년 무이자)",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.22",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007582&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "e편한세상 분당 퍼스트빌리지(성남낙생 A-1BL) 신혼희망타운(공공분양) 입주자모집공고",
+      "category": "공공분양(신혼희망)",
+      "subtype": "공공분양(신혼희망)",
+      "region": "경기도",
+      "posted": "2026.05.29",
+      "deadline": "2026.07.21",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=0000061094&ccrCnntSysDsCd=02&uppAisTpCd=39&aisTpCd=39&mi=1027"
+    },
+    {
+      "title": "[경기남부권 이천부발 국민임대주택 예비입주자 모집(2026.05.29.)",
+      "category": "임대주택",
+      "subtype": "국민임대",
+      "region": "경기도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.11",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020029&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=07&mi=1026"
+    },
+    {
+      "title": "김포양곡 상업용지 및 근린생활시설용지 공급공고(1년 6개월 거치, 5년 무이자)",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.17",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007585&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "양산사송 공공주택지구(일반상업,근생,근상,주유소,주차장,자족시설) 용지 공급공고(3년 무이자 할부)",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경상남도",
+      "posted": "2026.05.29",
+      "deadline": "2026.07.01",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007525&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "화성동탄2 C-27블록 공공분양주택 입주자모집공고",
+      "category": "분양주택",
+      "subtype": "분양주택",
+      "region": "경기도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.12",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=0000061101&ccrCnntSysDsCd=02&uppAisTpCd=05&aisTpCd=05&mi=1027"
+    },
+    {
+      "title": "판교 제2테크노밸리 기업지원허브 업무지원시설 선착순 수의계약 공고",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "경기도",
+      "posted": "2026.05.29",
+      "deadline": "2027.05.29",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020041&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
+      "title": "경주용강 영구임대주택 예비입주자 모집",
+      "category": "임대주택",
+      "subtype": "영구임대",
+      "region": "경상북도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.19",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020003&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=09&mi=1026"
+    },
+    {
+      "title": "창원시 창원대산1,센트럴빌리지,가포금호어울림 10년공공임대(리츠) 예비입주자 모집 공고",
+      "category": "임대주택",
+      "subtype": "공공임대",
+      "region": "경상남도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.09",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=0000061098&ccrCnntSysDsCd=02&uppAisTpCd=06&aisTpCd=08&mi=1026"
+    },
+    {
+      "title": "파주운정3 종교시설용지 재공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.22",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007462&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "파주운정3 주유소, 주차장용지 재공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.24",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007461&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "파주운정3 근린생활시설, 근린상업, 업무시설용지 및 파주운정 근린생활시설용지 재공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.24",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007460&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "울산다운2 근린생활시설용지(실수요자) 공급 공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "울산광역시",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.16",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007567&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "화성동탄2 근린상업용지 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.17",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007560&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "포항학산 임대상가 입점자 모집공고 [장기미임대 상가 2호 및 일반상가 1호]",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "경상북도",
+      "posted": "2026.06.01",
+      "deadline": "2026.06.16",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=LN-0002828&ccrCnntSysDsCd=04&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
+      "title": "대구월성2 임대상가 입점자 모집공고 [장기미임대 상가 2호]",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "대구광역시",
+      "posted": "2026.06.01",
+      "deadline": "2026.06.22",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=LN-0002827&ccrCnntSysDsCd=04&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
+      "title": "대구월성2 임대상가 입점자 모집공고 [상가 4호]",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "대구광역시",
+      "posted": "2026.06.01",
+      "deadline": "2026.06.22",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=LN-0002826&ccrCnntSysDsCd=04&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
+      "title": "대구월성3 임대상가 입점자 모집공고",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "대구광역시",
+      "posted": "2026.06.01",
+      "deadline": "2026.06.22",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=LN-0002825&ccrCnntSysDsCd=04&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
+      "title": "[정정공고] 시흥권역 근린생활시설 및 일반상업용지 통합 공급공고[1년 거치 포함 5년 무이자]",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.06.01",
+      "deadline": "2026.06.09",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007581&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "아산배방LH4단지 오피스텔(공공분양) 잔여세대 선착순 동호지정 공고",
+      "category": "분양주택",
+      "subtype": "분양주택",
+      "region": "충청남도",
+      "posted": "2026.05.21",
+      "deadline": "2027.05.20",
+      "status": "정정공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=0000061096&ccrCnntSysDsCd=02&uppAisTpCd=05&aisTpCd=05&mi=1027"
+    },
+    {
+      "title": "울산태화강변 A-1블록 행복주택 입주자 최초모집(26.05.26 공고)",
+      "category": "임대주택",
+      "subtype": "행복주택",
+      "region": "울산광역시",
+      "posted": "2026.05.26",
+      "deadline": "2026.06.11",
+      "status": "정정공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020023&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=10&mi=1026"
+    },
+    {
+      "title": "의왕월암 단독주택(점포겸용) 선착순 수의계약 공고 [중개알선대상토지포함]",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.21",
+      "deadline": "2026.12.31",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007536&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "평택고덕 A-1블록 10년공공임대리츠 단지내상가 선착순 수의계약 공고",
+      "category": "상가",
+      "subtype": "분양ㆍ(구)임대상가(입찰)",
+      "region": "전국",
+      "posted": "2026.05.21",
+      "deadline": "2026.12.31",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0001311&ccrCnntSysDsCd=04&uppAisTpCd=22&aisTpCd=23&mi=1069"
+    },
+    {
+      "title": "과천지식정보타운 S-3, 수원당수 A-3, 의왕초평 A-3, 평택고덕 A-54, 화성능동 B-1블록 단지내상가 선착순 수의계약 공고",
+      "category": "상가",
+      "subtype": "분양ㆍ(구)임대상가(입찰)",
+      "region": "전국",
+      "posted": "2026.05.21",
+      "deadline": "2026.12.31",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0001310&ccrCnntSysDsCd=04&uppAisTpCd=22&aisTpCd=23&mi=1069"
+    },
+    {
+      "title": "성남복정1지구 협의양도종교용지 공급 공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.21",
+      "deadline": "2026.06.04",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007539&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "과천지식정보타운 가스충전소 용지 선착순 수의계약 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.22",
+      "deadline": "2026.12.31",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007543&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "[정정공고] 구리갈매역세권 점포겸용 단독주택용지 선착순 수의계약 공급공고(18개월 거치, 5년 무이자)[중개알선대상토지포함]",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.26",
+      "deadline": "2026.12.31",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007541&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "[정정공고] 구리갈매역세권 주거전용 단독주택용지 선착순 수의계약 공급공고(18개월 거치, 5년 무이자)[중개알선대상토지포함]",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.26",
+      "deadline": "2026.12.31",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007540&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "포항블루밸리 임대전용산업단지 임대공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경상북도",
+      "posted": "2026.05.27",
+      "deadline": "2026.06.17",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007564&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "장항국가생태산업단지 산업·유통시설용지 알선장려금 시행공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "충청남도",
+      "posted": "2026.05.27",
+      "deadline": "2027.05.26",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007549&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "[계약조건 선택형] 양주회천 일반상업용지 선착순 수의계약 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.28",
+      "deadline": "2027.05.26",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007559&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "남양주진접2 공공주택지구 협의양도주유소용지 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.19",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007556&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "의정부우정 협의양도인택지(주거전용 단독주택) 공급공고[1년 거치, 3년 무이자]",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.29",
+      "deadline": "2026.06.04",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007572&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    }
+  ]
 }
