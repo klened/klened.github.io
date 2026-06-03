@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-02T12:53:35.114469Z",
+  "updated": "2026-06-03T16:05:57.267803Z",
   "source": "공공데이터포털 (LH 분양임대공고문 조회) 자동 갱신",
   "lookbackDays": 60,
   "count": 86,
@@ -305,16 +305,6 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=0000061104&ccrCnntSysDsCd=02&uppAisTpCd=06&aisTpCd=08&mi=1026"
     },
     {
-      "title": "시흥거모 공공주택지구 협의양도인택지(주거전용단독주택용지) 1차 공급공고",
-      "category": "토지",
-      "subtype": "토지",
-      "region": "경기도",
-      "posted": "2026.05.28",
-      "deadline": "2026.06.16",
-      "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007568&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
-    },
-    {
       "title": "행정중심복합도시 블록형단독주택용지 공급공고",
       "category": "토지",
       "subtype": "토지",
@@ -325,14 +315,14 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007577&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
-      "title": "거창숙박시설 정비사업 A1BL 통합공공임대주택 입주자 모집 공고",
-      "category": "임대주택",
-      "subtype": "통합공공임대",
-      "region": "경상남도",
+      "title": "시흥거모 공공주택지구 협의양도인택지(주거전용단독주택용지) 1차 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
       "posted": "2026.05.28",
-      "deadline": "2026.06.11",
+      "deadline": "2026.06.16",
       "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020032&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=48&mi=1026"
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007568&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
       "title": "산청산청 1BL 통합공공임대주택 입주자 모집 공고",
@@ -345,14 +335,14 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300019969&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=48&mi=1026"
     },
     {
-      "title": "성남금토 주차장, 점포겸용 단독주택 및 성남신촌 주차장 공급공고",
-      "category": "토지",
-      "subtype": "토지",
-      "region": "경기도",
+      "title": "거창숙박시설 정비사업 A1BL 통합공공임대주택 입주자 모집 공고",
+      "category": "임대주택",
+      "subtype": "통합공공임대",
+      "region": "경상남도",
       "posted": "2026.05.28",
       "deadline": "2026.06.11",
       "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007566&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020032&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=48&mi=1026"
     },
     {
       "title": "인천검단지구 유치원, 종교용지 공급공고",
@@ -363,6 +353,16 @@
       "deadline": "2026.06.25",
       "status": "공고중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007534&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "성남금토 주차장, 점포겸용 단독주택 및 성남신촌 주차장 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.05.28",
+      "deadline": "2026.06.11",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007566&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
       "title": "영동황간 통합공공임대주택 입주자 모집공고(공고_26.05.28)",
