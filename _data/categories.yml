@@ -1,0 +1,19 @@
+# 칼럼 카테고리 규칙 (고정 8종)
+# label: 화면에 표시되는 카테고리 이름 (CMS 드롭다운/목록/태그에 그대로 사용)
+# link:  breadcrumb에서 연결될 관련 도구 페이지
+- label: "🎓 청년 지원"
+  link: "/youth/"
+- label: "💼 근로자 지원"
+  link: "/tax/"
+- label: "🏠 주거·금융"
+  link: "/loan/"
+- label: "👶 출산·육아"
+  link: "/baby/"
+- label: "👵 어르신 지원"
+  link: "/senior/"
+- label: "🧩 복지"
+  link: "/welfare/"
+- label: "🏪 사업자 지원"
+  link: "/business/"
+- label: "💰 환급·조회"
+  link: "/refund/"

@@ -1,3 +1,7 @@
+---
+# 이 페이지는 Jekyll이 자동 생성합니다.
+# 기존 칼럼(_data/columns.yml) + 새 글(_columns 컬렉션)을 카테고리별로 자동 나열.
+---
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,14 +16,14 @@
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>칼럼 | 받기 전에 꼭 알아야 할 돈 이야기 — 숨은 돈 찾기</title>
-<meta name="description" content="정부지원금·적금·대출·환급을 '내 상황'에 맞춰 결정하도록 돕는 칼럼 15편. 자격 자가진단부터 비교·함정·중복 수령까지, 검색하면 나오는 정보가 아닌 판단을 돕는 글을 모았습니다.">
+<meta name="description" content="정부지원금·적금·대출·환급을 '내 상황'에 맞춰 결정하도록 돕는 칼럼 모음. 자격 자가진단부터 비교·함정·중복 수령까지, 검색하면 나오는 정보가 아닌 판단을 돕는 글을 모았습니다.">
 <meta name="keywords" content="정부지원금 칼럼, 청년미래적금, 실업급여, 연말정산, 신생아 특례대출, 기초연금, 차상위, 한부모, 전세보증보험, 숨은 환급금, 소상공인 정책자금">
 <meta name="author" content="숨은 돈 찾기">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://klened.github.io/column/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="칼럼 | 받기 전에 꼭 알아야 할 돈 이야기">
-<meta property="og:description" content="검색하면 나오는 정보가 아니라, 내 상황에서 결정하게 돕는 글 15편.">
+<meta property="og:description" content="검색하면 나오는 정보가 아니라, 내 상황에서 결정하게 돕는 글 모음.">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:url" content="https://klened.github.io/column/">
 <meta property="og:site_name" content="숨은 돈 찾기">
@@ -29,6 +33,7 @@
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" />
 <link href="https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css" rel="stylesheet" type="text/css" />
+{% raw %}
 <style>
 :root{
   --primary:#3182F6; --primary-dark:#1B64DA; --primary-light:#E8F2FE; --primary-soft:#EEF2F8;
@@ -70,6 +75,7 @@ footer.site .links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;f
 footer.site .copy{font-size:12px;color:var(--text-mute);}
 @media(min-width:768px){header.hero h1{font-size:32px;}.grid{grid-template-columns:1fr 1fr;}}
 </style>
+{% endraw %}
 </head>
 <body>
 
@@ -85,129 +91,32 @@ footer.site .copy{font-size:12px;color:var(--text-mute);}
 
 <main class="list">
   <div class="container">
-
-    <div class="cat">🎓 청년 지원</div>
+{% for cat in site.data.categories %}
+  {% assign legacy = site.data.columns | where: "category", cat.label %}
+  {% assign newposts = site.columns | where: "category_label", cat.label | sort: "date" | reverse %}
+  {% assign count = newposts.size | plus: legacy.size %}
+  {% if count > 0 %}
+    <div class="cat">{{ cat.label }}</div>
     <div class="grid">
-      <a class="card" href="/column/cheongnyeon-mirae-jeokgeum-2026/">
-        <span class="tag">🎓 청년 지원</span>
-        <h2>청년미래적금 완벽 가이드 2026 — 3년에 2,200만 원 만드는 법</h2>
-        <p>월급 200~300만 원이면 정부 매칭 12% '우대형' 대상일 수 있어요. 일반형·우대형 자격, 만기 수령액, 청년도약계좌 갈아타기까지.</p>
-        <span class="meta">2026.06.07</span>
+      {% for c in newposts %}
+      <a class="card" href="{{ c.url }}">
+        <span class="tag">{{ cat.label }}</span>
+        <h2>{{ c.title }}</h2>
+        <p>{{ c.description | strip_html | truncate: 95 }}</p>
+        <span class="meta">{{ c.date | date: '%Y.%m.%d' }}</span>
       </a>
-      <a class="card" href="/column/cheongnyeon-wolse-jiwon-2026/">
-        <span class="tag">🎓 청년 지원</span>
-        <h2>청년월세 특별지원 2026 — 자격·금액·신청</h2>
-        <p>부모 소득 때문에 탈락할까 걱정된다면. 본인+원가구 소득 동시 요건과 흔한 탈락 사유, 지자체 중복까지.</p>
-        <span class="meta">2026.06.07</span>
+      {% endfor %}
+      {% for c in legacy %}
+      <a class="card" href="{{ c.url }}">
+        <span class="tag">{{ cat.label }}</span>
+        <h2>{{ c.title }}</h2>
+        <p>{{ c.desc }}</p>
+        <span class="meta">{{ c.date }}</span>
       </a>
+      {% endfor %}
     </div>
-
-    <div class="cat">💼 근로자 지원</div>
-    <div class="grid">
-      <a class="card" href="/column/sileopgeupyeo-2026/">
-        <span class="tag">💼 근로자 지원</span>
-        <h2>실업급여 완벽 가이드 2026 — 권고사직·계약만료 편</h2>
-        <p>비자발적으로 퇴사했다면. 자격 판정, 소정급여일수, 상·하한액과 모르고 당하는 부정수급 함정.</p>
-        <span class="meta">2026.06.07</span>
-      </a>
-      <a class="card" href="/column/yeonmaljeongsan-hwangeup-2026/">
-        <span class="tag">💼 근로자 지원</span>
-        <h2>연말정산 환급 많이 받는 법 2026 — 놓치기 쉬운 공제</h2>
-        <p>월세 사는 사회초년생이 놓치기 쉬운 공제와 맞벌이 배분 전략, 경정청구로 5년 소급받는 법.</p>
-        <span class="meta">2026.06.07</span>
-      </a>
-    </div>
-
-    <div class="cat">🏠 주거·금융</div>
-    <div class="grid">
-      <a class="card" href="/column/sinsaenga-teungnye-loan-2026/">
-        <span class="tag">🏠 주거·금융</span>
-        <h2>신생아 특례대출 완벽 가이드 2026 (디딤돌·버팀목)</h2>
-        <p>소득 초과가 걱정인 맞벌이 신혼부부를 위한 매매 vs 전세 의사결정과 추가 출산 우대·대환.</p>
-        <span class="meta">2026.06.07</span>
-      </a>
-      <a class="card" href="/column/jeonse-bojeung-boheom-2026/">
-        <span class="tag">🏠 주거·금융</span>
-        <h2>전세보증보험 HUG·HF·SGI 3사 비교 2026</h2>
-        <p>전세 계약 전 필수. 보증료 비교와 가입 거절되는 집의 특징, 전세사기 예방 체크리스트.</p>
-        <span class="meta">2026.06.07</span>
-      </a>
-      <a class="card" href="/column/gonggong-imdae-bigyo-2026/">
-        <span class="tag">🏠 주거·금융</span>
-        <h2>LH 행복주택 vs SH 장기전세, 뭐가 유리할까 2026</h2>
-        <p>무주택 수도권 거주자를 위한 임대료형 vs 보증금형 구조 차이와 소득·자산 자격 비교.</p>
-        <span class="meta">2026.06.07</span>
-      </a>
-    </div>
-
-    <div class="cat">👶 출산·육아</div>
-    <div class="grid">
-      <a class="card" href="/column/chulsan-jiwon-jungbok-2026/">
-        <span class="tag">👶 출산·육아</span>
-        <h2>첫만남이용권·부모급여·아동수당 중복 수령 총정리 2026</h2>
-        <p>세 가지를 모두 받는 합산 총액과 신청 시기·사용기한 함정, 지자체 출산장려금 추가까지.</p>
-        <span class="meta">2026.06.07</span>
-      </a>
-    </div>
-
-    <div class="cat">👵 어르신 지원</div>
-    <div class="grid">
-      <a class="card" href="/column/gicho-yeongeum-2026/">
-        <span class="tag">👵 어르신 지원</span>
-        <h2>기초연금 2026 — 자격·금액·감액 기준 총정리</h2>
-        <p>재산이 있어도 받나? 국민연금 받으면 깎이나? 선정기준액과 소득인정액, 부부·연계 감액.</p>
-        <span class="meta">2026.06.07</span>
-      </a>
-    </div>
-
-    <div class="cat">🧩 복지</div>
-    <div class="grid">
-      <a class="card" href="/column/chasangwi-gyecheung-2026/">
-        <span class="tag">🧩 복지</span>
-        <h2>차상위계층 자격과 혜택 총정리 2026</h2>
-        <p>기초수급은 안 되지만 형편이 어렵다면. 중위 50% 기준과 받을 수 있는 혜택 총망라, 자가진단.</p>
-        <span class="meta">2026.06.07</span>
-      </a>
-      <a class="card" href="/column/hanbumo-jiwon-2026/">
-        <span class="tag">🧩 복지</span>
-        <h2>한부모가족 지원금 총정리 2026</h2>
-        <p>소득기준, 아동양육비, 청소년한부모 추가 지원과 차상위 등 다른 복지 중복 여부.</p>
-        <span class="meta">2026.06.07</span>
-      </a>
-      <a class="card" href="/column/yogeum-gammyeon-2026/">
-        <span class="tag">🧩 복지</span>
-        <h2>통신비·전기·가스 요금감면 대상과 신청법 2026</h2>
-        <p>통신·전기·가스·TV·에너지바우처를 한 번에. '자동 적용'이 아니라 직접 신청해야 하는 함정.</p>
-        <span class="meta">2026.06.07</span>
-      </a>
-    </div>
-
-    <div class="cat">🏪 사업자 지원</div>
-    <div class="grid">
-      <a class="card" href="/column/sosanggongin-jeongchaekjageum-2026/">
-        <span class="tag">🏪 사업자 지원</span>
-        <h2>소상공인 정책자금 종류와 신청법 2026</h2>
-        <p>자금난 자영업자를 위한 정책자금 종류·금리·한도와 거절 안 당하는 서류 준비법.</p>
-        <span class="meta">2026.06.07</span>
-      </a>
-      <a class="card" href="/column/pyeeop-jiwon-2026/">
-        <span class="tag">🌱 폐업·재도전</span>
-        <h2>폐업 후 받을 수 있는 지원 총정리 2026</h2>
-        <p>희망리턴패키지(점포철거·전직·재창업)·새출발기금 채무조정·자영업 폐업급여 단계별 정리.</p>
-        <span class="meta">2026.06.07</span>
-      </a>
-    </div>
-
-    <div class="cat">💰 환급·조회</div>
-    <div class="grid">
-      <a class="card" href="/column/sumeun-hwangeupgeum-2026/">
-        <span class="tag">💰 환급·조회</span>
-        <h2>숨은 환급금 찾는 법 2026 — 공식 조회처와 사기 피하는 법</h2>
-        <p>수수료 없는 공식 조회처 7곳 체크리스트와 사칭 문자·가짜 앱 구별법.</p>
-        <span class="meta">2026.06.07</span>
-      </a>
-    </div>
-
+  {% endif %}
+{% endfor %}
   </div>
 </main>
 

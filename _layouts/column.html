@@ -132,7 +132,8 @@ footer.site .copy{font-size:12px;color:var(--text-mute);}
 <nav class="site-nav" id="siteNav"></nav>
 
 <div class="container">
-  <div class="crumb"><a href="/">홈</a> &rsaquo; <a href="/column/">칼럼</a>{% if page.category_label %} &rsaquo; <a href="{{ page.category_link | default: '/' }}">{{ page.category_label }}</a>{% endif %}</div>
+  {% assign catobj = site.data.categories | where: "label", page.category_label | first %}
+  <div class="crumb"><a href="/">홈</a> &rsaquo; <a href="/column/">칼럼</a>{% if page.category_label %} &rsaquo; <a href="{{ catobj.link | default: page.category_link | default: '/' }}">{{ page.category_label }}</a>{% endif %}</div>
 
   <article>
     {% if page.category_label %}<span class="tag">{{ page.category_label }}</span>{% endif %}<span class="updated">{{ page.date | date: '%Y년 %-m월 %-d일' }} 업데이트</span>

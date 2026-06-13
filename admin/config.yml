@@ -40,14 +40,19 @@ collections:
         name: keywords
         widget: string
         required: false
-      - label: 카테고리 라벨
+      - label: 카테고리 (목록 분류)
         name: category_label
-        widget: string
-        default: 💡 정책 가이드
-      - label: 카테고리 링크
-        name: category_link
-        widget: string
-        default: /
+        widget: select
+        default: "🎓 청년 지원"
+        options:
+          - "🎓 청년 지원"
+          - "💼 근로자 지원"
+          - "🏠 주거·금융"
+          - "👶 출산·육아"
+          - "👵 어르신 지원"
+          - "🧩 복지"
+          - "🏪 사업자 지원"
+          - "💰 환급·조회"
       - label: 작성/수정일
         name: date
         widget: datetime
