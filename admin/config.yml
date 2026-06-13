@@ -1,0 +1,106 @@
+# ── Sveltia CMS 설정 ──────────────────────────────────────
+# 글쓰기 창에서 작성 → GitHub(_columns 폴더)에 저장 → 사이트 자동 빌드
+
+backend:
+  name: github
+  repo: klened/klened.github.io
+  branch: main
+  # 인증: /admin 로그인 화면의 "Sign In with Token" 버튼으로 GitHub 토큰(PAT)을 붙여넣으세요.
+  # Cloudflare Worker나 OAuth 앱이 필요 없습니다 (혼자 사용 시 가장 간단).
+
+site_url: https://klened.github.io
+display_url: https://klened.github.io
+locale: ko
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: columns
+    label: 칼럼 글
+    label_singular: 칼럼
+    folder: _columns
+    create: true
+    slug: "{{fields.slug}}"
+    extension: md
+    format: yaml-frontmatter
+    preview_path: "column/{{fields.slug}}"
+    fields:
+      - label: 제목 (페이지 H1)
+        name: title
+        widget: string
+      - label: 영문 슬러그 (URL)
+        name: slug
+        widget: string
+        hint: 영문 소문자·숫자·하이픈만. 주소가 /column/슬러그/ 가 됩니다.
+      - label: 메타 설명 (검색 노출 문구)
+        name: description
+        widget: text
+      - label: 키워드 (쉼표로 구분)
+        name: keywords
+        widget: string
+        required: false
+      - label: 카테고리 라벨
+        name: category_label
+        widget: string
+        default: 💡 정책 가이드
+      - label: 카테고리 링크
+        name: category_link
+        widget: string
+        default: /
+      - label: 작성/수정일
+        name: date
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        picker_utc: false
+      - label: 리드 문단 (도입부 요약)
+        name: lead
+        widget: text
+        required: false
+      - label: 대표 이미지
+        name: thumbnail
+        widget: image
+        required: false
+      - label: 대표 이미지 설명
+        name: thumbnail_caption
+        widget: string
+        required: false
+      - label: CTA 제목
+        name: cta_title
+        widget: string
+        required: false
+        default: 내가 받을 수 있는 혜택, 한 번에 확인
+      - label: CTA 설명
+        name: cta_desc
+        widget: string
+        required: false
+        default: 조건만 입력하면 받을 수 있는 지원금·환급금·감면 항목을 매칭해 드립니다.
+      - label: CTA 버튼 링크
+        name: cta_link
+        widget: string
+        required: false
+        default: /
+      - label: CTA 버튼 문구
+        name: cta_text
+        widget: string
+        required: false
+        default: 내 혜택 진단하기 →
+      - label: 함께 보면 좋은 글
+        name: related
+        widget: list
+        required: false
+        fields:
+          - label: 문구
+            name: text
+            widget: string
+          - label: 링크
+            name: link
+            widget: string
+      - label: 하단 고지문
+        name: disclaimer
+        widget: text
+        required: false
+      - label: 본문
+        name: body
+        widget: markdown

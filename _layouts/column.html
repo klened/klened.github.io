@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1ZKQ6TBT1Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1ZKQ6TBT1Z');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page.title | escape }}</title>
+<meta name="description" content="{{ page.description | escape }}">
+{% if page.keywords %}<meta name="keywords" content="{{ page.keywords | escape }}">{% endif %}
+<meta name="author" content="숨은 돈 찾기">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ page.og_title | default: page.title | escape }}">
+<meta property="og:description" content="{{ page.og_description | default: page.description | escape }}">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:site_name" content="숨은 돈 찾기">
+<meta property="og:image" content="{% if page.thumbnail %}{{ page.thumbnail | absolute_url }}{% else %}https://klened.github.io/assets/og-image.png{% endif %}">
+<meta name="twitter:card" content="summary_large_image">
+<!-- 구글 애드센스 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3166113588920348" crossorigin="anonymous"></script>
+<!-- Pretendard Font -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link href="https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css" rel="stylesheet" type="text/css" />
+<!-- JSON-LD: Article -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ page.title | strip_html | jsonify }},
+  "description": {{ page.description | strip_html | jsonify }},
+  "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+  "dateModified": "{{ page.updated | default: page.date | date: '%Y-%m-%d' }}",
+  "author": { "@type": "Organization", "name": "숨은 돈 찾기" },
+  "publisher": { "@type": "Organization", "name": "숨은 돈 찾기" },
+  "mainEntityOfPage": "{{ page.url | absolute_url }}",
+  "inLanguage": "ko-KR"
+}
+</script>
+{% raw %}
+<style>
+:root{
+  --primary:#3182F6; --primary-dark:#1B64DA; --primary-light:#E8F2FE; --primary-soft:#EEF2F8;
+  --bg:#FFFFFF; --bg-soft:#EDF0F4; --bg-card:#FFFFFF;
+  --text-strong:#191F28; --text:#333D4B; --text-soft:#4E5968; --text-mute:#8B95A1;
+  --border:#E5E8EB; --border-soft:#EAEDF1;
+  --radius-md:12px; --radius-lg:16px; --radius-xl:20px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.05); --shadow-md:0 4px 16px rgba(0,0,0,.08); --shadow-lg:0 10px 32px rgba(0,0,0,.10);
+  --font:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{font-family:var(--font);background:var(--bg-soft);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;word-break:keep-all;}
+a{color:inherit;text-decoration:none;}
+.container{max-width:760px;margin:0 auto;padding:0 20px;}
+/* nav */
+.site-nav{background:var(--bg);border-bottom:1px solid var(--border-soft);padding:12px 0;position:sticky;top:0;z-index:50;}
+.site-nav .container{display:flex;gap:8px;align-items:center;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:1040px;}
+.site-nav .container::-webkit-scrollbar{display:none;}
+.site-nav a{color:var(--text-soft);font-size:14px;font-weight:600;padding:7px 11px;border-radius:8px;transition:all .15s;flex-shrink:0;white-space:nowrap;}
+.site-nav a:hover{background:var(--primary-soft);color:var(--primary);}
+.site-nav a.active{background:var(--primary-light);color:var(--primary-dark);}
+.site-nav .brand{font-weight:800;color:var(--text-strong);margin-right:auto;font-size:16px;flex-shrink:0;white-space:nowrap;letter-spacing:-.3px;}
+/* article */
+.crumb{font-size:13px;color:var(--text-mute);padding:22px 0 0;}
+.crumb a:hover{color:var(--primary);}
+article{background:var(--bg);margin:18px 0 0;border-radius:var(--radius-xl);box-shadow:var(--shadow-sm);padding:34px 26px 40px;}
+.tag{display:inline-flex;align-items:center;gap:6px;background:var(--primary-light);color:var(--primary-dark);padding:5px 12px;border-radius:100px;font-size:12.5px;font-weight:700;}
+.updated{font-size:12.5px;color:var(--text-mute);margin-left:8px;}
+h1{font-size:27px;line-height:1.32;font-weight:800;color:var(--text-strong);letter-spacing:-.7px;margin:16px 0 14px;}
+.lead{font-size:16px;color:var(--text-soft);line-height:1.7;}
+figure{margin:24px 0;}
+figure img{width:100%;border-radius:var(--radius-lg);border:1px solid var(--border-soft);}
+figcaption{font-size:12.5px;color:var(--text-mute);text-align:center;margin-top:8px;}
+.target-box{background:linear-gradient(135deg,#EEF5FF,#F4F8FF);border:1px solid #DCEAFE;border-radius:var(--radius-lg);padding:18px 20px;margin:24px 0;}
+.target-box .t{font-size:13px;font-weight:800;color:var(--primary-dark);margin-bottom:10px;letter-spacing:-.2px;}
+.target-box ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.target-box li{font-size:14.5px;color:var(--text);padding-left:24px;position:relative;line-height:1.55;}
+.target-box li::before{content:'✓';position:absolute;left:0;top:0;color:var(--primary);font-weight:800;}
+.toc{background:var(--bg-soft);border-radius:var(--radius-md);padding:18px 20px;margin:26px 0;}
+.toc .t{font-size:13px;font-weight:800;color:var(--text-strong);margin-bottom:10px;}
+.toc ol{margin-left:18px;color:var(--text-soft);font-size:14.5px;line-height:1.95;}
+.toc a:hover{color:var(--primary);text-decoration:underline;}
+article h2{font-size:21px;font-weight:800;color:var(--text-strong);letter-spacing:-.4px;margin:38px 0 14px;padding-top:8px;scroll-margin-top:70px;}
+article h3{font-size:17px;font-weight:700;color:var(--text-strong);margin:26px 0 10px;letter-spacing:-.3px;}
+article p{font-size:15.5px;color:var(--text);line-height:1.8;margin:12px 0;}
+article strong{color:var(--text-strong);font-weight:700;}
+article ul,article ol{margin:12px 0 12px 22px;}
+article li{font-size:15.5px;color:var(--text);line-height:1.8;margin:6px 0;}
+article img{max-width:100%;border-radius:var(--radius-md);}
+.table-wrap{overflow-x:auto;margin:18px 0;}
+article table{width:100%;border-collapse:collapse;font-size:14px;min-width:420px;margin:18px 0;}
+th,td{border:1px solid var(--border);padding:11px 12px;text-align:left;vertical-align:top;}
+th{background:var(--primary-soft);color:var(--text-strong);font-weight:700;}
+td{color:var(--text-soft);}
+tr:nth-child(even) td{background:#FAFBFC;}
+.callout{border-radius:var(--radius-md);padding:16px 18px;margin:20px 0;font-size:14.5px;line-height:1.7;}
+.callout.info{background:var(--primary-soft);border:1px solid #DCE7F5;color:var(--text);}
+.callout.tip{background:#EAF8F0;border:1px solid #CDEEDB;color:#0B5C38;}
+.callout.warn{background:#FFF4E5;border:1px solid #FCE0B6;color:#8A5300;}
+.callout b{font-weight:800;}
+.faq-q{font-size:15.5px;font-weight:700;color:var(--text-strong);margin:22px 0 6px;}
+.faq-a{font-size:15px;color:var(--text-soft);line-height:1.8;}
+.cta{background:linear-gradient(135deg,#3182F6,#1B64DA);border-radius:var(--radius-lg);padding:24px 22px;margin:30px 0 8px;text-align:center;color:#fff;}
+.cta h3{color:#fff;font-size:18px;margin:0 0 6px;}
+.cta p{color:#E8F2FE;font-size:14px;margin:0 0 16px;}
+.cta a{display:inline-block;background:#fff;color:var(--primary-dark);font-weight:800;font-size:15px;padding:12px 24px;border-radius:100px;}
+.related{border-top:1px solid var(--border-soft);margin-top:30px;padding-top:20px;}
+.related .t{font-size:13px;font-weight:800;color:var(--text-mute);margin-bottom:10px;}
+.related a{display:block;font-size:15px;color:var(--primary-dark);font-weight:600;padding:7px 0;}
+.related a:hover{text-decoration:underline;}
+.disc{font-size:12.5px;color:var(--text-mute);line-height:1.7;margin-top:26px;padding-top:18px;border-top:1px solid var(--border-soft);}
+footer.site{text-align:center;padding:30px 20px 44px;}
+footer.site .links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:13px;color:var(--text-soft);margin-bottom:10px;}
+footer.site .copy{font-size:12px;color:var(--text-mute);}
+@media(min-width:768px){h1{font-size:32px;}article{padding:42px 40px 48px;}}
+</style>
+{% endraw %}
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav"></nav>
+
+<div class="container">
+  <div class="crumb"><a href="/">홈</a> &rsaquo; <a href="/column/">칼럼</a>{% if page.category_label %} &rsaquo; <a href="{{ page.category_link | default: '/' }}">{{ page.category_label }}</a>{% endif %}</div>
+
+  <article>
+    {% if page.category_label %}<span class="tag">{{ page.category_label }}</span>{% endif %}<span class="updated">{{ page.date | date: '%Y년 %-m월 %-d일' }} 업데이트</span>
+    <h1>{{ page.title }}</h1>
+    {% if page.lead %}<p class="lead">{{ page.lead }}</p>{% endif %}
+
+    {% if page.thumbnail %}
+    <figure>
+      <img src="{{ page.thumbnail }}" alt="{{ page.title | escape }}">
+      {% if page.thumbnail_caption %}<figcaption>{{ page.thumbnail_caption }}</figcaption>{% endif %}
+    </figure>
+    {% endif %}
+
+    {{ content }}
+
+    <div class="cta">
+      <h3>{{ page.cta_title | default: '내가 받을 수 있는 혜택, 한 번에 확인' }}</h3>
+      <p>{{ page.cta_desc | default: '조건만 입력하면 받을 수 있는 지원금·환급금·감면 항목을 매칭해 드립니다.' }}</p>
+      <a href="{{ page.cta_link | default: '/' }}">{{ page.cta_text | default: '내 혜택 진단하기 →' }}</a>
+    </div>
+
+    {% if page.related %}
+    <div class="related">
+      <div class="t">함께 보면 좋은 글</div>
+      {% for r in page.related %}<a href="{{ r.link }}">{{ r.text }}</a>{% endfor %}
+    </div>
+    {% endif %}
+
+    {% if page.disclaimer %}<p class="disc">{{ page.disclaimer }}</p>{% else %}<p class="disc">본 페이지는 정보 제공 목적이며 실제 지급·승인을 보장하지 않습니다. 자세한 조건은 각 기관 공식 페이지에서 확인 후 신청해 주세요.</p>{% endif %}
+  </article>
+</div>
+
+<footer class="site">
+  <div class="links">
+    <a href="/">홈</a><a href="/column/">칼럼</a><a href="/about/">사이트 소개</a>
+  </div>
+  <div class="copy">© 2026 숨은 돈 찾기</div>
+</footer>
+
+<script src="/assets/nav.js"></script>
+</body>
+</html>

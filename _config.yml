@@ -1,0 +1,39 @@
+# ── 숨은 돈 찾기 · Jekyll 설정 ──────────────────────────────
+# 기존 정적 HTML 페이지(홈/도구/기존 칼럼)는 front matter가 없어
+# Jekyll이 그대로 복사만 합니다. 이 설정은 '_columns' 폴더의
+# 새 글만 디자인 템플릿(column 레이아웃)으로 렌더링합니다.
+
+title: 숨은 돈 찾기
+description: 정부지원금·실업급여·연말정산·환급금 통합 조회
+url: "https://klened.github.io"
+lang: ko-KR
+
+# 마크다운 → HTML 변환기
+markdown: kramdown
+kramdown:
+  input: GFM            # 표, 코드펜스 등 GitHub 스타일 마크다운 지원
+  hard_wrap: false
+
+# 새 칼럼 글 컬렉션 (CMS가 여기에 글을 저장)
+collections:
+  columns:
+    output: true
+    permalink: /column/:name/   # _columns/슬러그.md → /column/슬러그/
+
+# 컬렉션 글에 자동으로 column 레이아웃 적용
+defaults:
+  - scope:
+      path: ""
+      type: columns
+    values:
+      layout: column
+
+# Jekyll 처리에서 제외 (그대로 복사도 안 함)
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - "*.skill"
+  - admin/README.md
+  - vendor
+  - .github
