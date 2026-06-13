@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>나는 짠돌이? 플렉서? | 소비 성향 테스트</title>
+<meta name="description" content="내 소비 성향을 알아보는 30초 무료 테스트. 나는 짠돌이일까 플렉서일까? 지불의 고통으로 보는 소비 DNA.">
+<meta property="og:title" content="나는 짠돌이? 플렉서? 🪙">
+<meta property="og:description" content="30초 무료 테스트로 내 소비 성향을 확인하고 친구와 비교해보세요!">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://klened.github.io/test/spend/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{ --blue:#3182f6; --blue-dark:#1b64da; --ink:#191f28; --gray:#8b95a1; --gray-light:#f2f4f6; --line:#e5e8eb; --bg:#f9fafb; }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);display:flex;justify-content:center;min-height:100vh;line-height:1.5;}
+  .app{width:100%;max-width:480px;background:#fff;min-height:100vh;overflow:hidden;}
+  .screen{display:none !important;padding:32px 24px 40px;}
+  .screen.active{display:block !important;animation:fade .4s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .intro{text-align:center;}
+  .intro.active{display:flex !important;flex-direction:column;justify-content:center;min-height:100vh;}
+  .badge{display:inline-block;background:var(--gray-light);color:var(--blue);font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px;margin:0 auto 20px;}
+  .intro h1{font-size:29px;font-weight:800;line-height:1.3;letter-spacing:-.5px;}
+  .intro .coins{font-size:62px;margin:8px 0 18px;}
+  .intro p{color:var(--gray);font-size:16px;margin-bottom:36px;word-break:keep-all;}
+  .btn{width:100%;border:none;background:var(--blue);color:#fff;font-family:inherit;font-weight:700;font-size:17px;padding:17px;border-radius:14px;cursor:pointer;transition:.15s;letter-spacing:-.3px;}
+  .btn:active{transform:scale(.98);background:var(--blue-dark);}
+  .btn.ghost{background:var(--gray-light);color:var(--ink);}
+  .intro small{display:block;color:#b0b8c1;font-size:13px;margin-top:18px;}
+  .topbar{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+  .bar{flex:1;height:8px;background:var(--gray-light);border-radius:99px;overflow:hidden;}
+  .bar-fill{height:100%;width:12%;background:var(--blue);border-radius:99px;transition:width .35s ease;}
+  .qnum{font-size:13px;font-weight:700;color:var(--gray);white-space:nowrap;}
+  .qtext{font-size:23px;font-weight:800;line-height:1.4;letter-spacing:-.5px;margin-bottom:28px;word-break:keep-all;min-height:96px;}
+  .opts{display:flex;flex-direction:column;gap:12px;}
+  .opt{text-align:left;background:#fff;border:1.8px solid var(--line);border-radius:14px;padding:17px 18px;font-family:inherit;font-size:16px;font-weight:500;color:var(--ink);cursor:pointer;transition:.15s;word-break:keep-all;}
+  .opt:active{transform:scale(.985);border-color:var(--blue);}
+  .result{text-align:center;}
+  .rcard{border-radius:22px;padding:34px 24px;color:#fff;margin-bottom:22px;}
+  .rcard .emoji{font-size:72px;line-height:1;}
+  .rcard .rtype{font-size:14px;font-weight:700;opacity:.9;margin:14px 0 4px;letter-spacing:.5px;}
+  .rcard .rname{font-size:27px;font-weight:800;letter-spacing:-.5px;}
+  .rcard .rsub{font-size:15px;opacity:.95;margin-top:10px;font-weight:500;word-break:keep-all;}
+  .pctbadge{display:inline-block;margin-top:16px;background:rgba(255,255,255,.22);color:#fff;font-weight:700;font-size:14px;padding:9px 16px;border-radius:99px;}
+  .sec{text-align:left;background:var(--bg);border-radius:16px;padding:20px;margin-bottom:14px;}
+  .sec h3{font-size:14px;font-weight:700;color:var(--gray);margin-bottom:9px;}
+  .sec p{font-size:15.5px;line-height:1.65;word-break:keep-all;}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;}
+  .tag{background:#fff;border:1px solid var(--line);font-size:13px;font-weight:600;padding:6px 12px;border-radius:99px;}
+  .gauge{margin-top:2px;}
+  .gtrack{height:16px;background:#eef0f3;border-radius:99px;overflow:hidden;}
+  .gfill{display:block;height:100%;width:0;border-radius:99px;transition:width 1s cubic-bezier(.22,1,.36,1);}
+  .glabels{display:flex;justify-content:space-between;margin-top:9px;font-size:12.5px;font-weight:700;color:var(--gray);}
+  .share-row{display:flex;gap:10px;margin:18px 0 8px;}
+  .share-row .btn{font-size:15px;padding:15px;}
+  .compare{font-size:13.5px;color:var(--gray);font-weight:600;}
+  .restart{background:none;border:none;color:var(--gray);font-size:14px;font-weight:600;margin-top:18px;cursor:pointer;text-decoration:underline;width:100%;}
+  .more-tests{display:block;text-decoration:none;text-align:center;margin-top:12px;background:#eef4ff;color:var(--blue);font-weight:700;font-size:15px;padding:15px;border-radius:12px;}
+  .disclaimer{font-size:11.5px;color:#b0b8c1;margin-top:24px;line-height:1.5;word-break:keep-all;}
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="screen intro active" id="intro">
+    <span class="badge">30초 · 무료 심리테스트</span>
+    <div class="coins">🪙</div>
+    <h1>나는 짠돌이? 플렉서?</h1>
+    <p>내 소비 성향, 지갑 여는 스타일로 알아보세요.<br>당신은 '지불의 고통'을 얼마나 느끼나요?</p>
+    <button class="btn" id="startBtn">테스트 시작하기 →</button>
+    <small>소비심리 '인색가–낭비가' 이론 기반 · 8문항</small>
+  </section>
+  <section class="screen" id="quiz">
+    <div class="topbar"><div class="bar"><div class="bar-fill" id="barFill"></div></div><span class="qnum" id="qnum">1 / 8</span></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </section>
+  <section class="screen result" id="result">
+    <div class="rcard" id="rcard">
+      <div class="emoji" id="rEmoji"></div>
+      <div class="rtype" id="rTypeLabel">나의 유형</div>
+      <div class="rname" id="rName"></div>
+      <div class="rsub" id="rSub"></div>
+      <div class="pctbadge" id="rPct"></div>
+    </div>
+    <div class="sec"><h3>📊 내 위치</h3><div class="gauge"><div class="gtrack"><div class="gfill" id="gFill"></div></div><div class="glabels"><span id="gMin"></span><span id="gMax"></span></div></div></div>
+    <div class="sec"><h3>💬 당신은 이런 사람</h3><p id="rDesc"></p></div>
+    <div class="sec"><h3>✨ 강점</h3><div class="tags" id="rStrength"></div></div>
+    <div class="sec" id="rAssetSec"><h3>💡 참고</h3><p id="rAsset"></p></div>
+    <div class="sec"><h3>👀 살짝만 조심하면 좋아요</h3><p id="rCaution"></p></div>
+    <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유하기</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
+    <p class="compare">친구에게 보내고 비교해보세요!</p>
+    <button class="restart" id="restartBtn">다시 테스트하기</button>
+    <a class="more-tests" href="/test/">🧠 다른 테스트도 해보기 →</a>
+    <p class="disclaimer">본 테스트는 재미와 자기이해를 위한 콘텐츠로, 소비심리학의 '인색가–낭비가(Tightwad–Spendthrift)' 개념을 참고해 제작되었습니다. 전문 진단을 대체하지 않습니다.</p>
+  </section>
+</div>
+<script>
+(function(){
+  "use strict";
+  var Q = [{"q": "사고 싶은 게 생겼다. 나는?", "a": [["일단 참는다, 진짜 필요한지 3번 생각", 0], ["장바구니에 담고 며칠 고민", 1], ["가격 적당하면 산다", 2], ["지른다! 지금 안 사면 후회", 3]]}, {"q": "돈을 쓰고 난 뒤 드는 기분은?", "a": [["쓸 때마다 마음이 좀 아프다", 0], ["살짝 아깝다", 1], ["별 생각 없다", 2], ["쓰면서 행복하다", 3]]}, {"q": "세일·할인을 만났을 때 나는?", "a": [["필요 없으면 안 산다", 0], ["필요한 것만 산다", 1], ["좋아 보이면 산다", 2], ["세일은 사야 이득! 일단 담기", 3]]}, {"q": "친구들과 외식, 메뉴 고를 때?", "a": [["가성비가 1순위", 0], ["적당한 선에서", 1], ["먹고 싶은 거 위주", 2], ["비싸도 맛있으면 OK", 3]]}, {"q": "통장 잔고를 볼 때 나는?", "a": [["많이 쌓여 있어야 마음이 편하다", 0], ["적당히 있으면 됨", 1], ["크게 신경 안 씀", 2], ["어차피 또 벌면 되지", 3]]}, {"q": "여행 가서 기념품·체험 앞에서?", "a": [["사진이면 충분, 돈 아낌", 0], ["의미 있는 것 하나만", 1], ["마음에 들면 산다", 2], ["추억엔 돈 안 아낀다, 다 즐긴다", 3]]}, {"q": "카페에서 음료 고를 때?", "a": [["제일 싼 걸로 / 잘 안 감", 0], ["무난한 걸로", 1], ["먹고 싶은 걸로", 2], ["신메뉴·시즌 한정 다 도전", 3]]}, {"q": "한 달을 돌아보면 나는?", "a": [["안 쓴 게 뿌듯하다", 0], ["계획대로 잘 썼다", 1], ["그럭저럭", 2], ["또 많이 썼네 ㅎㅎ", 3]]}];
+  var TIERS = [{"max": 20, "emoji": "🔒", "name": "찐 짠돌이", "type": "TIGHTWAD", "sub": "돈 쓸 때마다 마음이 아픈 절약 끝판왕", "grad": "linear-gradient(135deg,#26c6a8,#1eb396)", "bar": "#1eb396", "desc": "당신은 지갑을 여는 순간 '지불의 고통'을 누구보다 크게 느끼는 사람이에요. 통장 잔고가 곧 마음의 평화죠. 덕분에 돈은 잘 모이지만, 가끔은 나를 위한 작은 사치도 행복이라는 걸 잊지 마세요.", "strength": ["최강 저축력", "충동구매 제로", "목돈의 달인"], "caution": "너무 아끼다 정작 누려야 할 순간을 놓치기도 해요. '나를 위한 플렉스' 예산을 미리 정해두면 죄책감 없이 즐길 수 있어요."}, {"max": 40, "emoji": "💪", "name": "알뜰 절약러", "type": "SAVER", "sub": "쓸 때 신중한 똑똑한 소비자", "grad": "linear-gradient(135deg,#3fb6c9,#2b9fd4)", "bar": "#2b9fd4", "desc": "필요한 것엔 쓰지만 늘 한 번 더 생각하는 합리적인 절약가예요. 돈을 허투루 쓰는 법이 거의 없죠. 계획적인 소비가 몸에 밴 든든한 타입이에요.", "strength": ["합리적 소비", "계획적", "낭비 최소화"], "caution": "가끔은 '이 정도는 괜찮아' 하고 마음 편히 써보는 연습도 필요해요."}, {"max": 60, "emoji": "⚖️", "name": "균형잡힌 소비러", "type": "BALANCED", "sub": "쓸 땐 쓰고 아낄 땐 아끼는 밸런스형", "grad": "linear-gradient(135deg,#3182f6,#1b64da)", "bar": "#3182f6", "desc": "당신은 즐길 줄도, 아낄 줄도 아는 이상적인 균형 감각의 소유자예요. 지불의 고통도 적당, 소비의 즐거움도 적당. 돈 때문에 스트레스받는 일이 가장 적은 타입이죠.", "strength": ["뛰어난 균형감", "유연한 소비", "스트레스 적음"], "caution": "지금의 균형만 잘 유지해도 충분해요. 목표 저축액만 하나 정해두면 완벽!"}, {"max": 80, "emoji": "🛍️", "name": "즐기는 플렉서", "type": "SPENDER", "sub": "인생은 즐기는 것, 소비로 행복을 사는 사람", "grad": "linear-gradient(135deg,#ffb04a,#ff8a3d)", "bar": "#ff8a3d", "desc": "당신에게 소비는 곧 즐거움이에요. 좋은 경험과 물건에 기꺼이 지갑을 열고, 그 순간을 만끽하죠. 삶을 풍요롭게 즐길 줄 아는 사람이에요.", "strength": ["삶을 즐김", "과감한 결정", "경험 부자"], "caution": "즐기는 만큼 '새는 돈'도 많을 수 있어요. 자동이체 저축을 먼저 떼두면 즐기면서도 모을 수 있어요."}, {"max": 100, "emoji": "💸", "name": "플렉스 끝판왕", "type": "SPENDTHRIFT", "sub": "지를 땐 화끈하게! 지불의 고통이 거의 없는 타입", "grad": "linear-gradient(135deg,#f368a8,#e84393)", "bar": "#e84393", "desc": "당신은 돈 쓰는 데 거침이 없는 화끈한 소비자예요. 갖고 싶으면 산다, 후회는 나중에! 덕분에 인생은 즐겁지만 통장은 종종 아슬아슬하죠.", "strength": ["화끈한 결단력", "현재를 즐김", "주변에 인기"], "caution": "통장 잔고를 지킬 '브레이크' 하나가 꼭 필요해요. 월급날 저축 자동이체부터 걸어두는 걸 추천해요."}];
+  var GMIN="🔒 짠돌이", GMAX="💸 플렉서", BADGE_PRE="플렉스 지수 ", BADGE_SUF="%";
+  var idx=0, total=0, current=null, pct=0;
+  function $(id){return document.getElementById(id);}
+  function show(id){var s=document.querySelectorAll(".screen");for(var i=0;i<s.length;i++){s[i].classList.remove("active");}$(id).classList.add("active");window.scrollTo(0,0);}
+  function start(){idx=0;total=0;show("quiz");render();}
+  function render(){
+    var it=Q[idx];
+    $("qtext").textContent=it.q;
+    $("qnum").textContent=(idx+1)+" / "+Q.length;
+    $("barFill").style.width=((idx+1)/Q.length*100)+"%";
+    var box=$("opts");box.innerHTML="";
+    for(var i=0;i<it.a.length;i++){(function(sc){var b=document.createElement("button");b.className="opt";b.textContent=it.a[i][0];b.addEventListener("click",function(){total+=sc;idx++;(idx<Q.length)?render():finish();});box.appendChild(b);})(it.a[i][1]);}
+  }
+  function finish(){
+    pct=Math.round(total/(Q.length*3)*100);
+    var t=TIERS[TIERS.length-1];
+    for(var i=0;i<TIERS.length;i++){ if(pct<=TIERS[i].max){ t=TIERS[i]; break; } }
+    current=t;
+    $("rcard").style.background=t.grad;
+    $("rEmoji").textContent=t.emoji;
+    $("rName").textContent=t.name;
+    $("rSub").textContent=t.sub;
+    $("rTypeLabel").textContent="나의 유형 · "+t.type;
+    $("rPct").textContent=BADGE_PRE+pct+BADGE_SUF;
+    $("rDesc").textContent=t.desc;
+    $("rCaution").textContent=t.caution;
+    var st=$("rStrength");st.innerHTML="";
+    for(var j=0;j<t.strength.length;j++){var sp=document.createElement("span");sp.className="tag";sp.textContent="#"+t.strength[j];st.appendChild(sp);}
+    if(t.asset){ $("rAssetSec").style.display="block"; $("rAsset").textContent=t.asset; } else { $("rAssetSec").style.display="none"; }
+    $("gMin").textContent=GMIN; $("gMax").textContent=GMAX;
+    show("result");
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ var g=$("gFill"); g.style.background=t.bar||"#3182f6"; g.style.width=pct+"%"; }); });
+  }
+  function doShare(){
+    var t=current; if(!t) return;
+    var text="나의 소비 성향은(는) "+t.emoji+" "+t.name+"! 너는 어때? 같이 해보자!";
+    var url=location.href.split("#")[0];
+    if(navigator.share){ navigator.share({title:document.title,text:text,url:url}).catch(function(){}); }
+    else{ doCopy(text+" "+url); }
+  }
+  function doCopy(c){
+    var url=location.href.split("#")[0]; var txt=c||url;
+    function done(){var b=$("copyBtn");var o=b.textContent;b.textContent="✅ 복사 완료!";setTimeout(function(){b.textContent=o;},1500);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(function(){window.prompt("아래 링크를 복사하세요",txt);}); }
+    else{ window.prompt("아래 링크를 복사하세요",txt); }
+  }
+  function init(){
+    $("startBtn").addEventListener("click",start);
+    $("shareBtn").addEventListener("click",doShare);
+    $("copyBtn").addEventListener("click",function(){doCopy();});
+    $("restartBtn").addEventListener("click",function(){show("intro");});
+  }
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
+})();
+</script>
+</body>
+</html>
