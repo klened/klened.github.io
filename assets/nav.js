@@ -37,8 +37,8 @@
       { label: '요금감면 자격 진단',  href: '/utility/' }
     ]},
     { label: '콘텐츠', children: [
-      { label: '정책 가이드 (칼럼)',   href: '/column/' },
-      { label: '머니 캐릭터 테스트', href: '/test', badge: 'NEW' }
+      { label: '정책 가이드 (칼럼)', href: '/column/' },
+      { label: '심리테스트 모음',   href: '/test/', badge: 'NEW' }
     ]},
     { label: '소개', href: '/about/' }
   ];

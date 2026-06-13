@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>숨은 돈 찾기 — 상단 메뉴</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{ --blue:#3182f6; --blue-dark:#1b64da; --ink:#191f28; --gray:#8b95a1; --line:#e9ecef; --bg:#f9fafb; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',-apple-system,sans-serif; color:var(--ink); background:var(--bg);}
+  a{text-decoration:none; color:inherit;}
+
+  /* ===== NAVBAR (이 블록을 각 페이지 상단에 넣으세요) ===== */
+  .nav{position:sticky; top:0; z-index:100; background:#fff; border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1200px; margin:0 auto; height:64px; padding:0 20px; display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-size:20px; font-weight:800; letter-spacing:-.5px; display:flex; align-items:center; gap:7px; white-space:nowrap;}
+  .logo .dot{color:var(--blue);}
+
+  .menu{display:flex; align-items:center; gap:4px; list-style:none;}
+  .menu>li{position:relative;}
+  .menu>li>a, .menu>li>.top{
+    display:flex; align-items:center; gap:4px; padding:10px 14px; font-size:15.5px; font-weight:600;
+    color:#3a4150; border-radius:10px; cursor:pointer; white-space:nowrap; background:none; border:none; font-family:inherit;
+  }
+  .menu>li>a:hover, .menu>li>.top:hover{background:var(--gray-light,#f2f4f6);}
+  .menu>li>.top .arr{font-size:10px; color:var(--gray); transition:transform .2s;}
+  .menu>li.open>.top .arr{transform:rotate(180deg);}
+
+  .drop{
+    position:absolute; top:calc(100% + 6px); left:0; min-width:200px; background:#fff;
+    border:1px solid var(--line); border-radius:14px; padding:8px; box-shadow:0 12px 32px rgba(0,0,0,.1);
+    opacity:0; visibility:hidden; transform:translateY(6px); transition:.16s; list-style:none;
+  }
+  .menu>li:hover .drop, .menu>li.open .drop{opacity:1; visibility:visible; transform:translateY(0);}
+  .drop li a{display:block; padding:10px 12px; font-size:14.5px; font-weight:500; color:#3a4150; border-radius:9px; white-space:nowrap;}
+  .drop li a:hover{background:#eef4ff; color:var(--blue);}
+  .drop li a .new{font-size:10px; font-weight:700; color:#fff; background:var(--blue); padding:2px 6px; border-radius:99px; margin-left:6px; vertical-align:middle;}
+
+  .cta{
+    background:var(--blue); color:#fff; font-weight:700; font-size:15px; padding:11px 18px;
+    border-radius:11px; white-space:nowrap; transition:.15s;
+  }
+  .cta:hover{background:var(--blue-dark);}
+
+  .hamb{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px;}
+  .hamb span{width:22px; height:2px; background:var(--ink); border-radius:2px; transition:.2s;}
+
+  /* 모바일 */
+  @media (max-width:920px){
+    .menu, .nav-inner>.cta{display:none;}
+    .hamb{display:flex;}
+    .mobile{display:none; border-top:1px solid var(--line); background:#fff; max-height:calc(100vh - 64px); overflow-y:auto;}
+    .mobile.show{display:block;}
+    .m-group{border-bottom:1px solid #f2f4f6;}
+    .m-top{width:100%; display:flex; justify-content:space-between; align-items:center; padding:16px 20px; font-size:16px; font-weight:700; color:var(--ink); background:none; border:none; font-family:inherit; cursor:pointer;}
+    .m-top .arr{font-size:12px; color:var(--gray); transition:transform .2s;}
+    .m-group.open .m-top .arr{transform:rotate(180deg);}
+    .m-sub{display:none; padding:0 20px 12px;}
+    .m-group.open .m-sub{display:block;}
+    .m-sub a, .m-link{display:block; padding:11px 12px; font-size:15px; font-weight:500; color:#4a5160; border-radius:9px;}
+    .m-sub a:active{background:#eef4ff;}
+    .m-cta{margin:16px 20px 22px; display:block; text-align:center; background:var(--blue); color:#fff; font-weight:700; padding:15px; border-radius:12px;}
+  }
+  @media (min-width:921px){ .mobile{display:none;} }
+
+  /* ===== 데모 본문 (실제 적용 시 삭제) ===== */
+  .demo{max-width:1200px; margin:0 auto; padding:60px 20px; text-align:center; color:var(--gray);}
+  .demo h2{font-size:24px; color:var(--ink); margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<!-- ===================== 상단 메뉴 시작 ===================== -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="/"><span>💰</span> 숨은 <span class="dot">돈</span> 찾기</a>
+
+    <nav>
+      <ul class="menu">
+        <li><a href="/">홈</a></li>
+
+        <li>
+          <button class="top">복지·지원금 <span class="arr">▼</span></button>
+          <ul class="drop">
+            <li><a href="/baby/">출산·육아 지원금</a></li>
+            <li><a href="/youth/">청년 지원금</a></li>
+            <li><a href="/senior/">어르신·노후 지원금</a></li>
+            <li><a href="/welfare/">한부모·복지 진단</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <button class="top">근로자 <span class="arr">▼</span></button>
+          <ul class="drop">
+            <li><a href="/tax/">연말정산 환급</a></li>
+            <li><a href="/jobless/">실업급여 계산기</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <button class="top">사업자 <span class="arr">▼</span></button>
+          <ul class="drop">
+            <li><a href="/business/">사업자 지원금</a></li>
+            <li><a href="/check/">내 가게 진단</a></li>
+            <li><a href="/marketing/">마케팅 예산 계산기</a></li>
+            <li><a href="/closure/">폐업·재도전 지원금</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <button class="top">주거·금융 <span class="arr">▼</span></button>
+          <ul class="drop">
+            <li><a href="/loan/">부동산 대출</a></li>
+            <li><a href="/rent/">장기전세·공공임대</a></li>
+            <li><a href="/guarantee/">전세보증보험 계산기</a></li>
+            <li><a href="/refund/">숨은 환급금 조회</a></li>
+            <li><a href="/utility/">요금감면 자격 진단</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <button class="top">콘텐츠 <span class="arr">▼</span></button>
+          <ul class="drop">
+            <li><a href="/posts/">정책 가이드 (칼럼)</a></li>
+            <li><a href="/test">머니 캐릭터 테스트 <span class="new">NEW</span></a></li>
+          </ul>
+        </li>
+
+        <li><a href="/about/">소개</a></li>
+      </ul>
+    </nav>
+
+    <a class="cta" href="/">내 혜택 진단하기</a>
+
+    <button class="hamb" id="hamb" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+  </div>
+
+  <!-- 모바일 메뉴 -->
+  <div class="mobile" id="mobile">
+    <div class="m-group"><a class="m-link" href="/" style="font-weight:700;color:var(--ink);">홈</a></div>
+    <div class="m-group">
+      <button class="m-top">복지·지원금 <span class="arr">▼</span></button>
+      <div class="m-sub">
+        <a href="/baby/">출산·육아 지원금</a><a href="/youth/">청년 지원금</a>
+        <a href="/senior/">어르신·노후 지원금</a><a href="/welfare/">한부모·복지 진단</a>
+      </div>
+    </div>
+    <div class="m-group">
+      <button class="m-top">근로자 <span class="arr">▼</span></button>
+      <div class="m-sub"><a href="/tax/">연말정산 환급</a><a href="/jobless/">실업급여 계산기</a></div>
+    </div>
+    <div class="m-group">
+      <button class="m-top">사업자 <span class="arr">▼</span></button>
+      <div class="m-sub">
+        <a href="/business/">사업자 지원금</a><a href="/check/">내 가게 진단</a>
+        <a href="/marketing/">마케팅 예산 계산기</a><a href="/closure/">폐업·재도전 지원금</a>
+      </div>
+    </div>
+    <div class="m-group">
+      <button class="m-top">주거·금융 <span class="arr">▼</span></button>
+      <div class="m-sub">
+        <a href="/loan/">부동산 대출</a><a href="/rent/">장기전세·공공임대</a>
+        <a href="/guarantee/">전세보증보험 계산기</a><a href="/refund/">숨은 환급금 조회</a><a href="/utility/">요금감면 자격 진단</a>
+      </div>
+    </div>
+    <div class="m-group">
+      <button class="m-top">콘텐츠 <span class="arr">▼</span></button>
+      <div class="m-sub"><a href="/posts/">정책 가이드 (칼럼)</a><a href="/test">머니 캐릭터 테스트 (NEW)</a></div>
+    </div>
+    <div class="m-group"><a class="m-link" href="/about/" style="font-weight:700;color:var(--ink);">소개</a></div>
+    <a class="m-cta" href="/">내 혜택 진단하기</a>
+  </div>
+</header>
+<!-- ===================== 상단 메뉴 끝 ===================== -->
+
+<div class="demo">
+  <h2>↑ 상단 메뉴 미리보기</h2>
+  <p>데스크톱은 마우스를 올리면 드롭다운, 모바일(좁은 화면)은 햄버거(☰)를 누르면 펼쳐집니다.<br>창 너비를 줄여서 모바일 모드도 확인해보세요.</p>
+</div>
+
+<script>
+(function(){
+  var hamb=document.getElementById('hamb'), mobile=document.getElementById('mobile');
+  hamb.addEventListener('click', function(){ mobile.classList.toggle('show'); });
+
+  // 모바일 아코디언
+  var mtops=document.querySelectorAll('.m-top');
+  for(var i=0;i<mtops.length;i++){
+    mtops[i].addEventListener('click', function(){ this.parentNode.classList.toggle('open'); });
+  }
+
+  // 데스크톱 드롭다운: 클릭으로도 열리게(터치 대응) + 바깥 클릭 시 닫기
+  var tops=document.querySelectorAll('.menu>li>.top');
+  for(var j=0;j<tops.length;j++){
+    tops[j].addEventListener('click', function(e){
+      e.stopPropagation();
+      var li=this.parentNode, wasOpen=li.classList.contains('open');
+      var all=document.querySelectorAll('.menu>li.open');
+      for(var k=0;k<all.length;k++){ all[k].classList.remove('open'); }
+      if(!wasOpen){ li.classList.add('open'); }
+    });
+  }
+  document.addEventListener('click', function(){
+    var all=document.querySelectorAll('.menu>li.open');
+    for(var k=0;k<all.length;k++){ all[k].classList.remove('open'); }
+  });
+})();
+</script>
+</body>
+</html>
