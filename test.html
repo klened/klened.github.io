@@ -6,7 +6,7 @@
 <title>나의 머니 캐릭터는? | 30초 돈 성향 테스트</title>
 <meta name="description" content="돈을 대하는 나의 무의식, 4가지 머니 캐릭터로 알아보세요. 30초 무료 심리테스트.">
 <meta property="og:title" content="나의 머니 캐릭터는? 💰">
-<meta property="og:description" content="당신은 어떤 돈 성향일까? 30초 무료 테스트로 확인하고 친구와 비교해보세요!">
+<meta property="og:description" content="당신은 어떤 돈 성향일까? 30초 무료 테스트로 확인하고 친구와 궁합까지!">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
@@ -22,11 +22,12 @@
     display:flex; justify-content:center; min-height:100vh; line-height:1.5;
   }
   .app{width:100%; max-width:480px; background:#fff; min-height:100vh; position:relative; overflow:hidden;}
-  .screen{display:none; padding:32px 24px 40px;}
-  .screen.active{display:block; animation:fade .4s ease;}
+  .screen{display:none !important; padding:32px 24px 40px;}
+  .screen.active{display:block !important; animation:fade .4s ease;}
   @keyframes fade{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
 
-  .intro{text-align:center; display:flex; flex-direction:column; justify-content:center; min-height:100vh;}
+  .intro{text-align:center;}
+  .intro.active{display:flex !important; flex-direction:column; justify-content:center; min-height:100vh;}
   .badge{display:inline-block; background:var(--gray-light); color:var(--blue); font-weight:700;
     font-size:13px; padding:7px 14px; border-radius:999px; margin:0 auto 20px;}
   .intro h1{font-size:30px; font-weight:800; line-height:1.3; letter-spacing:-.5px;}
@@ -80,6 +81,23 @@
   .compare{font-size:13.5px;color:var(--gray);font-weight:600;}
   .restart{background:none; border:none; color:var(--gray); font-size:14px; font-weight:600; margin-top:18px; cursor:pointer; text-decoration:underline; width:100%;}
   .disclaimer{font-size:11.5px; color:#b0b8c1; margin-top:24px; line-height:1.5; word-break:keep-all;}
+
+  .pctbadge{display:inline-block; margin-top:16px; background:rgba(255,255,255,.22); color:#fff; font-weight:700; font-size:14px; padding:9px 16px; border-radius:99px; word-break:keep-all;}
+  .funlabel{font-size:11px; font-weight:600; color:var(--gray); background:var(--gray-light); padding:3px 8px; border-radius:99px; margin-left:6px; vertical-align:middle;}
+  .barrow{display:flex; align-items:center; gap:10px; margin:9px 0;}
+  .barrow .bl{font-size:13px; font-weight:600; width:46px; color:var(--ink);}
+  .barrow .bt{flex:1; height:10px; background:var(--gray-light); border-radius:99px; overflow:hidden;}
+  .barrow .bv{height:100%; border-radius:99px; transition:width .6s ease;}
+  .barrow .bp{font-size:12px; font-weight:700; color:var(--gray); width:36px; text-align:right;}
+  .compat-guide{font-size:13.5px; color:var(--gray); margin-bottom:4px;}
+  .cbtns{display:flex; gap:8px; flex-wrap:wrap;}
+  .cbtn{flex:1; min-width:calc(50% - 4px); padding:12px 8px; border:1.5px solid var(--line); border-radius:12px; background:#fff; font-family:inherit; font-size:14px; font-weight:600; color:var(--ink); cursor:pointer; transition:.15s;}
+  .cbtn:active{transform:scale(.97);}
+  .cbtn.sel{border-color:var(--blue); color:var(--blue); background:#eef4ff;}
+  .cresult{display:none; margin-top:14px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px; text-align:center;}
+  .cresult .hearts{font-size:18px; letter-spacing:2px;}
+  .cresult .cpair{font-size:13px; font-weight:700; color:var(--gray); margin:8px 0 6px;}
+  .cresult .ctext{font-size:14.5px; line-height:1.6; color:var(--ink); word-break:keep-all;}
 </style>
 </head>
 <body>
@@ -109,18 +127,26 @@
       <div class="rtype" id="rTypeLabel">나의 머니 캐릭터</div>
       <div class="rname" id="rName"></div>
       <div class="rsub" id="rSub"></div>
+      <div class="pctbadge" id="rPct"></div>
     </div>
     <div class="sec"><h3>💬 당신은 이런 사람</h3><p id="rDesc"></p></div>
+    <div class="sec"><h3>📊 나의 머니 성향 분포</h3><div id="rBars"></div></div>
     <div class="sec"><h3>✨ 강점</h3><div class="tags" id="rStrength"></div></div>
+    <div class="sec"><h3>🧬 비슷한 MBTI <span class="funlabel">재미로 보기</span></h3><p id="rMbti"></p></div>
     <div class="sec"><h3>👀 살짝만 조심하면 좋아요</h3><p id="rCaution"></p></div>
-    <a class="cta" id="rCta" href="#"></a>
+    <div class="sec">
+      <h3>💞 친구와 머니 궁합</h3>
+      <p class="compat-guide">친구는 어떤 유형일까요? 골라서 궁합을 확인하세요!</p>
+      <div class="cbtns" id="cBtns"></div>
+      <div class="cresult" id="cResult"></div>
+    </div>
     <div class="share-row">
-      <button class="btn" id="shareBtn">📤 공유하기</button>
+      <button class="btn" id="shareBtn">📤 결과 공유하기</button>
       <button class="btn ghost" id="copyBtn">🔗 링크 복사</button>
     </div>
-    <p class="compare">친구는 어떤 캐릭터일까? 보내서 비교해보세요!</p>
+    <p class="compare">친구에게 보내고 궁합까지 맞춰보세요!</p>
     <button class="restart" id="restartBtn">다시 테스트하기</button>
-    <p class="disclaimer">본 테스트는 재미와 자기이해를 위한 콘텐츠로, 심리학자 Brad Klontz의 '머니 스크립트(Money Script)' 4유형 분류를 참고해 제작되었습니다. 전문 심리·재무 진단을 대체하지 않습니다.</p>
+    <p class="disclaimer">본 테스트는 재미와 자기이해를 위한 콘텐츠로, 심리학자 Brad Klontz의 '머니 스크립트(Money Script)' 4유형 분류를 참고해 제작되었습니다. 분포 비율·MBTI 연결은 재미를 위한 참고치이며, 전문 심리·재무 진단을 대체하지 않습니다.</p>
   </section>
 
 </div>
@@ -172,72 +198,136 @@
       caution:"받을 수 있는 혜택까지 아끼진 마세요! 당신처럼 꼼꼼한 사람이 지원금을 다 챙기면 효과는 두 배예요.",
       ctaText:"내가 받을 수 있는 지원금 전부 보기", ctaSub:"나이·가구·직업만 골라도 합산 혜택 계산", ctaUrl:"https://klened.github.io/" }
   };
+  var META = {
+    avoid:{color:"#6b78f0", pctLabel:"💫 100명 중 약 22명 · 마이페이스 유형", mbti:"INFP · ENFP · INTP"},
+    worship:{color:"#ff8a3d", pctLabel:"🔥 100명 중 약 28명 · 열정 다수파", mbti:"ENFP · ESFP · ENTP"},
+    status:{color:"#e84393", pctLabel:"👑 단 15%! 가장 희귀한 유형", mbti:"ESTJ · ESFJ · ENTJ"},
+    vigil:{color:"#1eb396", pctLabel:"🛡️ 100명 중 약 35명 · 최다 든든파", mbti:"ISTJ · ISFJ · INTJ"}
+  };
+  var TYPES = ["avoid","worship","status","vigil"];
+  var COMPAT = {
+    "avoid|avoid":{s:3,t:"둘 다 돈에 무던해 편한 사이. 함께 놓치는 혜택이 없는지 가끔 점검해요!"},
+    "avoid|status":{s:2,t:"관심사가 정반대! 서로 신기해하지만 소비 스타일은 영 딴판이에요."},
+    "avoid|vigil":{s:4,t:"파수꾼이 자유인을 챙겨주는 든든한 조합. 균형이 아주 좋아요!"},
+    "avoid|worship":{s:3,t:"무심파 + 질러파. 의외로 중화되지만 지출 점검은 함께 필요해요."},
+    "status|status":{s:3,t:"서로의 멋짐을 인정하는 사이! 단, 은근한 허세 배틀은 주의해요."},
+    "status|vigil":{s:4,t:"파수꾼이 셀럽의 든든한 브레이크. 화려함과 안정의 좋은 균형!"},
+    "status|worship":{s:3,t:"만나면 인생은 화끈, 통장은 아슬아슬. 즐겁지만 과소비 주의!"},
+    "vigil|vigil":{s:4,t:"알뜰의 끝판왕 커플! 안정적이지만 가끔은 같이 플렉스도 필요해요."},
+    "vigil|worship":{s:5,t:"환상의 균형! 한 명은 꿈꾸고 벌고, 한 명은 야무지게 지켜요. 최고 궁합!"},
+    "worship|worship":{s:3,t:"같이 있으면 너무 신나서 통장이 위험! 즐겁지만 과소비 콤비예요."}
+  };
+  function getCompat(a,b){ return COMPAT[[a,b].sort().join("|")]; }
+  function hearts(n){ var s=""; for(var i=0;i<5;i++){ s+= i<n ? "❤️" : "🤍"; } return s; }
 
-  var idx=0, score={avoid:0,worship:0,status:0,vigil:0}, currentResult=null;
+  var idx=0, score={avoid:0,worship:0,status:0,vigil:0}, currentResult=null, currentType="avoid";
   function $(id){return document.getElementById(id);}
   function show(id){
-    var s=document.querySelectorAll('.screen');
-    for(var i=0;i<s.length;i++){s[i].classList.remove('active');}
-    $(id).classList.add('active');
+    var s=document.querySelectorAll(".screen");
+    for(var i=0;i<s.length;i++){s[i].classList.remove("active");}
+    $(id).classList.add("active");
     window.scrollTo(0,0);
   }
-  function start(){ idx=0; score={avoid:0,worship:0,status:0,vigil:0}; show('quiz'); render(); }
+  function start(){ idx=0; score={avoid:0,worship:0,status:0,vigil:0}; show("quiz"); render(); }
   function render(){
     var item=Q[idx];
-    $('qtext').textContent=item.q;
-    $('qnum').textContent=(idx+1)+' / '+Q.length;
-    $('barFill').style.width=((idx+1)/Q.length*100)+'%';
-    var box=$('opts'); box.innerHTML='';
+    $("qtext").textContent=item.q;
+    $("qnum").textContent=(idx+1)+" / "+Q.length;
+    $("barFill").style.width=((idx+1)/Q.length*100)+"%";
+    var box=$("opts"); box.innerHTML="";
     for(var i=0;i<item.a.length;i++){
       (function(key){
-        var b=document.createElement('button');
-        b.className='opt'; b.textContent=item.a[i][0];
-        b.addEventListener('click', function(){ score[key]++; nextQ(); });
+        var b=document.createElement("button");
+        b.className="opt"; b.textContent=item.a[i][0];
+        b.addEventListener("click", function(){ score[key]++; nextQ(); });
         box.appendChild(b);
       })(item.a[i][1]);
     }
   }
   function nextQ(){ idx++; if(idx<Q.length){render();} else {finish();} }
   function finish(){
-    var order=['avoid','worship','status','vigil'], best='avoid', max=-1;
+    var order=["avoid","worship","status","vigil"], best="avoid", max=-1;
     for(var i=0;i<order.length;i++){ if(score[order[i]]>max){max=score[order[i]];best=order[i];} }
-    var r=R[best]; currentResult=r;
-    $('rcard').style.background=r.grad;
-    $('rEmoji').textContent=r.emoji;
-    $('rName').textContent=r.name;
-    $('rSub').textContent=r.sub;
-    $('rTypeLabel').textContent='나의 머니 캐릭터 · '+r.type;
-    $('rDesc').textContent=r.desc;
-    $('rCaution').textContent=r.caution;
-    var st=$('rStrength'); st.innerHTML='';
-    for(var j=0;j<r.strength.length;j++){ var t=document.createElement('span'); t.className='tag'; t.textContent='#'+r.strength[j]; st.appendChild(t); }
-    var cta=$('rCta'); cta.href=r.ctaUrl;
-    cta.innerHTML=r.ctaText+' →<small>'+r.ctaSub+'</small>';
-    show('result');
+    var r=R[best]; currentResult=r; currentType=best;
+    $("rcard").style.background=r.grad;
+    $("rEmoji").textContent=r.emoji;
+    $("rName").textContent=r.name;
+    $("rSub").textContent=r.sub;
+    $("rTypeLabel").textContent="나의 머니 캐릭터 · "+r.type;
+    $("rDesc").textContent=r.desc;
+    $("rCaution").textContent=r.caution;
+    var st=$("rStrength"); st.innerHTML="";
+    for(var j=0;j<r.strength.length;j++){ var t=document.createElement("span"); t.className="tag"; t.textContent="#"+r.strength[j]; st.appendChild(t); }
+
+    var m=META[best];
+    $("rPct").textContent=m.pctLabel;
+    $("rMbti").textContent=m.mbti;
+
+    var bars=$("rBars"); bars.innerHTML="";
+    TYPES.forEach(function(k){
+      var pc=Math.round(score[k]/Q.length*100);
+      var row=document.createElement("div"); row.className="barrow";
+      row.innerHTML='<span class="bl">'+R[k].type+'</span><span class="bt"><span class="bv" style="width:0%;background:'+META[k].color+'"></span></span><span class="bp">0%</span>';
+      row.setAttribute("data-pc", pc);
+      bars.appendChild(row);
+    });
+    animateBars(bars);
+
+    var cb=$("cBtns"); cb.innerHTML=""; var cres=$("cResult"); cres.style.display="none"; cres.innerHTML="";
+    TYPES.forEach(function(k){
+      var b=document.createElement("button"); b.className="cbtn"; b.textContent=R[k].emoji+" "+R[k].type;
+      b.addEventListener("click", function(){
+        var all=cb.querySelectorAll(".cbtn"); for(var i=0;i<all.length;i++){ all[i].classList.remove("sel"); }
+        b.classList.add("sel");
+        var c=getCompat(currentType,k);
+        cres.style.display="block";
+        cres.innerHTML='<div class="hearts">'+hearts(c.s)+'</div><div class="cpair">'+R[currentType].type+" × "+R[k].type+'</div><div class="ctext">'+c.t+'</div>';
+      });
+      cb.appendChild(b);
+    });
+
+    show("result");
   }
   function doShare(){
     var r=currentResult; if(!r) return;
-    var text='나의 머니 캐릭터는 '+r.emoji+' '+r.name+'('+r.type+')! 너는 어떤 캐릭터야?';
-    var url=location.href.split('#')[0];
-    if(navigator.share){ navigator.share({title:'나의 머니 캐릭터는?', text:text, url:url}).catch(function(){}); }
-    else{ doCopy(text+' '+url); }
+    var rare=META[currentType] ? META[currentType].pctLabel.replace(/^[^ ]+ /,"") : "";
+    var text="나의 머니 캐릭터는 "+r.emoji+" "+r.name+"("+r.type+")! "+rare+" 너는 어떤 캐릭터야? 궁합도 맞춰보자!";
+    var url=location.href.split("#")[0];
+    if(navigator.share){ navigator.share({title:"나의 머니 캐릭터는?", text:text, url:url}).catch(function(){}); }
+    else{ doCopy(text+" "+url); }
   }
   function doCopy(custom){
-    var url=location.href.split('#')[0];
+    var url=location.href.split("#")[0];
     var txt=custom||url;
-    function done(){ var b=$('copyBtn'); var o=b.textContent; b.textContent='✅ 복사 완료!'; setTimeout(function(){b.textContent=o;},1500); }
+    function done(){ var b=$("copyBtn"); var o=b.textContent; b.textContent="✅ 복사 완료!"; setTimeout(function(){b.textContent=o;},1500); }
     if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(txt).then(done).catch(function(){ window.prompt('아래 링크를 복사하세요', txt); });
-    } else { window.prompt('아래 링크를 복사하세요', txt); }
+      navigator.clipboard.writeText(txt).then(done).catch(function(){ window.prompt("아래 링크를 복사하세요", txt); });
+    } else { window.prompt("아래 링크를 복사하세요", txt); }
   }
-
+  function animateBars(bars){
+    var rows=bars.querySelectorAll(".barrow");
+    for(var i=0;i<rows.length;i++){
+      (function(row,i){
+        var pc=parseInt(row.getAttribute("data-pc"),10)||0;
+        setTimeout(function(){
+          var bv=row.querySelector(".bv"); if(bv){ bv.style.width=pc+"%"; }
+          var lbl=row.querySelector(".bp"); var t0=Date.now(), dur=650;
+          var iv=setInterval(function(){
+            var p=Math.min(1,(Date.now()-t0)/dur);
+            if(lbl){ lbl.textContent=Math.round(pc*p)+"%"; }
+            if(p>=1){ clearInterval(iv); if(lbl){ lbl.textContent=pc+"%"; } }
+          },25);
+        }, 120 + i*150);
+      })(rows[i],i);
+    }
+  }
   function init(){
-    $('startBtn').addEventListener('click', start);
-    $('shareBtn').addEventListener('click', doShare);
-    $('copyBtn').addEventListener('click', function(){ doCopy(); });
-    $('restartBtn').addEventListener('click', function(){ show('intro'); });
+    $("startBtn").addEventListener("click", start);
+    $("shareBtn").addEventListener("click", doShare);
+    $("copyBtn").addEventListener("click", function(){ doCopy(); });
+    $("restartBtn").addEventListener("click", function(){ show("intro"); });
   }
-  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', init); }
+  if(document.readyState==="loading"){ document.addEventListener("DOMContentLoaded", init); }
   else { init(); }
 })();
 </script>
