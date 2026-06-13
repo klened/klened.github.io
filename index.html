@@ -1,3 +1,6 @@
+---
+# 홈페이지의 '정책 가이드' 섹션은 최신 칼럼을 자동 표시합니다.
+---
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -528,26 +531,22 @@ footer.site-footer .footer-cat-row a:hover { color: var(--primary); }
       <p>받기 전에 꼭 알아두면 좋은 정보</p>
     </div>
     <div class="guides-grid">
-      <a href="/posts/beotimok-guide/" class="guide-card reveal">
-        <span class="guide-tag cat-home">부동산 대출</span>
-        <h3>버팀목 전세자금대출 완벽 가이드 2026</h3>
-        <p>자격·한도·금리부터 청년·신혼·신생아 우대까지</p>
+      {% assign shown = 0 %}
+      {% assign newcols = site.columns | sort: "date" | reverse %}
+      {% for c in newcols %}{% if shown < 6 %}
+      <a href="{{ c.url }}" class="guide-card reveal">
+        <span class="guide-tag cat-home">{{ c.category_label }}</span>
+        <h3>{{ c.title }}</h3>
+        <p>{{ c.description | strip_html | truncate: 52 }}</p>
       </a>
-      <a href="/posts/didimdol-vs-bogeumjari/" class="guide-card reveal">
-        <span class="guide-tag cat-home">부동산 대출</span>
-        <h3>디딤돌 vs 보금자리론 — 어느 것이 유리할까?</h3>
-        <p>두 정부지원 상품을 자격·한도·금리로 비교 분석</p>
+      {% assign shown = shown | plus: 1 %}{% endif %}{% endfor %}
+      {% for c in site.data.columns %}{% if shown < 6 %}
+      <a href="{{ c.url }}" class="guide-card reveal">
+        <span class="guide-tag cat-home">{{ c.category }}</span>
+        <h3>{{ c.title }}</h3>
+        <p>{{ c.desc | truncate: 52 }}</p>
       </a>
-      <a href="/posts/parent-allowance-2026/" class="guide-card reveal">
-        <span class="guide-tag cat-welfare">출산·육아</span>
-        <h3>2026년 부모급여 완벽 정리</h3>
-        <p>0세 100만원·1세 50만원, 신청·중복까지</p>
-      </a>
-      <a href="/posts/local-birth-subsidy/" class="guide-card reveal">
-        <span class="guide-tag cat-welfare">출산·육아</span>
-        <h3>전국 지자체 출산장려금 완전 정복</h3>
-        <p>광역·기초 지자체별 금액과 신청 시 함정</p>
-      </a>
+      {% assign shown = shown | plus: 1 %}{% endif %}{% endfor %}
     </div>
   </div>
 </section>
