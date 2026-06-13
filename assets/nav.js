@@ -1,138 +1,150 @@
 /* =====================================================================
-   숨은 돈 찾기 — 공통 상단 메뉴
+   숨은 돈 찾기 — 공통 상단 메뉴 (그룹/드롭다운 버전)
    ---------------------------------------------------------------------
    이 파일 하나만 고치면 전체 페이지의 상단 메뉴가 한 번에 바뀝니다.
-   메뉴 항목을 추가·수정·삭제하려면 아래 LINKS 배열만 편집하세요.
+   메뉴를 추가·수정·삭제하려면 아래 GROUPS 배열만 편집하세요.
+   - 단일 메뉴:   { label:'홈', href:'/' }
+   - 드롭다운:    { label:'복지·지원금', children:[ {label, href}, ... ] }
+   - NEW 뱃지:    { label:'테스트', href:'/test', badge:'NEW' }
    ===================================================================== */
 (function () {
-  var LINKS = [
-    { href: '/',          label: '홈' },
-    { href: '/loan/',     label: '부동산 대출' },
-    { href: '/baby/',     label: '출산·육아 지원금' },
-    { href: '/business/', label: '사업자 지원금' },
-    { href: '/check/',    label: '내 가게 진단' },
-    { href: '/column/',   label: '칼럼' },
-    { href: '/about/',    label: '소개' }
+  var BRAND = { label: '숨은 돈 찾기', href: '/' };
+  var CTA   = { label: '내 혜택 진단하기', href: '/' };
+
+  var GROUPS = [
+    { label: '홈', href: '/' },
+    { label: '복지·지원금', children: [
+      { label: '출산·육아 지원금', href: '/baby/' },
+      { label: '청년 지원금',      href: '/youth/' },
+      { label: '어르신·노후 지원금', href: '/senior/' },
+      { label: '한부모·복지 진단',   href: '/welfare/' }
+    ]},
+    { label: '근로자', children: [
+      { label: '연말정산 환급',   href: '/tax/' },
+      { label: '실업급여 계산기', href: '/jobless/' }
+    ]},
+    { label: '사업자', children: [
+      { label: '사업자 지원금',     href: '/business/' },
+      { label: '내 가게 진단',      href: '/check/' },
+      { label: '마케팅 예산 계산기', href: '/marketing/' },
+      { label: '폐업·재도전 지원금', href: '/closure/' }
+    ]},
+    { label: '주거·금융', children: [
+      { label: '부동산 대출',         href: '/loan/' },
+      { label: '장기전세·공공임대',   href: '/rent/' },
+      { label: '전세보증보험 계산기', href: '/guarantee/' },
+      { label: '숨은 환급금 조회',    href: '/refund/' },
+      { label: '요금감면 자격 진단',  href: '/utility/' }
+    ]},
+    { label: '콘텐츠', children: [
+      { label: '정책 가이드 (칼럼)',   href: '/column/' },
+      { label: '머니 캐릭터 테스트', href: '/test', badge: 'NEW' }
+    ]},
+    { label: '소개', href: '/about/' }
   ];
 
-  /* 경로 정규화: '/loan' 또는 '/loan/index.html' → '/loan/' */
-  function norm(p) {
-    p = p.replace(/index\.html$/, '');
-    if (p.length > 1 && p.charAt(p.length - 1) !== '/') p += '/';
-    return p;
-  }
+  var CSS = `
+  .sdn{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid #e9ecef;font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',-apple-system,sans-serif;}
+  .sdn *{box-sizing:border-box;}
+  .sdn-in{max-width:1200px;margin:0 auto;height:64px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;}
+  .sdn-brand{font-size:20px;font-weight:800;letter-spacing:-.5px;color:#191f28;display:flex;align-items:center;gap:7px;white-space:nowrap;text-decoration:none;}
+  .sdn-menu{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0;}
+  .sdn-menu>li{position:relative;}
+  .sdn-menu>li>a,.sdn-menu>li>.sdn-top{display:flex;align-items:center;gap:4px;padding:10px 13px;font-size:15.5px;font-weight:600;color:#3a4150;border-radius:10px;cursor:pointer;white-space:nowrap;background:none;border:none;font-family:inherit;text-decoration:none;}
+  .sdn-menu>li>a:hover,.sdn-menu>li>.sdn-top:hover{background:#f2f4f6;}
+  .sdn-menu>li.sdn-cur>a,.sdn-menu>li.sdn-cur>.sdn-top{color:#3182f6;}
+  .sdn-top .sdn-arr{font-size:9px;color:#8b95a1;transition:transform .2s;}
+  .sdn-menu>li.open>.sdn-top .sdn-arr{transform:rotate(180deg);}
+  .sdn-drop{position:absolute;top:calc(100% + 6px);left:0;min-width:200px;background:#fff;border:1px solid #e9ecef;border-radius:14px;padding:8px;box-shadow:0 12px 32px rgba(0,0,0,.1);opacity:0;visibility:hidden;transform:translateY(6px);transition:.16s;list-style:none;margin:0;}
+  .sdn-menu>li:hover .sdn-drop,.sdn-menu>li.open .sdn-drop{opacity:1;visibility:visible;transform:translateY(0);}
+  .sdn-drop li a{display:block;padding:10px 12px;font-size:14.5px;font-weight:500;color:#3a4150;border-radius:9px;white-space:nowrap;text-decoration:none;}
+  .sdn-drop li a:hover{background:#eef4ff;color:#3182f6;}
+  .sdn-badge{font-size:10px;font-weight:700;color:#fff;background:#3182f6;padding:2px 6px;border-radius:99px;margin-left:6px;vertical-align:middle;}
+  .sdn-cta{background:#3182f6;color:#fff;font-weight:700;font-size:15px;padding:11px 18px;border-radius:11px;white-space:nowrap;transition:.15s;text-decoration:none;}
+  .sdn-cta:hover{background:#1b64da;}
+  .sdn-hamb{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;}
+  .sdn-hamb span{width:22px;height:2px;background:#191f28;border-radius:2px;}
+  .sdn-mob{display:none;}
+  @media (max-width:920px){
+    .sdn-menu,.sdn-in>.sdn-cta{display:none;}
+    .sdn-hamb{display:flex;}
+    .sdn-mob{border-top:1px solid #e9ecef;background:#fff;max-height:calc(100vh - 64px);overflow-y:auto;}
+    .sdn-mob.show{display:block;}
+    .sdn-mg{border-bottom:1px solid #f2f4f6;}
+    .sdn-mtop{width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px 20px;font-size:16px;font-weight:700;color:#191f28;background:none;border:none;font-family:inherit;cursor:pointer;text-decoration:none;}
+    .sdn-mtop .sdn-arr{font-size:11px;color:#8b95a1;transition:transform .2s;}
+    .sdn-mg.open .sdn-mtop .sdn-arr{transform:rotate(180deg);}
+    .sdn-msub{display:none;padding:0 20px 12px;}
+    .sdn-mg.open .sdn-msub{display:block;}
+    .sdn-msub a{display:block;padding:11px 12px;font-size:15px;font-weight:500;color:#4a5160;border-radius:9px;text-decoration:none;}
+    .sdn-msub a:active{background:#eef4ff;}
+    .sdn-mcta{margin:16px 20px 22px;display:block;text-align:center;background:#3182f6;color:#fff;font-weight:700;padding:15px;border-radius:12px;text-decoration:none;}
+  }`;
 
-  var cur = norm(location.pathname);
-  var html = '<div class="container"><a href="/" class="brand">숨은 돈 찾기</a>';
-  for (var i = 0; i < LINKS.length; i++) {
-    var l = LINKS[i];
-    var active = (norm(l.href) === cur) ? ' class="active"' : '';
-    html += '<a href="' + l.href + '"' + active + '>' + l.label + '</a>';
-  }
-  html += '</div>';
+  var path = location.pathname.replace(/index\.html$/,'');
+  function isCur(href){ if(href==='/') return path==='/'; return path.indexOf(href)===0; }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  function badge(b){ return b ? ' <span class="sdn-badge">'+esc(b)+'</span>' : ''; }
 
-  var el = document.getElementById('siteNav');
-  if (el) el.innerHTML = html;
-})();
-
-
-/* =====================================================================
-   숨은 돈 찾기 — 공통 공유 버튼
-   ---------------------------------------------------------------------
-   모든 페이지 우측 하단에 공유 버튼을 띄웁니다.
-   이 파일 하나만 고치면 전체 페이지에 한 번에 적용됩니다.
-   · 모바일: 기기 공유 시트(카카오톡·메시지 등) 호출
-   · 데스크톱/미지원 환경: 링크를 클립보드에 복사
-   ===================================================================== */
-(function () {
-  /* 페이지별 정체성 색 — 상단 메뉴와 동일한 규칙 */
-  function accent() {
-    var p = location.pathname;
-    if (p.indexOf('/baby') === 0)     return '#EC4899';
-    if (p.indexOf('/business') === 0) return '#0FA968';
-    if (p.indexOf('/check') === 0)    return '#5B5BD6';
-    return '#3182F6';
-  }
-  var COLOR = accent();
-
-  /* 스타일 주입 */
-  var css =
-    '.snj-share-btn{position:fixed;right:16px;bottom:16px;z-index:90;' +
-    'display:flex;align-items:center;gap:7px;border:none;cursor:pointer;' +
-    'font-family:inherit;font-size:14px;font-weight:700;color:#fff;' +
-    'padding:12px 18px;border-radius:999px;background:' + COLOR + ';' +
-    'box-shadow:0 6px 20px rgba(0,0,0,.22);' +
-    'transition:transform .12s ease,box-shadow .12s ease;}' +
-    '.snj-share-btn:hover{transform:translateY(-1px);' +
-    'box-shadow:0 9px 26px rgba(0,0,0,.26);}' +
-    '.snj-share-btn:active{transform:scale(.96);}' +
-    '.snj-share-btn svg{width:16px;height:16px;}' +
-    '.snj-toast{position:fixed;left:50%;bottom:80px;' +
-    'transform:translateX(-50%) translateY(10px);background:#191F28;color:#fff;' +
-    'font-size:13px;font-weight:600;padding:10px 16px;border-radius:10px;' +
-    'opacity:0;pointer-events:none;z-index:91;white-space:nowrap;' +
-    'box-shadow:0 6px 20px rgba(0,0,0,.22);' +
-    'transition:opacity .25s ease,transform .25s ease;}' +
-    '.snj-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}' +
-    '@media(min-width:768px){.snj-share-btn{right:24px;bottom:24px;' +
-    'padding:13px 20px;font-size:15px;}}';
-  var st = document.createElement('style');
-  st.appendChild(document.createTextNode(css));
-  document.head.appendChild(st);
-
-  /* 공유 버튼 */
-  var btn = document.createElement('button');
-  btn.className = 'snj-share-btn';
-  btn.type = 'button';
-  btn.setAttribute('aria-label', '이 페이지 공유하기');
-  btn.innerHTML =
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
-    'stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-    '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/>' +
-    '<circle cx="18" cy="19" r="3"/>' +
-    '<path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>공유하기</span>';
-
-  /* 안내 토스트 */
-  var toast = document.createElement('div');
-  toast.className = 'snj-toast';
-  function showToast(msg) {
-    toast.textContent = msg;
-    toast.classList.add('show');
-    setTimeout(function () { toast.classList.remove('show'); }, 2200);
-  }
-
-  function metaDesc() {
-    var m = document.querySelector('meta[name="description"]');
-    return m ? m.content : '';
-  }
-  function track(method) {
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'share', { method: method, page_path: location.pathname });
+  var deskItems = GROUPS.map(function(g){
+    var cur = g.children ? g.children.some(function(c){return isCur(c.href);}) : isCur(g.href);
+    if(!g.children){
+      return '<li class="'+(cur?'sdn-cur':'')+'"><a href="'+g.href+'">'+esc(g.label)+'</a></li>';
     }
-  }
+    var sub = g.children.map(function(c){
+      return '<li><a href="'+c.href+'">'+esc(c.label)+badge(c.badge)+'</a></li>';
+    }).join('');
+    return '<li class="'+(cur?'sdn-cur':'')+'"><button class="sdn-top" type="button">'+esc(g.label)+' <span class="sdn-arr">&#9660;</span></button><ul class="sdn-drop">'+sub+'</ul></li>';
+  }).join('');
 
-  btn.addEventListener('click', function () {
-    var data = { title: document.title, text: metaDesc(), url: location.href };
-    if (navigator.share) {
-      navigator.share(data)
-        .then(function () { track('web_share'); })
-        .catch(function () {});
-    } else if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(location.href).then(function () {
-        showToast('링크가 복사됐어요. 붙여넣기로 공유하세요!');
-        track('clipboard');
-      }).catch(function () {
-        showToast('주소창의 링크를 복사해 공유해 주세요.');
+  var mobItems = GROUPS.map(function(g){
+    if(!g.children){
+      return '<div class="sdn-mg"><a class="sdn-mtop" href="'+g.href+'">'+esc(g.label)+'</a></div>';
+    }
+    var sub = g.children.map(function(c){
+      return '<a href="'+c.href+'">'+esc(c.label)+badge(c.badge)+'</a>';
+    }).join('');
+    return '<div class="sdn-mg"><button class="sdn-mtop" type="button">'+esc(g.label)+' <span class="sdn-arr">&#9660;</span></button><div class="sdn-msub">'+sub+'</div></div>';
+  }).join('');
+
+  var html =
+    '<header class="sdn">'+
+      '<div class="sdn-in">'+
+        '<a class="sdn-brand" href="'+BRAND.href+'"><span>&#128176;</span> '+esc(BRAND.label)+'</a>'+
+        '<nav><ul class="sdn-menu">'+deskItems+'</ul></nav>'+
+        '<a class="sdn-cta" href="'+CTA.href+'">'+esc(CTA.label)+'</a>'+
+        '<button class="sdn-hamb" id="sdnHamb" type="button" aria-label="메뉴"><span></span><span></span><span></span></button>'+
+      '</div>'+
+      '<div class="sdn-mob" id="sdnMob">'+mobItems+'<a class="sdn-mcta" href="'+CTA.href+'">'+esc(CTA.label)+'</a></div>'+
+    '</header>';
+
+  function mount(){
+    var style=document.createElement('style'); style.textContent=CSS; document.head.appendChild(style);
+    var holder=document.getElementById('site-nav') || document.querySelector('.site-nav');
+    if(holder){ holder.outerHTML=html; } else { document.body.insertAdjacentHTML('afterbegin', html); }
+
+    var hamb=document.getElementById('sdnHamb'), mob=document.getElementById('sdnMob');
+    if(hamb){ hamb.addEventListener('click', function(){ mob.classList.toggle('show'); }); }
+
+    var mtops=document.querySelectorAll('.sdn-mtop');
+    for(var i=0;i<mtops.length;i++){
+      if(mtops[i].tagName==='BUTTON'){ mtops[i].addEventListener('click', function(){ this.parentNode.classList.toggle('open'); }); }
+    }
+    var tops=document.querySelectorAll('.sdn-menu>li>.sdn-top');
+    for(var j=0;j<tops.length;j++){
+      tops[j].addEventListener('click', function(e){
+        e.stopPropagation();
+        var li=this.parentNode, was=li.classList.contains('open');
+        var open=document.querySelectorAll('.sdn-menu>li.open');
+        for(var k=0;k<open.length;k++){ open[k].classList.remove('open'); }
+        if(!was){ li.classList.add('open'); }
       });
-    } else {
-      showToast('주소창의 링크를 복사해 공유해 주세요.');
     }
-  });
-
-  function mount() {
-    document.body.appendChild(btn);
-    document.body.appendChild(toast);
+    document.addEventListener('click', function(){
+      var open=document.querySelectorAll('.sdn-menu>li.open');
+      for(var k=0;k<open.length;k++){ open[k].classList.remove('open'); }
+    });
   }
-  if (document.body) mount();
-  else document.addEventListener('DOMContentLoaded', mount);
+
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', mount); } else { mount(); }
 })();
