@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>심리테스트 모음 | 숨은 돈 찾기</title>
+<meta name="description" content="돈과 나를 알아보는 무료 심리테스트 모음. 머니 캐릭터 테스트부터 소비 성향, 투자 성향까지 30초만에 확인하세요.">
+<meta property="og:title" content="심리테스트 모음 🧠 | 숨은 돈 찾기">
+<meta property="og:description" content="30초 무료 심리테스트로 나의 돈 성향을 알아보세요. 친구와 결과를 비교해보세요!">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://klened.github.io/test/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{ --blue:#3182f6; --blue-dark:#1b64da; --ink:#191f28; --gray:#8b95a1; --line:#e9ecef; --bg:#f9fafb; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:960px;margin:0 auto;padding:48px 20px 64px;}
+  .hero{text-align:center;margin-bottom:40px;}
+  .hero .ic{font-size:54px;}
+  .hero h1{font-size:30px;font-weight:800;letter-spacing:-.5px;margin:10px 0 12px;}
+  .hero p{font-size:16px;color:var(--gray);word-break:keep-all;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 24px;display:flex;flex-direction:column;transition:.18s;position:relative;overflow:hidden;}
+  .card.live:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(49,130,246,.14);border-color:#bcd5fa;}
+  .card .emoji{font-size:46px;line-height:1;}
+  .card .badge{position:absolute;top:18px;right:18px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px;}
+  .badge.new{background:var(--blue);color:#fff;}
+  .badge.soon{background:var(--gray-light,#f2f4f6);color:var(--gray);}
+  .card h2{font-size:19px;font-weight:800;letter-spacing:-.3px;margin:16px 0 8px;}
+  .card p{font-size:14.5px;color:var(--gray);word-break:keep-all;flex:1;}
+  .card .go{margin-top:18px;display:inline-block;text-align:center;background:var(--blue);color:#fff;font-weight:700;font-size:15px;padding:13px;border-radius:12px;transition:.15s;}
+  .card.live:hover .go{background:var(--blue-dark);}
+  .card.soon{opacity:.65;}
+  .card.soon .go{background:#eef0f3;color:var(--gray);cursor:default;}
+  .foot{text-align:center;margin-top:44px;font-size:12.5px;color:#b0b8c1;line-height:1.6;word-break:keep-all;}
+</style>
+</head>
+<body>
+<script src="/assets/nav.js" defer></script>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="ic">🧠</div>
+    <h1>심리테스트 모음</h1>
+    <p>돈과 나를 알아보는 30초 무료 테스트.<br>마음에 드는 걸 골라 시작해보세요!</p>
+  </div>
+
+  <div class="grid">
+    <a class="card live" href="/test/money/">
+      <span class="badge new">NEW</span>
+      <div class="emoji">💰</div>
+      <h2>머니 캐릭터 테스트</h2>
+      <p>돈을 대하는 나의 무의식, 4가지 캐릭터로 알아보고 친구와 궁합까지 맞춰보세요.</p>
+      <span class="go">테스트 하러 가기 →</span>
+    </a>
+
+    <div class="card soon">
+      <span class="badge soon">준비 중</span>
+      <div class="emoji">🪙</div>
+      <h2>짠돌이 vs 플렉서</h2>
+      <p>나는 아끼는 사람? 지르는 사람? 소비 성향을 한 축으로 진단해드려요.</p>
+      <span class="go">곧 공개돼요</span>
+    </div>
+
+    <div class="card soon">
+      <span class="badge soon">준비 중</span>
+      <div class="emoji">📈</div>
+      <h2>나의 투자 성향</h2>
+      <p>안정형부터 공격형까지, 내 투자 DNA는 어디쯤일까요?</p>
+      <span class="go">곧 공개돼요</span>
+    </div>
+  </div>
+
+  <p class="foot">본 테스트는 재미와 자기이해를 위한 콘텐츠이며, 전문 심리·재무 진단을 대체하지 않습니다.</p>
+</div>
+
+</body>
+</html>
