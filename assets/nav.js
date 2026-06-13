@@ -44,7 +44,7 @@
   ];
 
   var CSS = `
-  .sdn{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid #e9ecef;font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',-apple-system,sans-serif;}
+  .sdn{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid #e9ecef;font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;}
   .sdn *{box-sizing:border-box;}
   .sdn-in{max-width:1200px;margin:0 auto;height:64px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;}
   .sdn-brand{font-size:20px;font-weight:800;letter-spacing:-.5px;color:#191f28;display:flex;align-items:center;gap:7px;white-space:nowrap;text-decoration:none;}
