@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>나의 머니 캐릭터는? | 30초 돈 성향 테스트</title>
+<meta name="description" content="돈을 대하는 나의 무의식, 4가지 머니 캐릭터로 알아보세요. 30초 무료 심리테스트.">
+<meta property="og:title" content="나의 머니 캐릭터는? 💰">
+<meta property="og:description" content="당신은 어떤 돈 성향일까? 30초 무료 테스트로 확인하고 친구와 비교해보세요!">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --blue:#3182f6; --blue-dark:#1b64da; --ink:#191f28; --gray:#8b95a1;
+    --gray-light:#f2f4f6; --line:#e5e8eb; --bg:#f9fafb;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{
+    font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',-apple-system,sans-serif;
+    background:var(--bg); color:var(--ink);
+    display:flex; justify-content:center; min-height:100vh; line-height:1.5;
+  }
+  .app{width:100%; max-width:480px; background:#fff; min-height:100vh; position:relative; overflow:hidden;}
+  .screen{display:none; padding:32px 24px 40px;}
+  .screen.active{display:block; animation:fade .4s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+
+  .intro{text-align:center; display:flex; flex-direction:column; justify-content:center; min-height:100vh;}
+  .badge{display:inline-block; background:var(--gray-light); color:var(--blue); font-weight:700;
+    font-size:13px; padding:7px 14px; border-radius:999px; margin:0 auto 20px;}
+  .intro h1{font-size:30px; font-weight:800; line-height:1.3; letter-spacing:-.5px;}
+  .intro .coins{font-size:64px; margin:8px 0 18px;}
+  .intro p{color:var(--gray); font-size:16px; margin-bottom:36px; word-break:keep-all;}
+  .btn{
+    width:100%; border:none; background:var(--blue); color:#fff; font-family:inherit;
+    font-weight:700; font-size:17px; padding:17px; border-radius:14px; cursor:pointer;
+    transition:.15s; letter-spacing:-.3px;
+  }
+  .btn:active{transform:scale(.98); background:var(--blue-dark);}
+  .btn.ghost{background:var(--gray-light); color:var(--ink);}
+  .btn.ghost:active{background:var(--line);}
+  .intro small{display:block; color:#b0b8c1; font-size:13px; margin-top:18px;}
+
+  .topbar{display:flex; align-items:center; gap:12px; margin-bottom:28px;}
+  .bar{flex:1; height:8px; background:var(--gray-light); border-radius:99px; overflow:hidden;}
+  .bar-fill{height:100%; width:12%; background:var(--blue); border-radius:99px; transition:width .35s ease;}
+  .qnum{font-size:13px; font-weight:700; color:var(--gray); white-space:nowrap;}
+
+  .qtext{font-size:23px; font-weight:800; line-height:1.4; letter-spacing:-.5px; margin-bottom:28px; word-break:keep-all; min-height:96px;}
+  .opts{display:flex; flex-direction:column; gap:12px;}
+  .opt{
+    text-align:left; background:#fff; border:1.8px solid var(--line); border-radius:14px;
+    padding:17px 18px; font-family:inherit; font-size:16px; font-weight:500; color:var(--ink);
+    cursor:pointer; transition:.15s; word-break:keep-all;
+  }
+  .opt:active{transform:scale(.985); border-color:var(--blue);}
+
+  .result{text-align:center;}
+  .rcard{border-radius:22px; padding:34px 24px; color:#fff; margin-bottom:22px;}
+  .rcard .emoji{font-size:74px; line-height:1;}
+  .rcard .rtype{font-size:14px; font-weight:700; opacity:.9; margin:14px 0 4px; letter-spacing:.5px;}
+  .rcard .rname{font-size:27px; font-weight:800; letter-spacing:-.5px;}
+  .rcard .rsub{font-size:15px; opacity:.95; margin-top:10px; font-weight:500;}
+  .sec{text-align:left; background:var(--bg); border-radius:16px; padding:20px; margin-bottom:14px;}
+  .sec h3{font-size:14px; font-weight:700; color:var(--gray); margin-bottom:9px;}
+  .sec p{font-size:15.5px; line-height:1.65; word-break:keep-all;}
+  .tags{display:flex; gap:8px; flex-wrap:wrap;}
+  .tag{background:#fff; border:1px solid var(--line); font-size:13px; font-weight:600; padding:6px 12px; border-radius:99px;}
+
+  .cta{
+    display:block; text-decoration:none; text-align:center; background:var(--ink); color:#fff;
+    font-weight:700; font-size:16px; padding:17px; border-radius:14px; margin-top:6px;
+    transition:.15s; word-break:keep-all;
+  }
+  .cta:active{transform:scale(.98);}
+  .cta small{display:block; font-weight:500; font-size:13px; opacity:.7; margin-top:3px;}
+  .share-row{display:flex; gap:10px; margin:18px 0 8px;}
+  .share-row .btn{font-size:15px; padding:15px;}
+  .compare{font-size:13.5px;color:var(--gray);font-weight:600;}
+  .restart{background:none; border:none; color:var(--gray); font-size:14px; font-weight:600; margin-top:18px; cursor:pointer; text-decoration:underline; width:100%;}
+  .disclaimer{font-size:11.5px; color:#b0b8c1; margin-top:24px; line-height:1.5; word-break:keep-all;}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <section class="screen intro active" id="intro">
+    <span class="badge">30초 · 무료 심리테스트</span>
+    <div class="coins">💰</div>
+    <h1>나의 머니 캐릭터는?</h1>
+    <p>돈을 대하는 나의 무의식,<br>4가지 캐릭터로 알아보세요.<br>의외의 내 모습이 숨어 있을지도?</p>
+    <button class="btn" id="startBtn">테스트 시작하기 →</button>
+    <small>심리학 '머니 스크립트' 이론 기반 · 8문항</small>
+  </section>
+
+  <section class="screen" id="quiz">
+    <div class="topbar">
+      <div class="bar"><div class="bar-fill" id="barFill"></div></div>
+      <span class="qnum" id="qnum">1 / 8</span>
+    </div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </section>
+
+  <section class="screen result" id="result">
+    <div class="rcard" id="rcard">
+      <div class="emoji" id="rEmoji"></div>
+      <div class="rtype" id="rTypeLabel">나의 머니 캐릭터</div>
+      <div class="rname" id="rName"></div>
+      <div class="rsub" id="rSub"></div>
+    </div>
+    <div class="sec"><h3>💬 당신은 이런 사람</h3><p id="rDesc"></p></div>
+    <div class="sec"><h3>✨ 강점</h3><div class="tags" id="rStrength"></div></div>
+    <div class="sec"><h3>👀 살짝만 조심하면 좋아요</h3><p id="rCaution"></p></div>
+    <a class="cta" id="rCta" href="#"></a>
+    <div class="share-row">
+      <button class="btn" id="shareBtn">📤 공유하기</button>
+      <button class="btn ghost" id="copyBtn">🔗 링크 복사</button>
+    </div>
+    <p class="compare">친구는 어떤 캐릭터일까? 보내서 비교해보세요!</p>
+    <button class="restart" id="restartBtn">다시 테스트하기</button>
+    <p class="disclaimer">본 테스트는 재미와 자기이해를 위한 콘텐츠로, 심리학자 Brad Klontz의 '머니 스크립트(Money Script)' 4유형 분류를 참고해 제작되었습니다. 전문 심리·재무 진단을 대체하지 않습니다.</p>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var Q = [
+    { q:"월급날! 통장에 돈이 들어왔어요. 가장 먼저 드는 생각은?",
+      a:[["음.. 들어왔나? 통장은 굳이 안 봐","avoid"],["이번엔 뭐 지를까! 신난다 🎉","worship"],["이 정도면 한턱 쏠 만하지","status"],["바로 저축부터. 카드값 빼고 계산","vigil"]] },
+    { q:"친구가 큰맘 먹고 명품을 샀대요. 내 속마음은?",
+      a:[["뭐 각자 취향이지, 별 관심 없음","avoid"],["역시 돈이 있어야 폼나지~","worship"],["오 부럽다, 나도 갖고 싶다","status"],["저 돈이면 적금이 얼만데...","vigil"]] },
+    { q:"갑자기 100만원이 생겼다! 어떻게 할래요?",
+      a:[["글쎄.. 딱히 쓸 데가 생각 안 남","avoid"],["여행 가자! 일단 쓰고 본다","worship"],["갖고 싶던 걸로 나를 업그레이드","status"],["통장에 넣고 비상금으로 묶어둠","vigil"]] },
+    { q:"'돈' 하면 가장 먼저 떠오르는 느낌은?",
+      a:[["복잡하고 신경 쓰기 싫은 것","avoid"],["많을수록 행복해지는 것","worship"],["나를 증명해주는 것","status"],["항상 조심해서 지켜야 하는 것","vigil"]] },
+    { q:"가계부나 자산관리 앱, 나는?",
+      a:[["깔았다가 안 봄 / 안 함","avoid"],["그런 거 신경 안 써, 벌면 되지","worship"],["기록보다 남들에게 보일 자산이 중요","status"],["꼼꼼히 기록하는 편이야","vigil"]] },
+    { q:"사람들과 '돈 얘기'가 나오는 자리, 나는?",
+      a:[["불편해서 슬쩍 화제 돌림","avoid"],["돈 버는 법이면 귀가 솔깃","worship"],["은근히 내 소비/소득을 자랑함","status"],["내 재정 상황은 비밀, 말 아낌","vigil"]] },
+    { q:"쇼핑할 때 평소 내 모습은?",
+      a:[["사는 것 자체가 귀찮음, 최소한만","avoid"],["지르고 후회는 나중에!","worship"],["브랜드와 남들 시선이 중요","status"],["가격 비교 세 번은 기본","vigil"]] },
+    { q:"미래의 나, 돈에 대해 가장 바라는 건?",
+      a:[["돈에 얽매이지 않고 자유롭게","avoid"],["부자가 되면 다 해결될 거야","worship"],["성공해서 남들이 인정하는 사람","status"],["꾸준히 모아 안정적으로","vigil"]] }
+  ];
+  var R = {
+    avoid:{ emoji:"💸", name:"돈과 거리두는 자유로운 영혼", type:"회피형", sub:"돈보다 지금 이 순간이 더 소중한 사람",
+      grad:"linear-gradient(135deg,#7c8aff,#5a6bff)",
+      desc:"당신에게 돈은 인생의 전부가 아니에요. 숫자에 얽매이기보다 지금의 가치와 경험을 더 소중히 여기는 사람이죠. 그런데 사실 마음 한켠엔 '돈 관리, 슬슬 해야 하는데' 하는 생각도 있지 않나요? 의외로 큰돈 앞에서는 누구보다 신중해지는 면도 있어요.",
+      strength:["여유로운 마인드","물질보다 경험","돈에 안 휘둘림"],
+      caution:"돈에 무심한 사이, 받을 수 있었던 환급금·지원금을 놓치고 있을 확률이 높아요. '안 챙긴 내 돈'은 의외로 많답니다.",
+      ctaText:"혹시 안 챙긴 숨은 환급금 있을까? 30초 점검", ctaSub:"국세청·휴면계좌·통신비·카드포인트 한 번에", ctaUrl:"https://klened.github.io/refund/" },
+    worship:{ emoji:"✨", name:"돈이 곧 행복인 드리머", type:"숭배형", sub:"더 나은 삶을 꿈꾸는 긍정 에너지의 소유자",
+      grad:"linear-gradient(135deg,#ffb04a,#ff8a3d)",
+      desc:"당신은 '돈이 있으면 더 좋은 삶을 만들 수 있다'고 믿는 추진력 있는 사람이에요. 목표를 향한 에너지가 넘치죠. 다만 '조금만 더, 이것만 더'라는 마음에 지갑이 먼저 열릴 때가 있어요. 사실은 누구보다 풍요로운 삶을 진지하게 꿈꾸는, 열정 가득한 타입이랍니다.",
+      strength:["강한 동기부여","적극적인 도전","긍정 에너지"],
+      caution:"버는 것만큼 '새는 돈'을 점검할 때예요. 지출을 조금만 정리해도 꿈에 더 빨리 가까워질 수 있어요.",
+      ctaText:"받을 수 있는 지원금부터 차곡차곡 챙기기", ctaSub:"내 조건에 맞는 정부 혜택 한 번에 진단", ctaUrl:"https://klened.github.io/" },
+    status:{ emoji:"👑", name:"빛나는 셀럽", type:"지위형", sub:"자신을 멋지게 표현할 줄 아는 사람",
+      grad:"linear-gradient(135deg,#f368a8,#e84393)",
+      desc:"당신은 좋은 것을 알아보는 안목과, 자기 가치를 높이려는 열정을 가진 사람이에요. 트렌드 감각도 남다르죠. 가끔은 '남의 시선'이 내 지갑을 좌우하기도 해요. 하지만 그 에너지를 자산을 불리는 데 쓰면, 누구보다 빠르게 성공할 수 있는 잠재력을 가진 타입이에요.",
+      strength:["뛰어난 안목","자기계발 의지","트렌드 감각"],
+      caution:"보여주기식 소비는 잠깐의 만족이에요. 진짜 지위는 탄탄한 자산이 받쳐줄 때 더 단단해진답니다.",
+      ctaText:"절세부터 챙겨 자산 키우기, 연말정산 환급 진단", ctaSub:"예상 환급액 + 놓친 공제 항목 추천", ctaUrl:"https://klened.github.io/tax/" },
+    vigil:{ emoji:"🛡️", name:"철벽 파수꾼", type:"경계형", sub:"돈을 지키고 불리는 데 진심인 전략가",
+      grad:"linear-gradient(135deg,#26c6a8,#1eb396)",
+      desc:"당신은 미래를 대비하는 책임감이 강한 신중한 전략가예요. 저축과 계획에 있어선 누구에게도 지지 않죠. 다만 너무 아끼느라 정작 누려야 할 순간을 놓치거나, 돈 걱정을 늘 마음에 안고 살기도 해요. 사실 당신은 이미 남들보다 한참 앞서 있는 사람이에요.",
+      strength:["뛰어난 계획성","위기 대비력","꾸준한 저축"],
+      caution:"받을 수 있는 혜택까지 아끼진 마세요! 당신처럼 꼼꼼한 사람이 지원금을 다 챙기면 효과는 두 배예요.",
+      ctaText:"내가 받을 수 있는 지원금 전부 보기", ctaSub:"나이·가구·직업만 골라도 합산 혜택 계산", ctaUrl:"https://klened.github.io/" }
+  };
+
+  var idx=0, score={avoid:0,worship:0,status:0,vigil:0}, currentResult=null;
+  function $(id){return document.getElementById(id);}
+  function show(id){
+    var s=document.querySelectorAll('.screen');
+    for(var i=0;i<s.length;i++){s[i].classList.remove('active');}
+    $(id).classList.add('active');
+    window.scrollTo(0,0);
+  }
+  function start(){ idx=0; score={avoid:0,worship:0,status:0,vigil:0}; show('quiz'); render(); }
+  function render(){
+    var item=Q[idx];
+    $('qtext').textContent=item.q;
+    $('qnum').textContent=(idx+1)+' / '+Q.length;
+    $('barFill').style.width=((idx+1)/Q.length*100)+'%';
+    var box=$('opts'); box.innerHTML='';
+    for(var i=0;i<item.a.length;i++){
+      (function(key){
+        var b=document.createElement('button');
+        b.className='opt'; b.textContent=item.a[i][0];
+        b.addEventListener('click', function(){ score[key]++; nextQ(); });
+        box.appendChild(b);
+      })(item.a[i][1]);
+    }
+  }
+  function nextQ(){ idx++; if(idx<Q.length){render();} else {finish();} }
+  function finish(){
+    var order=['avoid','worship','status','vigil'], best='avoid', max=-1;
+    for(var i=0;i<order.length;i++){ if(score[order[i]]>max){max=score[order[i]];best=order[i];} }
+    var r=R[best]; currentResult=r;
+    $('rcard').style.background=r.grad;
+    $('rEmoji').textContent=r.emoji;
+    $('rName').textContent=r.name;
+    $('rSub').textContent=r.sub;
+    $('rTypeLabel').textContent='나의 머니 캐릭터 · '+r.type;
+    $('rDesc').textContent=r.desc;
+    $('rCaution').textContent=r.caution;
+    var st=$('rStrength'); st.innerHTML='';
+    for(var j=0;j<r.strength.length;j++){ var t=document.createElement('span'); t.className='tag'; t.textContent='#'+r.strength[j]; st.appendChild(t); }
+    var cta=$('rCta'); cta.href=r.ctaUrl;
+    cta.innerHTML=r.ctaText+' →<small>'+r.ctaSub+'</small>';
+    show('result');
+  }
+  function doShare(){
+    var r=currentResult; if(!r) return;
+    var text='나의 머니 캐릭터는 '+r.emoji+' '+r.name+'('+r.type+')! 너는 어떤 캐릭터야?';
+    var url=location.href.split('#')[0];
+    if(navigator.share){ navigator.share({title:'나의 머니 캐릭터는?', text:text, url:url}).catch(function(){}); }
+    else{ doCopy(text+' '+url); }
+  }
+  function doCopy(custom){
+    var url=location.href.split('#')[0];
+    var txt=custom||url;
+    function done(){ var b=$('copyBtn'); var o=b.textContent; b.textContent='✅ 복사 완료!'; setTimeout(function(){b.textContent=o;},1500); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done).catch(function(){ window.prompt('아래 링크를 복사하세요', txt); });
+    } else { window.prompt('아래 링크를 복사하세요', txt); }
+  }
+
+  function init(){
+    $('startBtn').addEventListener('click', start);
+    $('shareBtn').addEventListener('click', doShare);
+    $('copyBtn').addEventListener('click', function(){ doCopy(); });
+    $('restartBtn').addEventListener('click', function(){ show('intro'); });
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', init); }
+  else { init(); }
+})();
+</script>
+</body>
+</html>
