@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>16가지 머니 유형 테스트 | 나의 돈 유형은?</title>
+<meta name="description" content="MBTI처럼 알아보는 16가지 머니 유형 테스트. 저축·계획·투자·소비 4축으로 보는 나의 돈 유형, 30초 무료.">
+<meta property="og:title" content="나의 머니 유형은? 💰 (16유형)">
+<meta property="og:description" content="MBTI식 16가지 머니 유형! 30초 테스트로 내 돈 유형을 확인하고 친구와 비교해보세요.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://klened.github.io/test/type16/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{ --blue:#3182f6; --blue-dark:#1b64da; --ink:#191f28; --gray:#8b95a1; --gray-light:#f2f4f6; --line:#e5e8eb; --bg:#f9fafb; }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);display:flex;justify-content:center;min-height:100vh;line-height:1.5;}
+  .app{width:100%;max-width:480px;background:#fff;min-height:100vh;overflow:hidden;}
+  .screen{display:none !important;padding:32px 24px 40px;}
+  .screen.active{display:block !important;animation:fade .4s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .intro{text-align:center;}
+  .intro.active{display:flex !important;flex-direction:column;justify-content:center;min-height:100vh;}
+  .badge{display:inline-block;background:var(--gray-light);color:var(--blue);font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px;margin:0 auto 20px;}
+  .intro h1{font-size:29px;font-weight:800;line-height:1.3;letter-spacing:-.5px;}
+  .intro .coins{font-size:62px;margin:8px 0 18px;}
+  .intro p{color:var(--gray);font-size:16px;margin-bottom:36px;word-break:keep-all;}
+  .btn{width:100%;border:none;background:var(--blue);color:#fff;font-family:inherit;font-weight:700;font-size:17px;padding:17px;border-radius:14px;cursor:pointer;transition:.15s;letter-spacing:-.3px;}
+  .btn:active{transform:scale(.98);background:var(--blue-dark);}
+  .btn.ghost{background:var(--gray-light);color:var(--ink);}
+  .intro small{display:block;color:#b0b8c1;font-size:13px;margin-top:18px;}
+  .topbar{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+  .bar{flex:1;height:8px;background:var(--gray-light);border-radius:99px;overflow:hidden;}
+  .bar-fill{height:100%;width:12%;background:var(--blue);border-radius:99px;transition:width .35s ease;}
+  .qnum{font-size:13px;font-weight:700;color:var(--gray);white-space:nowrap;}
+  .qtext{font-size:23px;font-weight:800;line-height:1.4;letter-spacing:-.5px;margin-bottom:28px;word-break:keep-all;min-height:80px;}
+  .opts{display:flex;flex-direction:column;gap:12px;}
+  .opt{text-align:left;background:#fff;border:1.8px solid var(--line);border-radius:14px;padding:18px;font-family:inherit;font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;transition:.15s;word-break:keep-all;}
+  .opt:active{transform:scale(.985);border-color:var(--blue);background:#f5f8ff;}
+  .result{text-align:center;}
+  .rcard{border-radius:22px;padding:34px 24px;color:#fff;margin-bottom:22px;}
+  .rcard .emoji{font-size:72px;line-height:1;}
+  .rcard .code{font-size:14px;font-weight:800;opacity:.9;margin:12px 0 4px;letter-spacing:3px;}
+  .rcard .rname{font-size:27px;font-weight:800;letter-spacing:-.5px;}
+  .rcard .rsub{font-size:15px;opacity:.95;margin-top:10px;font-weight:500;word-break:keep-all;}
+  .axes{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px;}
+  .axes .at{background:rgba(255,255,255,.22);color:#fff;font-size:13px;font-weight:700;padding:6px 13px;border-radius:99px;}
+  .sec{text-align:left;background:var(--bg);border-radius:16px;padding:20px;margin-bottom:14px;}
+  .sec h3{font-size:14px;font-weight:700;color:var(--gray);margin-bottom:9px;}
+  .sec p{font-size:15.5px;line-height:1.65;word-break:keep-all;}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;}
+  .tag{background:#fff;border:1px solid var(--line);font-size:13px;font-weight:600;padding:6px 12px;border-radius:99px;}
+  .share-row{display:flex;gap:10px;margin:18px 0 8px;}
+  .share-row .btn{font-size:15px;padding:15px;}
+  .compare{font-size:13.5px;color:var(--gray);font-weight:600;}
+  .restart{background:none;border:none;color:var(--gray);font-size:14px;font-weight:600;margin-top:18px;cursor:pointer;text-decoration:underline;width:100%;}
+  .more-tests{display:block;text-decoration:none;text-align:center;margin-top:12px;background:#eef4ff;color:var(--blue);font-weight:700;font-size:15px;padding:15px;border-radius:12px;}
+  .disclaimer{font-size:11.5px;color:#b0b8c1;margin-top:24px;line-height:1.5;word-break:keep-all;}
+  .agetitle{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px;word-break:keep-all;}
+  .agedesc{color:var(--gray);font-size:15px;margin-bottom:24px;}
+  .peerbadge{display:block;margin:10px auto 0;background:rgba(255,255,255,.18);color:#fff;font-weight:600;font-size:12.5px;padding:7px 14px;border-radius:99px;width:max-content;max-width:100%;}
+  .hooksec{background:#f4f1ff;border:1px solid #ddd5fb;}
+  .hooksec h3{color:#6b5bd0;}
+  .hooksec p{font-size:15.5px;line-height:1.72;color:#3a3550;font-weight:500;word-break:keep-all;}
+  .portrait p{font-size:15.5px;line-height:1.7;word-break:keep-all;}
+  .rlist{display:flex;flex-direction:column;gap:11px;}
+  .rlist .item{display:flex;gap:9px;font-size:15px;line-height:1.6;word-break:keep-all;}
+  .rlist .item .ic{flex-shrink:0;}
+  .closingsec{background:#fff5f7;border:1px solid #ffd9e2;text-align:center;}
+  .closingsec p{font-size:15px;font-weight:700;color:#c2335a;line-height:1.6;word-break:keep-all;}
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="screen intro active" id="intro">
+    <span class="badge">30초 · 무료 심리테스트</span>
+    <div class="coins">💰</div>
+    <h1>나의 머니 유형은?</h1>
+    <p>MBTI처럼 알아보는 16가지 돈 유형.<br>저축·계획·투자·소비 4가지 축으로<br>내 돈 유형을 찾아드려요!</p>
+    <button class="btn" id="startBtn">테스트 시작하기 →</button>
+    <small>4축 16유형 · 8문항</small>
+  </section>
+  <section class="screen" id="quiz">
+    <div class="topbar"><div class="bar"><div class="bar-fill" id="barFill"></div></div><span class="qnum" id="qnum">1 / 8</span></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </section>
+  <section class="screen result" id="result">
+    <div class="rcard" id="rcard">
+      <div class="emoji" id="rEmoji"></div>
+      <div class="code" id="rCode"></div>
+      <div class="rname" id="rName"></div>
+      <div class="rsub" id="rSub"></div>
+      <div class="axes" id="rAxes"></div>
+    </div>
+    <div class="sec hooksec"><h3>🎬 이런 적, 있지 않으세요?</h3><p id="rHook"></p></div>
+    <div class="sec portrait"><h3>📖 깊은 분석</h3><div id="rPortrait"></div></div>
+    <div class="sec"><h3>✨ 강점</h3><div class="tags" id="rStrength"></div></div>
+    <div class="sec"><h3>💰 당신에게 어울리는 재테크</h3><p id="rFin"></p></div>
+    <div class="sec"><h3>💛 이런 마음, 너무 자연스러워요</h3><div class="rlist" id="rBlind"></div></div>
+    <div class="sec closingsec"><p id="rClose"></p></div>
+    <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유하기</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
+    <p class="compare">친구는 어떤 유형일까? 보내서 비교해보세요!</p>
+    <button class="restart" id="restartBtn">다시 테스트하기</button>
+    <a class="more-tests" href="/test/">🧠 다른 테스트도 해보기 →</a>
+    <p class="disclaimer">본 테스트는 재미와 자기이해를 위한 콘텐츠이며, 전문 심리·재무 진단을 대체하지 않습니다.</p>
+  </section>
+</div>
+<script>
+(function(){
+  "use strict";
+  var AXES=[["S", "F"], ["P", "I"], ["G", "R"], ["M", "T"]], POLE={"S": "저축형", "F": "소비형", "P": "계획형", "I": "즉흥형", "G": "안정형", "R": "모험형", "M": "자기중심", "T": "함께형"}, Q=[{"f": 0, "q": "월급이 들어오면 나는?", "a": [["일단 저축부터 떼어둔다", 0], ["쓸 것부터 챙긴다", 1]]}, {"f": 0, "q": "통장에 돈이 쌓이면?", "a": [["뿌듯하고 안심된다", 0], ["쓰고 싶어 근질근질하다", 1]]}, {"f": 1, "q": "쇼핑 스타일은?", "a": [["살 것을 정하고 간다", 0], ["끌리는 대로 산다", 1]]}, {"f": 1, "q": "예산·가계부는?", "a": [["챙기는 편이다", 0], ["잘 안 본다", 1]]}, {"f": 2, "q": "투자라면 나는?", "a": [["안전한 게 최고다", 0], ["위험해도 수익을 노린다", 1]]}, {"f": 2, "q": "좋은 기회 앞에서?", "a": [["신중하게 재본다", 0], ["일단 질러본다", 1]]}, {"f": 3, "q": "돈 쓸 때 더 즐거운 건?", "a": [["나를 위한 소비", 0], ["함께 나누는 소비", 1]]}, {"f": 3, "q": "모임 비용은?", "a": [["각자 부담이 편하다", 0], ["내가 잘 쏘는 편이다", 1]]}], T={"SPGM": {"e": "🐢", "n": "철벽 거북이", "s": "한 푼도 허투루 안 쓰는 신중한 자산가", "d": "모으고, 계획하고, 안정적으로 굴리는 자산 빌더예요. 느려 보여도 가장 단단하게 부를 쌓는 타입이죠.", "g": ["철벽 저축", "계획성", "위기 대비"], "hook": "🐢 남들 다 쓸 때도 '난 모은다' 하며 묵묵히 저축했던 적 많죠.", "blind": ["신중해서 기회 앞에 망설이는 거, 겁이 아니라 책임감이에요.", "가끔은 나를 위해 써도 당신의 단단함은 그대로예요."], "close": "묵묵히 쌓아온 당신, 거북이가 결국 이겨요. 💛"}, "SPGT": {"e": "🏡", "n": "든든한 살림꾼", "s": "가족·주변까지 챙기는 알뜰의 달인", "d": "야무지게 모으고 계획하면서도 사람들을 챙길 줄 아는 따뜻한 관리자예요. 모두의 든든한 버팀목이죠.", "g": ["알뜰 살림", "계획성", "챙김"], "hook": "🏡 내 것뿐 아니라 가족·주변 살림까지 알뜰히 챙긴 적 많죠.", "blind": ["남까지 챙기느라 내 몫을 놓치는 거, 정이 많아서예요.", "나를 위한 몫도 꼭 챙겨요. 당신도 받을 자격 충분해요."], "close": "모두의 버팀목인 당신, 정말 든든해요. 💛"}, "SPRM": {"e": "📊", "n": "전략적 투자가", "s": "모은 돈을 공격적으로 굴리는 설계자", "d": "착실히 모은 돈을 과감하게 투자로 굴리는 계획형 승부사예요. 리스크도 계산 위에서 감수하는 타입이죠.", "g": ["전략적", "계획적 투자", "목표 지향"], "hook": "📊 모은 돈을 어떻게 굴릴지 계획 짜며 설레본 적 있죠.", "blind": ["계획에 빈틈이 보여도 괜찮아요. 리스크는 누구도 완벽히 못 읽어요.", "분산만 챙기면 당신의 전략은 빛나요."], "close": "모으고 굴릴 줄 아는 당신, 시간이 편이에요. 💛"}, "SPRT": {"e": "🌱", "n": "성장 플래너", "s": "내 자산도 키우고 나눌 줄도 아는 사람", "d": "모으고 계획해 투자로 키우면서, 그 과실을 주변과도 나누는 성장형이에요. 멀리 보는 큰 그림의 소유자죠.", "g": ["성장 지향", "계획성", "나눔"], "hook": "🌱 내 자산도 키우고 주변과 나눌 생각에 뿌듯했던 적 있죠.", "blind": ["큰 그림에 빠져 당장을 놓쳐도 괜찮아요. 방향이 맞으니까요.", "나눔도 내 여유 안에서면 충분해요."], "close": "멀리 보는 당신, 분명 크게 자랄 사람이에요. 💛"}, "SIGM": {"e": "🐿️", "n": "츤데레 다람쥐", "s": "일단 모으는데 가끔 즉흥 지름", "d": "기본은 저축러인데 가끔 즉흥적으로 지르는 반전 매력의 안정파예요. 모으는 본능은 못 숨기죠.", "g": ["저축 본능", "안정 추구", "소소한 일탈"], "hook": "🐿️ 평소엔 알뜰한데 어느 날 갑자기 지른 적, 있죠?", "blind": ["가끔 즉흥적으로 질러도 괜찮아요. 모으는 본능은 안 사라져요.", "반전 매력도 당신의 일부예요."], "close": "야무지면서 귀여운 반전, 그게 당신이에요. 💛"}, "SIGT": {"e": "🎁", "n": "정 많은 절약가", "s": "아끼다가도 사람에겐 마음을 여는 타입", "d": "평소엔 알뜰하지만 사람들 앞에선 정 들어 베푸는 따뜻한 절약가예요. 안정 속에 인간미가 넘치죠.", "g": ["알뜰함", "정 많음", "안정 추구"], "hook": "🎁 나한텐 아끼면서 사람들에겐 선뜻 베푼 적 많죠.", "blind": ["아끼다 사람에게 베푸는 거, 모순이 아니라 따뜻함이에요.", "나를 위한 작은 사치도 가끔은 허락해요."], "close": "알뜰함과 정을 다 가진 당신, 귀한 사람이에요. 💛"}, "SIRM": {"e": "🎲", "n": "한 방 노리는 개미", "s": "평소 모으다 기회엔 과감히 베팅", "d": "꾸준히 모으다가 '이거다' 싶은 기회엔 즉흥적으로 크게 거는 승부사예요. 평소완 다른 대담함이 숨어 있죠.", "g": ["저축+승부", "기회 포착", "대담함"], "hook": "🎲 평소 모으다 '이거다' 싶을 때 크게 베팅해본 적 있죠.", "blind": ["기회에 크게 거는 거, 도박이 아니라 배짱이에요.", "여유자금 안에서면 그건 멋진 도전이에요."], "close": "평소의 성실함이 당신의 진짜 무기예요. 💛"}, "SIRT": {"e": "🔥", "n": "의리의 한탕러", "s": "모으다가도 사람·기회엔 화끈", "d": "평소엔 모으지만 사람과 기회 앞에선 즉흥적이고 화끈하게 쓰는 의리파예요. 정과 모험심이 공존하죠.", "g": ["의리", "모험심", "저축 기본"], "hook": "🔥 모으다가도 사람·기회 앞에선 화끈하게 쓴 적 있죠.", "blind": ["사람·기회에 화끈한 거, 무모함이 아니라 의리예요.", "감정과 돈만 살짝 분리하면 더 단단해져요."], "close": "정과 모험심을 다 가진 당신, 매력 넘쳐요. 💛"}, "FPGM": {"e": "💳", "n": "계획적 플렉서", "s": "쓸 건 쓰되 예산 안에서 똑똑하게", "d": "즐길 줄 알지만 늘 예산 안에서 똑똑하게 쓰는 안정형 소비자예요. 플렉스에도 계획이 있는 타입이죠.", "g": ["스마트 소비", "계획성", "안정감"], "hook": "💳 쓸 건 쓰되 늘 예산 안에서 똑똑하게 즐긴 적 많죠.", "blind": ["계획이 빡빡하게 느껴져도 괜찮아요. 즐길 땐 즐겨요.", "당신은 이미 똑똑하게 쓰고 있어요."], "close": "즐기면서 관리하는 당신, 밸런스 만렙이에요. 💛"}, "FPGT": {"e": "🍽️", "n": "스마트 호스트", "s": "계획적으로 베풀 줄 아는 센스러", "d": "계획적으로 쓰면서 사람들을 잘 대접하는 센스 있는 소비자예요. 안정적이면서도 분위기를 아는 타입이죠.", "g": ["센스 소비", "계획성", "대접의 미학"], "hook": "🍽️ 계획적으로 사람들 잘 대접하고 '센스 있다'는 말 들은 적 있죠.", "blind": ["대접 예산이 커져도 자책 마세요. 베푸는 마음이 큰 거예요.", "베풂에 선만 살짝 그으면 더 가벼워져요."], "close": "분위기를 아는 센스, 어디서든 환영받아요. 💛"}, "FPRM": {"e": "🚀", "n": "공격형 라이프러", "s": "즐기면서 투자엔 과감한 계획가", "d": "인생을 즐기면서도 투자엔 과감하게 베팅하는 계획형 모험가예요. 쓰고 버는 균형 감각이 좋죠.", "g": ["삶의 균형", "과감한 투자", "계획성"], "hook": "🚀 즐기면서도 투자엔 과감히 베팅해본 적 있죠.", "blind": ["쓰고 투자하고 둘 다 과감해도 괜찮아요. 안전망만 챙기면요.", "당신의 균형 감각은 이미 좋아요."], "close": "즐기며 도전하는 당신, 인생을 아는 사람이에요. 💛"}, "FPRT": {"e": "🎉", "n": "통 큰 기획자", "s": "크게 쓰고 크게 베푸는 판 키우는 타입", "d": "계획적으로 크게 쓰고 크게 나누며 판을 키우는 통 큰 기획자예요. 사람과 기회를 끌어모으는 매력이 있죠.", "g": ["통 큰 결정", "리더십", "나눔"], "hook": "🎉 크게 쓰고 크게 베풀며 판을 키운 적 있죠.", "blind": ["크게 쓰는 결정이 늘 옳진 않아도 괜찮아요. 배우면 되니까요.", "현금흐름만 가끔 챙기면 충분해요."], "close": "판을 키우는 당신, 사람과 기회가 모여요. 💛"}, "FIGM": {"e": "🛍️", "n": "기분파 욜로러", "s": "끌리면 산다, 안정 속 욜로", "d": "끌리는 대로 즐기되 큰 위험은 피하는 기분파 소비자예요. 현재의 행복을 가장 소중히 여기죠.", "g": ["현재 충실", "즐길 줄 앎", "안정 선호"], "hook": "🛍️ 끌리면 산다! 현재의 행복을 가장 소중히 여긴 적 많죠.", "blind": ["끌리는 대로 쓰는 거, 의지박약이 아니라 현재를 사랑하는 거예요.", "미래의 나 몫만 조금 떼두면 마음이 편해요."], "close": "지금을 사는 당신, 그 행복 잃지 마세요. 💛"}, "FIGT": {"e": "🥳", "n": "분위기 메이커", "s": "한턱 잘 쏘고 분위기 살리는 인싸", "d": "즉흥적으로 잘 쓰고 사람들과 어울리며 분위기를 살리는 인싸 소비자예요. 어디서든 환영받는 타입이죠.", "g": ["사교성", "베풂", "흥부자"], "hook": "🥳 한턱 잘 쏘고 분위기 살리는 인싸였던 적 많죠.", "blind": ["분위기에 쓰는 거, 헤픈 게 아니라 사람을 좋아하는 거예요.", "즐거움과 지출의 균형만 가끔 보면 돼요."], "close": "어디서든 빛나는 당신, 모두의 활력소예요. 💛"}, "FIRM": {"e": "💸", "n": "도파민 헌터", "s": "지르고 베팅하는 스릴 추구형", "d": "지름과 베팅의 스릴을 즐기는 화끈한 모험가예요. 자극과 재미를 좇는 에너지가 넘치죠. 단, 브레이크는 필수!", "g": ["화끈함", "모험심", "결단력"], "hook": "💸 지름과 베팅의 짜릿함을 좇아본 적, 익숙하죠?", "blind": ["짜릿함을 좇는 거, 잘못이 아니에요. 에너지가 넘치는 거예요.", "브레이크 하나만 두면 즐기면서도 안전해요."], "close": "에너지 가득한 당신, 그 열정 멋져요. 💛"}, "FIRT": {"e": "🎰", "n": "플렉스 끝판왕", "s": "사람·재미·기회에 거침없이 쓰는 타입", "d": "사람과 재미, 기회 앞에서 거침없이 쓰고 베팅하는 플렉스 끝판왕이에요. 인생을 화끈하게 즐기는 타입이죠.", "g": ["화끈함", "통 큼", "사교성"], "hook": "🎰 사람·재미·기회 앞에서 거침없이 쓰고 베팅한 적 많죠.", "blind": ["화끈하게 쓰는 거, 무모함이 아니라 인생을 즐기는 거예요.", "월급날 저축 한 줄이면 마음 편히 즐길 수 있어요."], "close": "인생을 화끈하게 사는 당신, 그 자체로 멋져요. 💛"}};
+  var AX={"S": "당신은 돈을 '모으는' 데서 안정을 느끼는 사람이에요. 통장에 쌓이는 숫자가 곧 마음의 평화죠.", "F": "당신은 돈을 '쓰는' 즐거움을 아는 사람이에요. 좋은 경험과 물건에 기꺼이 지갑을 열죠.", "P": "게다가 쓰기 전에 계획부터 세우는 편이라, 충동에 잘 휘둘리지 않아요.", "I": "게다가 끌리는 순간을 소중히 여겨서, 계획보다 직감으로 움직일 때가 많아요.", "G": "투자나 큰 결정 앞에선 위험보다 안전을 택하는 신중함이 있어, 큰 실수가 적어요.", "R": "투자나 기회 앞에선 과감하게 베팅할 줄 아는 배짱이 있고요.", "M": "그리고 돈은 '나'를 위해 쓸 때 가장 의미 있다고 느끼는 편이에요.", "T": "그리고 나보다 '함께' 나누고 베푸는 데서 더 큰 기쁨을 느끼는 사람이고요."}, FIN={"SG": "꾸준히 모으고 안전을 택하는 당신에겐 '자동이체 적금 + 적립식 인덱스' 조합이 잘 맞아요. 손 안 가고 마음 편하게 불릴 수 있어요.", "SR": "모으는 힘에 과감함까지 있는 당신, 모은 돈의 일부를 적립식으로 공격적으로 굴려보세요. 시간이 든든한 무기가 돼요.", "FG": "즐길 줄 알면서 안전을 챙기는 당신에겐 '쓸 돈·모을 돈'을 미리 나누는 예산 관리가 딱이에요. 즐기면서도 새지 않아요.", "FR": "즐기고 도전하는 걸 좋아하는 당신, 먼저 '저축 자동이체'로 안전벨트부터 매두면 마음껏 즐겨도 든든해요."};
+  var idx=0, cnt=[[0,0],[0,0],[0,0],[0,0]], current=null, ageBand=20;
+  function $(id){return document.getElementById(id);}
+  function show(id){var s=document.querySelectorAll(".screen");for(var i=0;i<s.length;i++){s[i].classList.remove("active");}$(id).classList.add("active");window.scrollTo(0,0);}
+  function start(){beginQuiz();}
+  function beginQuiz(){idx=0;cnt=[[0,0],[0,0],[0,0],[0,0]];show("quiz");render();}
+
+  function render(){
+    var it=Q[idx];
+    $("qtext").textContent=it.q;
+    $("qnum").textContent=(idx+1)+" / "+Q.length;
+    $("barFill").style.width=((idx+1)/Q.length*100)+"%";
+    var box=$("opts");box.innerHTML="";
+    for(var i=0;i<it.a.length;i++){(function(pole){var b=document.createElement("button");b.className="opt";b.textContent=it.a[i][0];b.addEventListener("click",function(){cnt[it.f][pole]++;idx++;(idx<Q.length)?render():finish();});box.appendChild(b);})(it.a[i][1]);}
+  }
+  function finish(){
+    var code="", tags=[];
+    for(var ax=0;ax<4;ax++){ var pole=(cnt[ax][1]>cnt[ax][0])?1:0; var L=AXES[ax][pole]; code+=L; tags.push(POLE[L]); }
+    var t=T[code]; current={code:code,t:t};
+    $("rcard").style.background = code.charAt(0)==="S" ? "linear-gradient(135deg,#3182f6,#1b64da)" : "linear-gradient(135deg,#f368a8,#e84393)";
+    $("rEmoji").textContent=t.e;
+    $("rCode").textContent=code;
+    $("rName").textContent=t.n;
+    $("rSub").textContent=t.s;
+    $("rHook").textContent=t.hook;
+    var c0=code.charAt(0),c1=code.charAt(1),c2=code.charAt(2),c3=code.charAt(3);
+    var paras=[AX[c0]+" "+AX[c1], AX[c2]+" "+AX[c3], "이 네 가지 색이 모여, 당신은 '"+t.n+"' — "+t.s+"가 되는 거예요."];
+    $("rPortrait").innerHTML=paras.map(function(x){return "<p>"+x+"</p>";}).join("");
+    $("rFin").textContent=FIN[c0+c2]||"";
+    $("rClose").textContent=t.close||"";
+    $("rBlind").innerHTML=(t.blind||[]).map(function(x){return '<div class="item"><span class="ic">💛</span><span>'+x+'</span></div>';}).join("");
+    var ax=$("rAxes");ax.innerHTML="";
+    tags.forEach(function(x){var sp=document.createElement("span");sp.className="at";sp.textContent=x;ax.appendChild(sp);});
+    var st=$("rStrength");st.innerHTML="";
+    t.g.forEach(function(x){var sp=document.createElement("span");sp.className="tag";sp.textContent="#"+x;st.appendChild(sp);});
+    show("result");
+  }
+  function doShare(){
+    if(!current)return;
+    var text="나의 머니 유형은 "+current.t.e+" "+current.t.n+"("+current.code+")! 너는 어떤 유형이야?";
+    var url=location.href.split("#")[0];
+    if(navigator.share){navigator.share({title:document.title,text:text,url:url}).catch(function(){});}
+    else{doCopy(text+" "+url);}
+  }
+  function doCopy(c){var url=location.href.split("#")[0];var txt=c||url;function done(){var b=$("copyBtn");var o=b.textContent;b.textContent="✅ 복사 완료!";setTimeout(function(){b.textContent=o;},1500);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){window.prompt("아래 링크를 복사하세요",txt);});}else{window.prompt("아래 링크를 복사하세요",txt);}}
+  function init(){$("startBtn").addEventListener("click",start);$("shareBtn").addEventListener("click",doShare);$("copyBtn").addEventListener("click",function(){doCopy();});$("restartBtn").addEventListener("click",function(){show("intro");});}
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
+})();
+</script>
+</body>
+</html>

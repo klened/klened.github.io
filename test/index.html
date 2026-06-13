@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>심리테스트 모음 | 숨은 돈 찾기</title>
-<meta name="description" content="돈과 나를 알아보는 무료 심리테스트 모음. 머니 캐릭터 테스트부터 소비 성향, 투자 성향까지 30초만에 확인하세요.">
-<meta property="og:title" content="심리테스트 모음 🧠 | 숨은 돈 찾기">
-<meta property="og:description" content="30초 무료 심리테스트로 나의 돈 성향을 알아보세요. 친구와 결과를 비교해보세요!">
+<title>돈으로 보는 나, 심리테스트 모음 | 숨은 돈 찾기</title>
+<meta name="description" content="돈과 나를 알아보는 무료 심리테스트. 머니 캐릭터부터 투자 성향, 재무 건강 점수까지 30초만에 확인하세요.">
+<meta property="og:title" content="돈으로 보는 나, 심리테스트 🧠">
+<meta property="og:description" content="30초 무료 테스트로 나의 돈 성향을 알아보세요. 친구와 결과를 비교해보세요!">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://klened.github.io/test/">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
@@ -17,64 +17,86 @@
   body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;}
   a{text-decoration:none;color:inherit;}
   .wrap{max-width:960px;margin:0 auto;padding:48px 20px 64px;}
-  .hero{text-align:center;margin-bottom:40px;}
+  .hero{text-align:center;margin-bottom:36px;}
   .hero .ic{font-size:54px;}
-  .hero h1{font-size:30px;font-weight:800;letter-spacing:-.5px;margin:10px 0 12px;}
+  .hero h1{font-size:29px;font-weight:800;letter-spacing:-.5px;margin:10px 0 12px;}
   .hero p{font-size:16px;color:var(--gray);word-break:keep-all;}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;}
-  .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 24px;display:flex;flex-direction:column;transition:.18s;position:relative;overflow:hidden;}
-  .card.live:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(49,130,246,.14);border-color:#bcd5fa;}
-  .card .emoji{font-size:46px;line-height:1;}
-  .card .badge{position:absolute;top:18px;right:18px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px;}
-  .badge.new{background:var(--blue);color:#fff;}
-  .badge.soon{background:var(--gray-light,#f2f4f6);color:var(--gray);}
-  .card h2{font-size:19px;font-weight:800;letter-spacing:-.3px;margin:16px 0 8px;}
-  .card p{font-size:14.5px;color:var(--gray);word-break:keep-all;flex:1;}
-  .card .go{margin-top:18px;display:inline-block;text-align:center;background:var(--blue);color:#fff;font-weight:700;font-size:15px;padding:13px;border-radius:12px;transition:.15s;}
-  .card.live:hover .go{background:var(--blue-dark);}
-  .card.soon{opacity:.65;}
-  .card.soon .go{background:#eef0f3;color:var(--gray);cursor:default;}
-  .foot{text-align:center;margin-top:44px;font-size:12.5px;color:#b0b8c1;line-height:1.6;word-break:keep-all;}
+  .hero p b{color:var(--blue);}
+  .secthead{font-size:18px;font-weight:800;letter-spacing:-.3px;margin:30px 0 14px;display:flex;align-items:center;gap:8px;}
+  .secthead small{font-size:13px;font-weight:600;color:var(--gray);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;transition:.18s;position:relative;overflow:hidden;}
+  .card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(49,130,246,.14);border-color:#bcd5fa;}
+  .card.feat{border:2px solid var(--blue);background:linear-gradient(180deg,#f5f9ff,#fff);}
+  .card .emoji{font-size:42px;line-height:1;}
+  .card .badge{position:absolute;top:16px;right:16px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--gray-light,#eef1f4);color:var(--gray);}
+  .card.feat .badge{background:var(--blue);color:#fff;}
+  .card h2{font-size:18px;font-weight:800;letter-spacing:-.3px;margin:14px 0 6px;}
+  .card .q{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:5px;word-break:keep-all;}
+  .card p{font-size:13.5px;color:var(--gray);word-break:keep-all;flex:1;}
+  .card .go{margin-top:16px;display:inline-block;text-align:center;background:var(--blue);color:#fff;font-weight:700;font-size:15px;padding:13px;border-radius:12px;transition:.15s;}
+  .card:hover .go{background:var(--blue-dark);}
+  .foot{text-align:center;margin-top:40px;font-size:12.5px;color:#b0b8c1;line-height:1.6;word-break:keep-all;}
 </style>
 </head>
 <body>
 <script src="/assets/nav.js" defer></script>
-
 <div class="wrap">
   <div class="hero">
     <div class="ic">🧠</div>
-    <h1>심리테스트 모음</h1>
-    <p>돈과 나를 알아보는 30초 무료 테스트.<br>마음에 드는 걸 골라 시작해보세요!</p>
+    <h1>돈으로 보는 나, 심리테스트</h1>
+    <p>처음이라면 <b>'머니 캐릭터'</b>부터 해보세요!<br>재미로 성격을 볼지, 실용 진단을 받을지 골라보세요.</p>
   </div>
 
+  <div class="secthead">🎭 내 돈 '성격'이 궁금하다면 <small>· 재미있게 나를 알아보기</small></div>
   <div class="grid">
-    <a class="card live" href="/test/money/">
-      <span class="badge new">NEW</span>
+    <a class="card feat" href="/test/money/">
+      <span class="badge">🏆 가장 인기</span>
       <div class="emoji">💰</div>
       <h2>머니 캐릭터 테스트</h2>
-      <p>돈을 대하는 나의 무의식, 4가지 캐릭터로 알아보고 친구와 궁합까지 맞춰보세요.</p>
+      <p class="q">"나는 돈을 어떻게 대할까?"</p>
+      <p>4가지 캐릭터로 알아보고, 답변에 맞춘 나만의 분석 + 친구와 궁합까지.</p>
       <span class="go">테스트 하러 가기 →</span>
     </a>
-
-    <a class="card live" href="/test/spend/">
-      <span class="badge new">NEW</span>
-      <div class="emoji">🪙</div>
-      <h2>짠돌이 vs 플렉서</h2>
-      <p>나는 아끼는 사람? 지르는 사람? '지불의 고통'으로 보는 내 소비 성향을 진단해드려요.</p>
+    <a class="card" href="/test/type16/">
+      <span class="badge">16유형</span>
+      <div class="emoji">🧩</div>
+      <h2>16가지 머니 유형</h2>
+      <p class="q">"MBTI처럼, 내 돈 유형은?"</p>
+      <p>저축·계획·투자·소비 4축으로 찾는 나의 16유형.</p>
       <span class="go">테스트 하러 가기 →</span>
     </a>
+  </div>
 
-    <a class="card live" href="/test/risk/">
-      <span class="badge new">NEW</span>
+  <div class="secthead">💡 '실용적인 답'이 필요하다면 <small>· 구체적인 진단 받기</small></div>
+  <div class="grid">
+    <a class="card" href="/test/risk/">
+      <span class="badge">진단</span>
       <div class="emoji">📈</div>
       <h2>나의 투자 성향</h2>
-      <p>안정형부터 공격투자형까지, 내 투자 DNA와 어울리는 자산을 확인해보세요.</p>
+      <p class="q">"나한테 맞는 투자는?"</p>
+      <p>안정형~공격형 + 어울리는 자산과 그 이유, 경계할 투자법까지.</p>
+      <span class="go">테스트 하러 가기 →</span>
+    </a>
+    <a class="card" href="/test/health/">
+      <span class="badge">진단</span>
+      <div class="emoji">🩺</div>
+      <h2>내 재무 건강 점수</h2>
+      <p class="q">"내 재정 점수는 몇 점?"</p>
+      <p>지금 내 재정 상태를 점수로 진단하고 약점·챙길 것을 콕.</p>
+      <span class="go">테스트 하러 가기 →</span>
+    </a>
+    <a class="card" href="/test/spend/">
+      <span class="badge">NEW</span>
+      <div class="emoji">🪙</div>
+      <h2>짠돌이 vs 플렉서</h2>
+      <p class="q">"나 짠돌이? 플렉서?"</p>
+      <p>밸런스게임으로 알아보는 내 소비 성향.</p>
       <span class="go">테스트 하러 가기 →</span>
     </a>
   </div>
 
   <p class="foot">본 테스트는 재미와 자기이해를 위한 콘텐츠이며, 전문 심리·재무 진단을 대체하지 않습니다.</p>
 </div>
-
 </body>
 </html>
