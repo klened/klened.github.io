@@ -123,6 +123,7 @@
     <div class="sec" id="secInc">
       <h3>🎯 연봉까지 감안하면</h3>
       <div class="cmp"><span class="lab">비슷한 연봉 또래 중</span><span class="val" id="incTop"></span></div>
+      <div id="incNote" style="font-weight:700;color:#1b64da;font-size:14px;margin-top:6px;"></div>
       <div class="gsub" id="incSub"></div>
     </div>
     <div class="sec" id="secSim" style="background:#fff8ec;border:1px solid #ffe6bf;">
@@ -140,6 +141,7 @@
       <p class="gsub" id="rStats" style="margin-top:13px;"></p>
     </div>
     <div class="sec adv"><h3 style="color:#1b64da;">🧭 앞으로 이렇게 해보세요</h3><p id="rAdv"></p></div>
+    <p style="text-align:center;font-size:14.5px;font-weight:700;color:#1b64da;margin:20px 0 6px;">👀 내 친구는 몇 점일까? 같이 진단해보기</p>
     <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
     <div class="chan-row"><button class="chan" data-ch="x">X</button><button class="chan chl" data-ch="line">LINE</button><button class="chan chf" data-ch="fb">f</button></div>
     <button class="restart" id="restartBtn">다시 진단하기</button>
@@ -190,18 +192,18 @@
     var aTop=topPct(net,bm.net);
     var score=100-aTop;
     var grade,one;
-    if(score>=85){grade="S등급 · 최상위권";one="또래 사이에서 손꼽히는 자산가예요!";}
-    else if(score>=70){grade="A등급 · 상위권";one="또래보다 한참 앞서 있어요. 멋져요!";}
-    else if(score>=50){grade="B등급 · 평균 이상";one="또래 중앙값보다 잘 모았어요.";}
-    else if(score>=30){grade="C등급 · 성장 중";one="아직 쌓는 중이에요. 충분히 따라잡을 수 있어요.";}
-    else{grade="D등급 · 출발선";one="지금이 시작이에요. 비교에 기죽지 마세요!";}
+    if(score>=85){grade="S등급 · 최상위권";one="👑 또래 사이에서 손꼽히는 자산가예요!";}
+    else if(score>=70){grade="A등급 · 상위권";one="🔥 또래보다 한참 앞서 있어요. 멋져요!";}
+    else if(score>=50){grade="B등급 · 평균 이상";one="👍 또래 중앙값보다 잘 모았어요!";}
+    else if(score>=30){grade="C등급 · 성장 중";one="🌱 아직 쌓는 중, 충분히 따라잡을 수 있어요!";}
+    else{grade="D등급 · 출발선";one="🐣 지금이 시작이에요. 비교에 기죽지 마세요!";}
     R={band:b,score:score,grade:grade};
 
     $("rBand").textContent="같은 "+bm.label+" 기준 · 내 자산 점수";
     $("rScore").innerHTML=score+'<small>점</small>';
     $("rGrade").textContent=grade;
     $("rOne").textContent=one;
-    $("aTop").textContent="또래 중 상위 "+aTop+"%";
+    $("aTop").textContent="또래 중 상위 "+aTop+"% "+(aTop<=10?"🔥":aTop<=30?"👍":"💪");
     $("aSub").textContent=bm.label+" 순자산 중앙값 "+won(bm.net)+"원"+(bm.est?"(추정)":"")+" · 내 순자산 "+won(net)+"원";
 
     // 연봉 감안 비교
@@ -211,23 +213,24 @@
     var incTopV=topPct(net,expNet);
     var peerMult=bm.net/bandInc, myMult=(income>0&&net>0?net/income:0);
     $("incTop").textContent="상위 "+incTopV+"%";
+    $("incNote").textContent=incTopV<aTop-3?"💡 연봉 대비 알뜰하게 잘 모았어요!":incTopV>aTop+3?"💡 연봉을 생각하면 조금 더 분발해봐요!":"💡 연봉 수준에 딱 맞게 모으고 있어요.";
     $("incSub").textContent=bm.label+"는 보통 연봉의 "+peerMult.toFixed(1)+"배를 모아요 · 당신은 "+(myMult>0?myMult.toFixed(1)+"배":"아직 쌓는 중")+" (추정)";
     // 10년 뒤 시뮬 (연 4% 수익, 소득의 20% 저축 가정)
     var rate=0.04, yrSave=Math.max(0,income*0.2);
     function fv(pp,sv,n){return pp*Math.pow(1+rate,n)+sv*((Math.pow(1+rate,n)-1)/rate);}
     var f10=fv(net,yrSave,10), f10p=fv(net,yrSave+360,10);
     $("simNow").innerHTML="지금처럼 모으면 <b>10년 뒤 약 "+won(f10)+"원</b><br><span style=\'font-size:12.5px;color:#a86a12;font-weight:600;\'>※ 연 4% 수익·소득의 20% 저축 가정</span>";
-    $("simPlus").innerHTML="여기서 <b>월 30만원</b>만 더 모으면 → <b style=\'color:#a86a12;\'>"+won(f10p)+"원</b> (+"+won(f10p-f10)+")";
+    $("simPlus").innerHTML="🚀 여기서 <b>월 30만원</b>만 더 모으면 → <b style=\'color:#a86a12;\'>"+won(f10p)+"원</b> (+"+won(f10p-f10)+")";
     // 상위권 공통점 + 행동 통계
     $("rTraits").innerHTML=TRAITS.map(function(t,i){return '<div class="item"><span class="ic">'+(i+1)+'.</span><span>'+t+'</span></div>';}).join("");
     $("rStats").textContent="📊 "+bm.label+"의 약 "+bm.own+"%가 내 집 보유 · 약 "+bm.invest+"%가 주식·펀드 투자 중 (추정)";
 
     $("mixHead").textContent="📈 "+bm.label+"는 보통 이렇게 굴려요";
     var adv;
-    if(score>=70) adv="또래보다 앞서 있으니 이제 '굴리는' 단계예요. 다만 받을 수 있는 환급·공제는 끝까지 챙기세요 — 안 받으면 손해예요.";
-    else if(score>=50) adv="좋은 흐름이에요. 저축률을 조금만 높이고 안 챙긴 지원금·환급금을 점검하면 상위권까지 금방이에요.";
-    else if(score>=30) adv="너무 조급해하지 마세요. 새는 고정비를 줄이고 받을 수 있는 혜택부터 챙기는 게 가장 빠른 출발이에요.";
-    else adv="지금은 출발선일 뿐이에요. 받을 수 있는 지원금·환급금을 챙기는 것만으로도 격차를 좁힐 수 있어요. 천천히, 같이 가요.";
+    if(score>=70) adv="잘하고 있어요! 지금 이 페이스만 유지해도 경제적 자유·조기 은퇴를 충분히 꿈꿔볼 만한 위치예요. 이제는 모으기보다 '잘 굴리고 잘 지키기'(자산 배분·절세)에 집중하면 돼요.";
+    else if(score>=50) adv="좋은 흐름이에요. 저축률을 조금만 더 높이고 자동저축·분산투자 습관을 더하면 상위권까지 금방이에요. 이미 잘 가고 있어요.";
+    else if(score>=30) adv="너무 조급해하지 마세요. 새는 고정비를 줄이고 받을 수 있는 혜택·환급금부터 챙기면 격차를 빠르게 좁힐 수 있어요.";
+    else adv="지금은 출발선일 뿐이에요. 받을 수 있는 지원금·환급금을 챙기는 것만으로도 충분한 첫걸음이에요. 천천히, 같이 가요.";
     $("rAdv").textContent=adv;
 
     var mix=$("rMix");mix.innerHTML="";var cols=["#3182f6","#7c8aff","#ff8a3d","#26c6a8"];
@@ -245,15 +248,15 @@
   function renderShared(score,band){
     var bm=BM[band]; if(!bm)return;
     var grade,one,adv;
-    if(score>=85){grade="S등급 · 최상위권";one="또래 사이에서 손꼽히는 자산가예요!";}
-    else if(score>=70){grade="A등급 · 상위권";one="또래보다 한참 앞서 있어요. 멋져요!";}
-    else if(score>=50){grade="B등급 · 평균 이상";one="또래 중앙값보다 잘 모았어요.";}
-    else if(score>=30){grade="C등급 · 성장 중";one="아직 쌓는 중이에요. 충분히 따라잡을 수 있어요.";}
-    else{grade="D등급 · 출발선";one="지금이 시작이에요. 비교에 기죽지 마세요!";}
-    if(score>=70) adv="또래보다 앞서 있으니 이제 '굴리는' 단계예요. 다만 받을 수 있는 환급·공제는 끝까지 챙기세요 — 안 받으면 손해예요.";
-    else if(score>=50) adv="좋은 흐름이에요. 저축률을 조금만 높이고 안 챙긴 지원금·환급금을 점검하면 상위권까지 금방이에요.";
-    else if(score>=30) adv="너무 조급해하지 마세요. 새는 고정비를 줄이고 받을 수 있는 혜택부터 챙기는 게 가장 빠른 출발이에요.";
-    else adv="지금은 출발선일 뿐이에요. 받을 수 있는 지원금·환급금을 챙기는 것만으로도 격차를 좁힐 수 있어요. 천천히, 같이 가요.";
+    if(score>=85){grade="S등급 · 최상위권";one="👑 또래 사이에서 손꼽히는 자산가예요!";}
+    else if(score>=70){grade="A등급 · 상위권";one="🔥 또래보다 한참 앞서 있어요. 멋져요!";}
+    else if(score>=50){grade="B등급 · 평균 이상";one="👍 또래 중앙값보다 잘 모았어요!";}
+    else if(score>=30){grade="C등급 · 성장 중";one="🌱 아직 쌓는 중, 충분히 따라잡을 수 있어요!";}
+    else{grade="D등급 · 출발선";one="🐣 지금이 시작이에요. 비교에 기죽지 마세요!";}
+    if(score>=70) adv="잘하고 있어요! 지금 이 페이스만 유지해도 경제적 자유·조기 은퇴를 충분히 꿈꿔볼 만한 위치예요. 이제는 모으기보다 '잘 굴리고 잘 지키기'(자산 배분·절세)에 집중하면 돼요.";
+    else if(score>=50) adv="좋은 흐름이에요. 저축률을 조금만 더 높이고 자동저축·분산투자 습관을 더하면 상위권까지 금방이에요. 이미 잘 가고 있어요.";
+    else if(score>=30) adv="너무 조급해하지 마세요. 새는 고정비를 줄이고 받을 수 있는 혜택·환급금부터 챙기면 격차를 빠르게 좁힐 수 있어요.";
+    else adv="지금은 출발선일 뿐이에요. 받을 수 있는 지원금·환급금을 챙기는 것만으로도 충분한 첫걸음이에요. 천천히, 같이 가요.";
     R={band:band,score:score,grade:grade};
     $("rBand").textContent="같은 "+bm.label+" 기준 · 자산 점수";
     $("rScore").innerHTML=score+'<small>점</small>';
