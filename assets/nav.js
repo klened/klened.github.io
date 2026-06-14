@@ -23,12 +23,6 @@
       { label: '연말정산 환급',   href: '/tax/' },
       { label: '실업급여 계산기', href: '/jobless/' }
     ]},
-    { label: '사업자', children: [
-      { label: '사업자 지원금',     href: '/business/' },
-      { label: '내 가게 진단',      href: '/check/' },
-      { label: '마케팅 예산 계산기', href: '/marketing/' },
-      { label: '폐업·재도전 지원금', href: '/closure/' }
-    ]},
     { label: '주거·금융', children: [
       { label: '부동산 대출',         href: '/loan/' },
       { label: '장기전세·공공임대',   href: '/rent/' },
@@ -36,11 +30,18 @@
       { label: '숨은 환급금 조회',    href: '/refund/' },
       { label: '요금감면 자격 진단',  href: '/utility/' }
     ]},
-    { label: '콘텐츠', children: [
-      { label: '정책 가이드 (칼럼)', href: '/column/' },
-      { label: '심리테스트 모음',   href: '/test/', badge: 'NEW' }
+    { label: '심리테스트', href: '/test/', badge: 'NEW' },
+    { label: '사업자', children: [
+      { label: '마케팅 자가진단',     href: '/marketing-check/', badge: 'NEW' },
+      { label: '내 가게 경영진단',    href: '/check/' },
+      { label: '마케팅 예산 계산기',  href: '/marketing/' },
+      { label: '사업자 지원금',       href: '/business/' },
+      { label: '폐업·재도전 지원금',  href: '/closure/' }
     ]},
-    { label: '소개', href: '/about/' }
+    { label: '더보기', children: [
+      { label: '정책 가이드 (칼럼)', href: '/column/' },
+      { label: '회사 소개',          href: '/about/' }
+    ]}
   ];
 
   var CSS = `
