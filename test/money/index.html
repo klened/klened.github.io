@@ -129,13 +129,11 @@
     <div class="sec statsec"><h3>📊 내 머니 능력치</h3><div id="rStats"></div></div>
     <div class="sec hooksec"><h3>🎬 이런 적, 있지 않으세요?</h3><p id="rHook"></p></div>
     <div class="sec customsec"><h3>🎯 당신만의 머니 분석</h3><div id="rCustom"></div></div>
-    <div class="sec" id="barsSec"><h3>📊 나의 머니 성향 분포</h3><div id="rBars"></div></div>
     <div class="sec"><h3>👥 비슷한 유형은 보통 이래요</h3><div class="rlist" id="rBehav"></div></div>
     <div class="sec"><h3>💛 이런 마음, 너무 자연스러워요</h3><div class="rlist" id="rBlind"></div></div>
     <div class="sec"><h3>💰 당신에게 어울리는 재테크</h3><p id="rFin"></p></div>
     <div class="sec"><h3>🧬 비슷한 MBTI <span class="funlabel">재미로 보기</span></h3><p id="rMbti"></p></div>
     <div class="sec"><h3>💞 친구와 머니 궁합</h3><p class="compat-guide">친구는 어떤 유형일까요? 골라서 확인하세요!</p><div class="cbtns" id="cBtns"></div><div class="cresult" id="cResult"></div></div>
-    <button class="btn" id="imgBtn" style="background:#ff8a3d;margin-bottom:10px;">📸 결과 이미지로 공유 / 저장</button>
     <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유하기</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
     <div class="chan-row"><button class="chan" data-ch="x">X</button><button class="chan chl" data-ch="line">LINE</button><button class="chan chf" data-ch="fb">f</button></div>
     <p class="compare">친구에게 보내고 궁합까지 맞춰보세요!</p>
@@ -208,17 +206,6 @@
     $("rBlind").innerHTML=r.blind.map(function(x){return '<div class="item"><span class="ic">💛</span><span>'+x+'</span></div>';}).join("");
     $("rFin").textContent=FIN[best];
     $("rMbti").textContent=r.mbti;
-    if(shared){var _bs=$("barsSec");if(_bs)_bs.style.display="none";}
-    else{
-    var bars=$("rBars");bars.innerHTML="";
-    TYPES.forEach(function(k){
-      var pc=Math.round(score[k]/TYPEN*100);
-      var col=(k===best)?"#3182f6":"#a9c9f2";
-      var row=document.createElement("div");row.className="barrow";
-      row.innerHTML='<span class="bl">'+R[k].type+'</span><span class="bt"><span class="bv" style="width:0%;background:'+col+'"></span></span><span class="bp">0%</span>';
-      row.setAttribute("data-pc",pc);bars.appendChild(row);
-    });
-    }
     var cb=$("cBtns");cb.innerHTML="";var cres=$("cResult");cres.style.display="none";cres.innerHTML="";
     TYPES.forEach(function(k){
       var b=document.createElement("button");b.className="cbtn";b.textContent=R[k].emoji+" "+R[k].type;
@@ -231,21 +218,14 @@
     });
     show("result");
     (function(){var srows=document.querySelectorAll("#rStats .statrow");requestAnimationFrame(function(){requestAnimationFrame(function(){for(var i=0;i<srows.length;i++){(function(row,i){var v=parseInt(row.getAttribute("data-v"),10)||0;var sf=row.querySelector(".sf");setTimeout(function(){sf.style.width=(v/5*100)+"%";},80+i*90);})(srows[i],i);}});});})();
-    if(shared||typeof bars==="undefined"||!bars)return;
-    var rows=bars.querySelectorAll(".barrow");
-    requestAnimationFrame(function(){requestAnimationFrame(function(){
-      for(var i=0;i<rows.length;i++){(function(row,i){
-        var pc=parseInt(row.getAttribute("data-pc"),10)||0;var bv=row.querySelector(".bv");var lbl=row.querySelector(".bp");
-        setTimeout(function(){bv.style.width=pc+"%";var t0=Date.now(),dur=850;var iv=setInterval(function(){var p=Math.min(1,(Date.now()-t0)/dur);lbl.textContent=Math.round(pc*p)+"%";if(p>=1){clearInterval(iv);lbl.textContent=pc+"%";}},25);},100+i*110);
-      })(rows[i],i);}
-    });});
   }
   function shareUrl(){return location.origin+location.pathname+"?t="+currentType;}
   function doShare(){
     if(!current)return;
     var text="나의 머니 캐릭터는 "+current.emoji+" "+current.name+"("+current.type+")! 나만의 맞춤 분석까지 나와. 너도 해봐!";
     var url=shareUrl();
-    if(navigator.share){navigator.share({title:document.title,text:text,url:url}).catch(function(){});}else{doCopy(text+" "+url);}
+    var _t=text,_u=url;function _ft(){if(navigator.share){navigator.share({title:document.title,text:_t,url:_u}).catch(function(e){if(!e||e.name!=="AbortError")doCopy(_t+" "+_u);});}else{doCopy(_t+" "+_u);}}
+    buildCard().then(function(cv){cv.toBlob(function(blob){if(blob){var f=new File([blob],"money-result.png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],text:_t+" "+_u}).catch(function(e){if(!e||e.name!=="AbortError")_ft();});return;}}_ft();},"image/png");}).catch(_ft);
   }
   function doCopy(c){var url=shareUrl();var txt=c||url;function done(){var b=$("copyBtn");var o=b.textContent;b.textContent="✅ 복사 완료!";setTimeout(function(){b.textContent=o;},1500);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){window.prompt("아래 링크를 복사하세요",txt);});}else{window.prompt("아래 링크를 복사하세요",txt);}}
   function _wrap(c,t,cx,y,mw,lh){var line="",ls=[];for(var i=0;i<t.length;i++){var s2=line+t[i];if(c.measureText(s2).width>mw&&line){ls.push(line);line=t[i];}else line=s2;}ls.push(line);for(var j=0;j<ls.length;j++)c.fillText(ls[j],cx,y+j*lh);return ls.length;}
@@ -300,7 +280,7 @@
     $("shareBtn").addEventListener("click",doShare);
     $("copyBtn").addEventListener("click",function(){doCopy();});
     var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}
-    $("imgBtn").addEventListener("click",shareImage);$("restartBtn").addEventListener("click",function(){show("intro");});
+    $("restartBtn").addEventListener("click",function(){show("intro");});
   }
   if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
 })();

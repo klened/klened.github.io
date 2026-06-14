@@ -116,7 +116,6 @@
     <div class="sec"><h3>💰 당신에게 어울리는 재테크</h3><p id="rFin"></p></div>
     <div class="sec"><h3>💛 이런 마음, 너무 자연스러워요</h3><div class="rlist" id="rBlind"></div></div>
     <div class="sec closingsec"><p id="rClose"></p></div>
-    <button class="btn" id="imgBtn" style="background:#ff8a3d;margin-bottom:10px;">📸 결과 이미지로 공유 / 저장</button>
     <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유하기</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
     <div class="chan-row"><button class="chan" data-ch="x">X</button><button class="chan chl" data-ch="line">LINE</button><button class="chan chf" data-ch="fb">f</button></div>
     <p class="compare">친구는 어떤 유형일까? 보내서 비교해보세요!</p>
@@ -207,8 +206,8 @@
     if(!current)return;
     var text="나의 머니 유형은 "+current.t.e+" "+current.t.n+"("+current.code+")! 너는 어떤 유형이야?";
     var url=shareUrl();
-    if(navigator.share){navigator.share({title:document.title,text:text,url:url}).catch(function(){});}
-    else{doCopy(text+" "+url);}
+    var _t=text,_u=url;function _ft(){if(navigator.share){navigator.share({title:document.title,text:_t,url:_u}).catch(function(e){if(!e||e.name!=="AbortError")doCopy(_t+" "+_u);});}else{doCopy(_t+" "+_u);}}
+    try{var _cv=buildCard();_cv.toBlob(function(blob){if(blob){var f=new File([blob],"type16-result.png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],text:_t+" "+_u}).catch(function(e){if(!e||e.name!=="AbortError")_ft();});return;}}_ft();},"image/png");}catch(e){_ft();}
   }
   function doCopy(c){var url=shareUrl();var txt=c||url;function done(){var b=$("copyBtn");var o=b.textContent;b.textContent="✅ 복사 완료!";setTimeout(function(){b.textContent=o;},1500);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){window.prompt("아래 링크를 복사하세요",txt);});}else{window.prompt("아래 링크를 복사하세요",txt);}}
   function openCh(ch){var u=encodeURIComponent(shareUrl()),t=encodeURIComponent(document.title);var url=ch==="x"?("https://twitter.com/intent/tweet?text="+t+"&url="+u):ch==="line"?("https://social-plugins.line.me/lineit/share?url="+u+"&text="+t):("https://www.facebook.com/sharer/sharer.php?u="+u);window.open(url,"_blank","noopener,noreferrer");}
@@ -216,7 +215,7 @@
     var sp=new URLSearchParams(location.search), st=(sp.get("t")||"").toUpperCase();
     if(T[st]){ renderResult(st); $("sb").style.display="block"; $("restartBtn").textContent="👉 나도 테스트하기"; }
     $("startBtn").addEventListener("click",start);$("shareBtn").addEventListener("click",doShare);$("copyBtn").addEventListener("click",function(){doCopy();});
-    var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}$("imgBtn").addEventListener("click",shareImage);$("restartBtn").addEventListener("click",function(){show("intro");});}
+    var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}$("restartBtn").addEventListener("click",function(){show("intro");});}
   if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
 })();
 </script>

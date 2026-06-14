@@ -31,7 +31,7 @@
   .field .hint{font-size:12.5px;color:var(--gray);font-weight:500;}
   .inwrap{display:flex;align-items:center;border:1.8px solid var(--line);border-radius:13px;padding:0 16px;transition:.15s;background:#fff;}
   .inwrap:focus-within{border-color:var(--blue);}
-  .inwrap input{flex:1;border:none;outline:none;font-family:inherit;font-size:17px;font-weight:700;padding:15px 0;background:none;color:var(--ink);text-align:right;}
+  .inwrap input{flex:1;min-width:0;border:none;outline:none;font-family:inherit;font-size:17px;font-weight:700;padding:15px 0;background:none;color:var(--ink);text-align:right;}
   .inwrap .unit{font-size:14px;font-weight:600;color:var(--gray);margin-left:8px;white-space:nowrap;}
   .btn{width:100%;border:none;background:var(--blue);color:#fff;font-family:inherit;font-weight:700;font-size:17px;padding:17px;border-radius:14px;cursor:pointer;transition:.15s;margin-top:8px;}
   .btn:active{transform:scale(.98);background:var(--blue-dark);}
@@ -140,7 +140,6 @@
       <p class="gsub" id="rStats" style="margin-top:13px;"></p>
     </div>
     <div class="sec adv"><h3 style="color:#1b64da;">🧭 앞으로 이렇게 해보세요</h3><p id="rAdv"></p></div>
-    <button class="btn" id="imgBtn" style="background:#ff8a3d;margin-bottom:10px;">📸 결과 이미지로 공유 / 저장</button>
     <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
     <div class="chan-row"><button class="chan" data-ch="x">X</button><button class="chan chl" data-ch="line">LINE</button><button class="chan chf" data-ch="fb">f</button></div>
     <button class="restart" id="restartBtn">다시 진단하기</button>
@@ -270,7 +269,8 @@
     requestAnimationFrame(function(){requestAnimationFrame(function(){var rows=mix.querySelectorAll(".barrow");for(var i=0;i<rows.length;i++){(function(r){r.querySelector(".bv").style.width=parseInt(r.getAttribute("data-pc"),10)+"%";})(rows[i]);}});});
   }
   function shareUrl(){return location.origin+location.pathname+(R?"?s="+R.score+"&b="+R.band:"");}
-  function doShare(){if(!R)return;var t="내 또래("+BM[R.band].label+") 자산 진단: "+R.score+"점 ("+R.grade+")! 너도 해봐.";var u=shareUrl();if(navigator.share)navigator.share({title:document.title,text:t,url:u}).catch(function(){});else doCopy(t+" "+u);}
+  function doShare(){if(!R)return;var t="내 또래("+BM[R.band].label+") 자산 진단: "+R.score+"점 ("+R.grade+")! 너도 해봐.";var u=shareUrl();var _t=t,_u=u;function _ft(){if(navigator.share){navigator.share({title:document.title,text:_t,url:_u}).catch(function(e){if(!e||e.name!=="AbortError")doCopy(_t+" "+_u);});}else{doCopy(_t+" "+_u);}}
+    try{var _cv=buildCard();_cv.toBlob(function(blob){if(blob){var f=new File([blob],"asset-result.png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],text:_t+" "+_u}).catch(function(e){if(!e||e.name!=="AbortError")_ft();});return;}}_ft();},"image/png");}catch(e){_ft();}}
   function doCopy(c){var u=shareUrl(),txt=c||u;function d(){var b=$("copyBtn"),o=b.textContent;b.textContent="✅ 복사 완료!";setTimeout(function(){b.textContent=o;},1500);}if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(d).catch(function(){window.prompt("아래 링크를 복사하세요",txt);});else window.prompt("아래 링크를 복사하세요",txt);}
   function _wrap(c,t,cx,y,mw,lh){var line="",ls=[];for(var i=0;i<t.length;i++){var s2=line+t[i];if(c.measureText(s2).width>mw&&line){ls.push(line);line=t[i];}else line=s2;}ls.push(line);for(var j=0;j<ls.length;j++)c.fillText(ls[j],cx,y+j*lh);return ls.length;}
   function _rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
@@ -311,7 +311,7 @@
     var sp=new URLSearchParams(location.search), ss=parseInt(sp.get("s"),10), bb=sp.get("b");
     if(!isNaN(ss)&&ss>=0&&ss<=100&&BM[bb]){ renderShared(ss,bb); $("sb").style.display="block"; $("restartBtn").textContent="👉 나도 진단하기"; }
     $("goBtn").addEventListener("click",diagnose);bindLive("net","netLive");bindLive("income","incomeLive");$("shareBtn").addEventListener("click",doShare);$("copyBtn").addEventListener("click",function(){doCopy();});
-    var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}$("imgBtn").addEventListener("click",shareImage);$("restartBtn").addEventListener("click",function(){show("intro");});}
+    var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}$("restartBtn").addEventListener("click",function(){show("intro");});}
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();
 </script>

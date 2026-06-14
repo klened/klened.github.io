@@ -122,7 +122,6 @@
     <div class="sec" id="rAssetSec"><h3>💡 지금 챙기면 좋은 것</h3><p id="rAsset"></p></div>
     <div class="sec"><h3>💛 이런 마음, 너무 자연스러워요</h3><div class="rlist" id="rBlind"></div></div>
     <div class="sec closingsec"><p id="rClose"></p></div>
-    <button class="btn" id="imgBtn" style="background:#ff8a3d;margin-bottom:10px;">📸 결과 이미지로 공유 / 저장</button>
     <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유하기</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
     <div class="chan-row"><button class="chan" data-ch="x">X</button><button class="chan chl" data-ch="line">LINE</button><button class="chan chf" data-ch="fb">f</button></div>
     <p class="compare">친구에게 보내고 비교해보세요!</p>
@@ -181,8 +180,8 @@
     var t=current; if(!t) return;
     var text="나의 재무 건강 점수은(는) "+t.emoji+" "+t.name+"! 너는 어때? 같이 해보자!";
     var url=shareUrl();
-    if(navigator.share){ navigator.share({title:document.title,text:text,url:url}).catch(function(){}); }
-    else{ doCopy(text+" "+url); }
+    var _t=text,_u=url;function _ft(){if(navigator.share){navigator.share({title:document.title,text:_t,url:_u}).catch(function(e){if(!e||e.name!=="AbortError")doCopy(_t+" "+_u);});}else{doCopy(_t+" "+_u);}}
+    try{var _cv=buildCard();_cv.toBlob(function(blob){if(blob){var f=new File([blob],"health-result.png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],text:_t+" "+_u}).catch(function(e){if(!e||e.name!=="AbortError")_ft();});return;}}_ft();},"image/png");}catch(e){_ft();}
   }
   function doCopy(c){
     var url=shareUrl(); var txt=c||url;
@@ -224,7 +223,7 @@
     $("shareBtn").addEventListener("click",doShare);
     $("copyBtn").addEventListener("click",function(){doCopy();});
     var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}
-    $("imgBtn").addEventListener("click",shareImage);$("restartBtn").addEventListener("click",function(){show("intro");});
+    $("restartBtn").addEventListener("click",function(){show("intro");});
   }
   if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
 })();
