@@ -90,7 +90,7 @@
   var deskItems = GROUPS.map(function(g){
     var cur = g.children ? g.children.some(function(c){return isCur(c.href);}) : isCur(g.href);
     if(!g.children){
-      return '<li class="'+(cur?'sdn-cur':'')+'"><a href="'+g.href+'">'+esc(g.label)+'</a></li>';
+      return '<li class="'+(cur?'sdn-cur':'')+'"><a href="'+g.href+'">'+esc(g.label)+badge(g.badge)+'</a></li>';
     }
     var sub = g.children.map(function(c){
       return '<li><a href="'+c.href+'">'+esc(c.label)+badge(c.badge)+'</a></li>';
@@ -100,7 +100,7 @@
 
   var mobItems = GROUPS.map(function(g){
     if(!g.children){
-      return '<div class="sdn-mg"><a class="sdn-mtop" href="'+g.href+'">'+esc(g.label)+'</a></div>';
+      return '<div class="sdn-mg"><a class="sdn-mtop" href="'+g.href+'">'+esc(g.label)+badge(g.badge)+'</a></div>';
     }
     var sub = g.children.map(function(c){
       return '<a href="'+c.href+'">'+esc(c.label)+badge(c.badge)+'</a>';
