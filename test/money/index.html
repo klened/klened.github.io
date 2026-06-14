@@ -8,6 +8,10 @@
 <meta property="og:title" content="나의 머니 캐릭터는? 💰">
 <meta property="og:description" content="당신만의 맞춤 머니 분석! 30초 무료 테스트로 확인하고 친구와 비교해보세요.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://klened.github.io/test/money/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://klened.github.io/test/money/">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
@@ -84,6 +88,11 @@
   .restart{background:none;border:none;color:var(--gray);font-size:14px;font-weight:600;margin-top:18px;cursor:pointer;text-decoration:underline;width:100%;}
   .more-tests{display:block;text-decoration:none;text-align:center;margin-top:12px;background:#eef4ff;color:var(--blue);font-weight:700;font-size:15px;padding:15px;border-radius:12px;}
   .disclaimer{font-size:11.5px;color:#b0b8c1;margin-top:24px;line-height:1.5;word-break:keep-all;}
+  .sharebanner{background:#eef4ff;border:1px solid #d3e3fb;color:#1b64da;font-weight:700;font-size:14px;text-align:center;padding:13px;border-radius:12px;margin-bottom:16px;}
+  .chan-row{display:flex;gap:8px;justify-content:center;margin-bottom:8px;}
+  .chan{flex:1;max-width:100px;border:1px solid #e5e8eb;background:#fff;border-radius:10px;padding:11px;font-family:inherit;font-weight:800;font-size:14px;cursor:pointer;color:#3a4150;}
+  .chan:active{transform:scale(.97);}
+  .chl{color:#06c755;} .chf{color:#1877f2;}
 </style>
 </head>
 <body>
@@ -102,6 +111,7 @@
     <div class="opts" id="opts"></div>
   </section>
   <section class="screen result" id="result">
+    <div class="sharebanner" id="sb" style="display:none;">👋 친구가 공유한 결과예요 — 친구의 머니 캐릭터를 확인해보세요!</div>
     <div class="rcard" id="rcard">
       <div class="emoji" id="rEmoji"></div>
       <div class="rtype" id="rTypeLabel">나의 머니 캐릭터</div>
@@ -112,7 +122,7 @@
     <div class="sec hooksec"><h3>🎬 이런 적, 있지 않으세요?</h3><p id="rHook"></p></div>
     <div class="sec idsec"><p id="rIdentity"></p></div>
     <div class="sec customsec"><h3>🎯 당신만의 머니 분석</h3><div id="rCustom"></div></div>
-    <div class="sec"><h3>📊 나의 머니 성향 분포</h3><div id="rBars"></div></div>
+    <div class="sec" id="barsSec"><h3>📊 나의 머니 성향 분포</h3><div id="rBars"></div></div>
     <div class="sec"><h3>✨ 이게 당신의 강점이에요</h3><div class="tags" id="rStrength"></div></div>
     <div class="sec"><h3>👥 비슷한 유형은 보통 이래요</h3><div class="rlist" id="rBehav"></div></div>
     <div class="sec"><h3>💛 이런 마음, 너무 자연스러워요</h3><div class="rlist" id="rBlind"></div></div>
@@ -120,6 +130,7 @@
     <div class="sec"><h3>🧬 비슷한 MBTI <span class="funlabel">재미로 보기</span></h3><p id="rMbti"></p></div>
     <div class="sec"><h3>💞 친구와 머니 궁합</h3><p class="compat-guide">친구는 어떤 유형일까요? 골라서 확인하세요!</p><div class="cbtns" id="cBtns"></div><div class="cresult" id="cResult"></div></div>
     <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유하기</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
+    <div class="chan-row"><button class="chan" data-ch="x">X</button><button class="chan chl" data-ch="line">LINE</button><button class="chan chf" data-ch="fb">f</button></div>
     <p class="compare">친구에게 보내고 궁합까지 맞춰보세요!</p>
     <button class="restart" id="restartBtn">다시 테스트하기</button>
     <a class="more-tests" href="/test/">🧠 다른 테스트도 해보기 →</a>
@@ -160,8 +171,10 @@
   function finish(){
     var best="avoid",mx=-1;TYPES.forEach(function(k){if(score[k]>mx){mx=score[k];best=k;}});
     var sortd=TYPES.slice().sort(function(a,b){return score[b]-score[a];});
-    var second=sortd[1];
-    currentType=best;var r=R[best];current=r;
+    renderResult(best,false,sortd[1]);
+  }
+  function renderResult(best,shared,second){
+    var r=R[best];currentType=best;current=r;
     $("rcard").style.background=r.grad;
     $("rEmoji").textContent=r.emoji;
     $("rName").textContent=r.name;
@@ -170,6 +183,8 @@
     $("rPct").textContent=r.pctLabel;
     $("rHook").textContent=r.hook;
     $("rIdentity").textContent=r.identity;
+    if(shared){var _cs=document.querySelector(".customsec");if(_cs)_cs.style.display="none";}
+    else{
     var paras=[];
     paras.push(r.lead+" "+(DOMAIN[ans.domain]||""));
     var ml="그렇게 돈을 대하는 진짜 이유는, 결국 '"+(MOTIVE[ans.motive]||"나다운 삶")+"' 때문이 아닐까요.";
@@ -178,11 +193,14 @@
     if(WORRY[ans.worry]){paras.push(WORRY[ans.worry]);}
     paras.push(CLOSING[best]);
     $("rCustom").innerHTML=paras.map(function(t){return "<p>"+t+"</p>";}).join("");
+    }
     var st=$("rStrength");st.innerHTML="";r.strength.forEach(function(x){var sp=document.createElement("span");sp.className="tag";sp.textContent="#"+x;st.appendChild(sp);});
     $("rBehav").innerHTML=(BEHAV[best]||[]).map(function(x){return '<div class="item"><span class="ic">🔹</span><span>'+x+'</span></div>';}).join("");
     $("rBlind").innerHTML=r.blind.map(function(x){return '<div class="item"><span class="ic">💛</span><span>'+x+'</span></div>';}).join("");
     $("rFin").textContent=FIN[best];
     $("rMbti").textContent=r.mbti;
+    if(shared){var _bs=$("barsSec");if(_bs)_bs.style.display="none";}
+    else{
     var bars=$("rBars");bars.innerHTML="";
     TYPES.forEach(function(k){
       var pc=Math.round(score[k]/TYPEN*100);
@@ -191,6 +209,7 @@
       row.innerHTML='<span class="bl">'+R[k].type+'</span><span class="bt"><span class="bv" style="width:0%;background:'+col+'"></span></span><span class="bp">0%</span>';
       row.setAttribute("data-pc",pc);bars.appendChild(row);
     });
+    }
     var cb=$("cBtns");cb.innerHTML="";var cres=$("cResult");cres.style.display="none";cres.innerHTML="";
     TYPES.forEach(function(k){
       var b=document.createElement("button");b.className="cbtn";b.textContent=R[k].emoji+" "+R[k].type;
@@ -202,6 +221,7 @@
       cb.appendChild(b);
     });
     show("result");
+    if(shared||typeof bars==="undefined"||!bars)return;
     var rows=bars.querySelectorAll(".barrow");
     requestAnimationFrame(function(){requestAnimationFrame(function(){
       for(var i=0;i<rows.length;i++){(function(row,i){
@@ -210,17 +230,22 @@
       })(rows[i],i);}
     });});
   }
+  function shareUrl(){return location.origin+location.pathname+"?t="+currentType;}
   function doShare(){
     if(!current)return;
     var text="나의 머니 캐릭터는 "+current.emoji+" "+current.name+"("+current.type+")! 나만의 맞춤 분석까지 나와. 너도 해봐!";
-    var url=location.href.split("#")[0];
+    var url=shareUrl();
     if(navigator.share){navigator.share({title:document.title,text:text,url:url}).catch(function(){});}else{doCopy(text+" "+url);}
   }
-  function doCopy(c){var url=location.href.split("#")[0];var txt=c||url;function done(){var b=$("copyBtn");var o=b.textContent;b.textContent="✅ 복사 완료!";setTimeout(function(){b.textContent=o;},1500);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){window.prompt("아래 링크를 복사하세요",txt);});}else{window.prompt("아래 링크를 복사하세요",txt);}}
+  function doCopy(c){var url=shareUrl();var txt=c||url;function done(){var b=$("copyBtn");var o=b.textContent;b.textContent="✅ 복사 완료!";setTimeout(function(){b.textContent=o;},1500);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){window.prompt("아래 링크를 복사하세요",txt);});}else{window.prompt("아래 링크를 복사하세요",txt);}}
+  function openCh(ch){var u=encodeURIComponent(shareUrl()),t=encodeURIComponent(document.title);var url=ch==="x"?("https://twitter.com/intent/tweet?text="+t+"&url="+u):ch==="line"?("https://social-plugins.line.me/lineit/share?url="+u+"&text="+t):("https://www.facebook.com/sharer/sharer.php?u="+u);window.open(url,"_blank","noopener,noreferrer");}
   function init(){
+    var sp=new URLSearchParams(location.search), st=sp.get("t");
+    if(st&&R[st]){ renderResult(st,true); $("sb").style.display="block"; $("restartBtn").textContent="👉 나도 테스트하기"; }
     $("startBtn").addEventListener("click",start);
     $("shareBtn").addEventListener("click",doShare);
     $("copyBtn").addEventListener("click",function(){doCopy();});
+    var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}
     $("restartBtn").addEventListener("click",function(){show("intro");});
   }
   if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}

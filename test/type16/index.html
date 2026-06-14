@@ -8,6 +8,10 @@
 <meta property="og:title" content="나의 머니 유형은? 💰 (16유형)">
 <meta property="og:description" content="MBTI식 16가지 머니 유형! 30초 테스트로 내 돈 유형을 확인하고 친구와 비교해보세요.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://klened.github.io/test/type16/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://klened.github.io/test/type16/">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
@@ -68,6 +72,11 @@
   .rlist .item .ic{flex-shrink:0;}
   .closingsec{background:#fff5f7;border:1px solid #ffd9e2;text-align:center;}
   .closingsec p{font-size:15px;font-weight:700;color:#c2335a;line-height:1.6;word-break:keep-all;}
+  .sharebanner{background:#eef4ff;border:1px solid #d3e3fb;color:#1b64da;font-weight:700;font-size:14px;text-align:center;padding:13px;border-radius:12px;margin-bottom:16px;}
+  .chan-row{display:flex;gap:8px;justify-content:center;margin-bottom:8px;}
+  .chan{flex:1;max-width:100px;border:1px solid #e5e8eb;background:#fff;border-radius:10px;padding:11px;font-family:inherit;font-weight:800;font-size:14px;cursor:pointer;color:#3a4150;}
+  .chan:active{transform:scale(.97);}
+  .chl{color:#06c755;} .chf{color:#1877f2;}
 </style>
 </head>
 <body>
@@ -86,6 +95,7 @@
     <div class="opts" id="opts"></div>
   </section>
   <section class="screen result" id="result">
+    <div class="sharebanner" id="sb" style="display:none;">👋 친구가 공유한 결과예요 — 아래에서 확인해보세요!</div>
     <div class="rcard" id="rcard">
       <div class="emoji" id="rEmoji"></div>
       <div class="code" id="rCode"></div>
@@ -100,6 +110,7 @@
     <div class="sec"><h3>💛 이런 마음, 너무 자연스러워요</h3><div class="rlist" id="rBlind"></div></div>
     <div class="sec closingsec"><p id="rClose"></p></div>
     <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유하기</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
+    <div class="chan-row"><button class="chan" data-ch="x">X</button><button class="chan chl" data-ch="line">LINE</button><button class="chan chf" data-ch="fb">f</button></div>
     <p class="compare">친구는 어떤 유형일까? 보내서 비교해보세요!</p>
     <button class="restart" id="restartBtn">다시 테스트하기</button>
     <a class="more-tests" href="/test/">🧠 다른 테스트도 해보기 →</a>
@@ -126,8 +137,13 @@
     for(var i=0;i<it.a.length;i++){(function(pole){var b=document.createElement("button");b.className="opt";b.textContent=it.a[i][0];b.addEventListener("click",function(){cnt[it.f][pole]++;idx++;(idx<Q.length)?render():finish();});box.appendChild(b);})(it.a[i][1]);}
   }
   function finish(){
-    var code="", tags=[];
-    for(var ax=0;ax<4;ax++){ var pole=(cnt[ax][1]>cnt[ax][0])?1:0; var L=AXES[ax][pole]; code+=L; tags.push(POLE[L]); }
+    var code="";
+    for(var ax=0;ax<4;ax++){ code+=AXES[ax][(cnt[ax][1]>cnt[ax][0])?1:0]; }
+    renderResult(code);
+  }
+  function renderResult(code){
+    if(!T[code])return;
+    var tags=[]; for(var ti=0;ti<4;ti++){ tags.push(POLE[code.charAt(ti)]); }
     var t=T[code]; current={code:code,t:t};
     $("rcard").style.background = code.charAt(0)==="S" ? "linear-gradient(135deg,#3182f6,#1b64da)" : "linear-gradient(135deg,#f368a8,#e84393)";
     $("rEmoji").textContent=t.e;
@@ -147,15 +163,21 @@
     t.g.forEach(function(x){var sp=document.createElement("span");sp.className="tag";sp.textContent="#"+x;st.appendChild(sp);});
     show("result");
   }
+  function shareUrl(){return location.origin+location.pathname+(current?"?t="+current.code:"");}
   function doShare(){
     if(!current)return;
     var text="나의 머니 유형은 "+current.t.e+" "+current.t.n+"("+current.code+")! 너는 어떤 유형이야?";
-    var url=location.href.split("#")[0];
+    var url=shareUrl();
     if(navigator.share){navigator.share({title:document.title,text:text,url:url}).catch(function(){});}
     else{doCopy(text+" "+url);}
   }
-  function doCopy(c){var url=location.href.split("#")[0];var txt=c||url;function done(){var b=$("copyBtn");var o=b.textContent;b.textContent="✅ 복사 완료!";setTimeout(function(){b.textContent=o;},1500);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){window.prompt("아래 링크를 복사하세요",txt);});}else{window.prompt("아래 링크를 복사하세요",txt);}}
-  function init(){$("startBtn").addEventListener("click",start);$("shareBtn").addEventListener("click",doShare);$("copyBtn").addEventListener("click",function(){doCopy();});$("restartBtn").addEventListener("click",function(){show("intro");});}
+  function doCopy(c){var url=shareUrl();var txt=c||url;function done(){var b=$("copyBtn");var o=b.textContent;b.textContent="✅ 복사 완료!";setTimeout(function(){b.textContent=o;},1500);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){window.prompt("아래 링크를 복사하세요",txt);});}else{window.prompt("아래 링크를 복사하세요",txt);}}
+  function openCh(ch){var u=encodeURIComponent(shareUrl()),t=encodeURIComponent(document.title);var url=ch==="x"?("https://twitter.com/intent/tweet?text="+t+"&url="+u):ch==="line"?("https://social-plugins.line.me/lineit/share?url="+u+"&text="+t):("https://www.facebook.com/sharer/sharer.php?u="+u);window.open(url,"_blank","noopener,noreferrer");}
+  function init(){
+    var sp=new URLSearchParams(location.search), st=(sp.get("t")||"").toUpperCase();
+    if(T[st]){ renderResult(st); $("sb").style.display="block"; $("restartBtn").textContent="👉 나도 테스트하기"; }
+    $("startBtn").addEventListener("click",start);$("shareBtn").addEventListener("click",doShare);$("copyBtn").addEventListener("click",function(){doCopy();});
+    var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}$("restartBtn").addEventListener("click",function(){show("intro");});}
   if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
 })();
 </script>

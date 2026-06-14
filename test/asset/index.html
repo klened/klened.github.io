@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>내 또래 자산 진단 | 나이 대비 순자산 순위</title>
+<meta name="description" content="나이·연소득·순자산만 입력하면 또래 대비 내 자산 순위·점수·등급과 이 나이대 투자 행태까지. 통계청 가계금융복지조사 기준 무료 진단.">
+<meta property="og:title" content="내 또래 자산 진단 📊">
+<meta property="og:description" content="나이 대비 나는 어디쯤? 또래 순자산 순위·등급을 30초만에 확인하세요.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://klened.github.io/test/asset/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://klened.github.io/test/asset/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{ --blue:#3182f6; --blue-dark:#1b64da; --ink:#191f28; --gray:#8b95a1; --gray-light:#f2f4f6; --line:#e5e8eb; --bg:#f9fafb; }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);display:flex;justify-content:center;min-height:100vh;line-height:1.5;}
+  .app{width:100%;max-width:480px;background:#fff;min-height:100vh;overflow:hidden;}
+  .screen{display:none !important;padding:32px 24px 40px;}
+  .screen.active{display:block !important;animation:fade .4s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .intro h1{font-size:27px;font-weight:800;line-height:1.32;letter-spacing:-.5px;margin-bottom:10px;}
+  .intro .ic{font-size:54px;text-align:center;}
+  .intro .lead{color:var(--gray);font-size:15.5px;margin-bottom:26px;word-break:keep-all;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:7px;}
+  .field .hint{font-size:12.5px;color:var(--gray);font-weight:500;}
+  .inwrap{display:flex;align-items:center;border:1.8px solid var(--line);border-radius:13px;padding:0 16px;transition:.15s;background:#fff;}
+  .inwrap:focus-within{border-color:var(--blue);}
+  .inwrap input{flex:1;border:none;outline:none;font-family:inherit;font-size:17px;font-weight:700;padding:15px 0;background:none;color:var(--ink);text-align:right;}
+  .inwrap .unit{font-size:14px;font-weight:600;color:var(--gray);margin-left:8px;white-space:nowrap;}
+  .btn{width:100%;border:none;background:var(--blue);color:#fff;font-family:inherit;font-weight:700;font-size:17px;padding:17px;border-radius:14px;cursor:pointer;transition:.15s;margin-top:8px;}
+  .btn:active{transform:scale(.98);background:var(--blue-dark);}
+  .btn.ghost{background:var(--gray-light);color:var(--ink);}
+  .err{color:#e84393;font-size:13px;font-weight:600;margin-top:6px;min-height:16px;}
+  .rlist{display:flex;flex-direction:column;gap:10px;}
+  .rlist .item{display:flex;gap:9px;font-size:14.5px;line-height:1.6;word-break:keep-all;}
+  .rlist .item .ic{flex-shrink:0;color:var(--blue);font-weight:800;}
+  .mult b{color:var(--blue);}
+  .liveunit{font-size:12.5px;font-weight:700;color:var(--blue);text-align:right;margin-top:6px;min-height:15px;}
+  .note{font-size:11.5px;color:#b0b8c1;margin-top:18px;line-height:1.5;word-break:keep-all;}
+  .result{text-align:center;}
+  .rcard{border-radius:22px;padding:30px 24px;color:#fff;margin-bottom:20px;background:linear-gradient(135deg,#3182f6,#1b64da);}
+  .rcard .gr{font-size:14px;font-weight:700;opacity:.92;letter-spacing:.3px;}
+  .rcard .score{font-size:56px;font-weight:800;line-height:1.05;margin:4px 0;}
+  .rcard .score small{font-size:22px;font-weight:700;opacity:.8;}
+  .rcard .grade{font-size:20px;font-weight:800;}
+  .rcard .one{font-size:14px;opacity:.95;margin-top:10px;font-weight:500;word-break:keep-all;}
+  .sec{text-align:left;background:var(--bg);border-radius:16px;padding:20px;margin-bottom:14px;}
+  .sec h3{font-size:14px;font-weight:700;color:var(--gray);margin-bottom:12px;}
+  .cmp{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;}
+  .cmp .lab{font-size:14px;font-weight:700;}
+  .cmp .val{font-size:15px;font-weight:800;color:var(--blue);}
+  .gtrack{height:14px;background:#eef0f3;border-radius:99px;overflow:hidden;margin:4px 0;}
+  .gfill{display:block;height:100%;width:0;border-radius:99px;background:var(--blue);transition:width 1s cubic-bezier(.22,1,.36,1);}
+  .gsub{font-size:12px;color:var(--gray);font-weight:600;word-break:keep-all;}
+  .mult{font-size:15px;line-height:1.6;word-break:keep-all;}
+  .mult b{color:var(--blue);}
+  .barrow{display:flex;align-items:center;gap:10px;margin:9px 0;}
+  .barrow .bl{font-size:13px;font-weight:700;width:64px;color:var(--ink);}
+  .barrow .bt{flex:1;height:11px;background:#eef0f3;border-radius:99px;overflow:hidden;}
+  .barrow .bv{display:block;height:100%;width:0;border-radius:99px;background:#7c8aff;transition:width .9s ease;}
+  .barrow .bp{font-size:12px;font-weight:700;color:var(--gray);width:38px;text-align:right;}
+  .adv{background:#eef4ff;border:1px solid #d3e3fb;}
+  .adv p{font-size:15px;line-height:1.65;color:#1b3c66;word-break:keep-all;}
+  .cta{display:block;text-decoration:none;text-align:center;background:var(--ink);color:#fff;font-weight:700;font-size:16px;padding:16px;border-radius:14px;margin-top:6px;word-break:keep-all;}
+  .cta small{display:block;font-weight:500;font-size:13px;opacity:.7;margin-top:3px;}
+  .share-row{display:flex;gap:10px;margin:18px 0 8px;}
+  .share-row .btn{font-size:15px;padding:15px;margin-top:0;}
+  .restart{background:none;border:none;color:var(--gray);font-size:14px;font-weight:600;margin-top:16px;cursor:pointer;text-decoration:underline;width:100%;}
+  .more-tests{display:block;text-decoration:none;text-align:center;margin-top:12px;background:#eef4ff;color:var(--blue);font-weight:700;font-size:15px;padding:15px;border-radius:12px;}
+  .disclaimer{font-size:11px;color:#b0b8c1;margin-top:22px;line-height:1.5;word-break:keep-all;}
+  .sharebanner{background:#eef4ff;border:1px solid #d3e3fb;color:#1b64da;font-weight:700;font-size:14px;text-align:center;padding:13px;border-radius:12px;margin-bottom:16px;}
+  .chan-row{display:flex;gap:8px;justify-content:center;margin-bottom:8px;}
+  .chan{flex:1;max-width:100px;border:1px solid #e5e8eb;background:#fff;border-radius:10px;padding:11px;font-family:inherit;font-weight:800;font-size:14px;cursor:pointer;color:#3a4150;}
+  .chan:active{transform:scale(.97);}
+  .chl{color:#06c755;} .chf{color:#1877f2;}
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="screen intro active" id="intro">
+    <div class="ic">📊</div>
+    <h1>내 또래 자산 진단<br>나이 대비 잘하고 있을까?</h1>
+    <p class="lead">세 가지만 입력하면, 또래와 비교한 내 순자산 순위·점수와 맞춤 조언을 알려드려요.</p>
+    <div class="field">
+      <label>나이 <span class="hint">· 만 나이</span></label>
+      <div class="inwrap"><input id="age" type="number" inputmode="numeric" placeholder="33"><span class="unit">세</span></div>
+    </div>
+    <div class="field">
+      <label>연소득 <span class="hint">· 세전, 대략이면 OK</span></label>
+      <div class="inwrap"><input id="income" type="number" inputmode="numeric" placeholder="4500"><span class="unit">만원 / 년</span></div>
+      <div class="liveunit" id="incomeLive"></div>
+    </div>
+    <div class="field">
+      <label>순자산 <span class="hint">· 모든 자산(집·예금·주식 등)에서 빚을 뺀 금액</span></label>
+      <div class="inwrap"><input id="net" type="number" inputmode="numeric" placeholder="8000"><span class="unit">만원</span></div>
+      <div class="liveunit" id="netLive"></div>
+    </div>
+    <div class="err" id="err"></div>
+    <button class="btn" id="goBtn">내 자산 진단하기 →</button>
+    <p class="note">입력값은 어디에도 저장·전송되지 않고, 이 화면에서만 계산돼요.</p>
+  </section>
+
+  <section class="screen result" id="result">
+    <div class="sharebanner" id="sb" style="display:none;">👋 친구가 공유한 자산 점수예요 — 나도 해보세요!</div>
+    <div class="rcard">
+      <div class="gr" id="rBand"></div>
+      <div class="score" id="rScore">0<small>점</small></div>
+      <div class="grade" id="rGrade"></div>
+      <div class="one" id="rOne"></div>
+    </div>
+    <div class="sec" id="secNet">
+      <h3>💰 또래 대비 내 순자산</h3>
+      <div class="cmp"><span class="lab">내 순자산</span><span class="val" id="aTop"></span></div>
+      <div class="gtrack"><span class="gfill" id="aFill"></span></div>
+      <div class="gsub" id="aSub"></div>
+    </div>
+    <div class="sec" id="secInc">
+      <h3>🎯 연봉까지 감안하면</h3>
+      <div class="cmp"><span class="lab">비슷한 연봉 또래 중</span><span class="val" id="incTop"></span></div>
+      <div class="gsub" id="incSub"></div>
+    </div>
+    <div class="sec" id="secSim" style="background:#fff8ec;border:1px solid #ffe6bf;">
+      <h3 style="color:#a86a12;">🔮 지금 페이스면 10년 뒤</h3>
+      <p class="mult" id="simNow"></p>
+      <p class="mult" id="simPlus" style="margin-top:9px;"></p>
+    </div>
+    <div class="sec">
+      <h3 id="mixHead">📈 이 나이대는 보통 이렇게 굴려요</h3>
+      <div id="rMix"></div>
+    </div>
+    <div class="sec">
+      <h3>🏆 자산 상위권은 이게 달라요</h3>
+      <div class="rlist" id="rTraits"></div>
+      <p class="gsub" id="rStats" style="margin-top:13px;"></p>
+    </div>
+    <div class="sec adv"><h3 style="color:#1b64da;">🧭 앞으로 이렇게 해보세요</h3><p id="rAdv"></p></div>
+    <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
+    <div class="chan-row"><button class="chan" data-ch="x">X</button><button class="chan chl" data-ch="line">LINE</button><button class="chan chf" data-ch="fb">f</button></div>
+    <button class="restart" id="restartBtn">다시 진단하기</button>
+    <a class="more-tests" href="/test/">🧠 다른 테스트도 해보기 →</a>
+    <p class="disclaimer" id="rDisc"></p>
+  </section>
+</div>
+<script>
+(function(){
+  "use strict";
+  /* =========================================================
+     ▼ 비교 기준표 — 출처: 통계청 가계금융복지조사(2025) 연령대별 가구 '순자산'
+        net = 순자산 중앙값(만원). 30대·40대·50대는 공식 발표 중앙값.
+        '30세미만'·'60대+'의 중앙값은 미발표라 평균·분포로 추정한 값(*).
+        mix = [예·적금, 주식·펀드, 부동산, 보험·기타] (%, 신한 보통사람 보고서 참고 추정)
+     ========================================================= */
+  var BM={
+    "20":{net:3500,  est:true,  incomeMed:3000, own:10, invest:35, mix:[55,22, 8,15], label:"30세 미만"},
+    "30":{net:15585, est:false, incomeMed:4200, own:40, invest:40, mix:[45,22,18,15], label:"30대"},
+    "40":{net:28384, est:false, incomeMed:5000, own:60, invest:35, mix:[40,18,28,14], label:"40대"},
+    "50":{net:31685, est:false, incomeMed:5000, own:65, invest:28, mix:[42,15,30,13], label:"50대"},
+    "60":{net:24000, est:true,  incomeMed:3500, own:70, invest:15, mix:[50,10,32, 8], label:"60대 이상"}
+  };
+  var MIXLAB=["예·적금","주식·펀드","부동산","보험·기타"];
+  var TRAITS=[
+    "소득이 들어오면 '쓰고 남은 걸' 저축하는 게 아니라, '먼저 떼어두고' 나머지로 생활해요.",
+    "남들보다 일찍 투자를 시작해 '시간(복리)'을 자기 편으로 만들었어요.",
+    "'좋은 빚(내 집·투자)'과 '나쁜 빚(소비·이자)'을 구분하고, 나쁜 빚부터 줄여요."
+  ];
+  /* ▲ 여기까지 ▲ */
+
+  function $(id){return document.getElementById(id);}
+  function show(id){var s=document.querySelectorAll(".screen");for(var i=0;i<s.length;i++)s[i].classList.remove("active");$(id).classList.add("active");window.scrollTo(0,0);}
+  function bandOf(a){return a<30?"20":a<40?"30":a<50?"40":a<60?"50":"60";}
+  function topPct(v,med){if(v<=0)return 99;var t=Math.round(50*Math.pow(med/v,0.7));return Math.max(1,Math.min(99,t));}
+  function won(m){m=Math.round(m);if(m>=10000){var e=m/10000;return (e%1===0?e.toFixed(0):e.toFixed(1))+"억";}return m.toLocaleString()+"만";}
+
+  function fmtKR(man){man=Math.round(man);var neg=man<0;man=Math.abs(man);var s;if(man>=10000){var e=Math.floor(man/10000),r=man%10000;s=e+"억"+(r?" "+r.toLocaleString()+"만":"")+"원";}else{s=man.toLocaleString()+"만원";}return (neg?"마이너스 ":"")+s;}
+  function bindLive(inp,out){var el=$(inp),o=$(out);if(!el||!o)return;el.addEventListener("input",function(){var v=parseFloat(el.value);o.textContent=(el.value===""||isNaN(v))?"":"= "+fmtKR(v);});}
+  var R=null;
+  function diagnose(){
+    var age=parseInt($("age").value,10), income=parseFloat($("income").value), net=parseFloat($("net").value);
+    if(!age||age<15||age>99){$("err").textContent="나이를 정확히 입력해주세요 (15~99).";return;}
+    if(isNaN(income)||income<=0){$("err").textContent="연소득을 입력해주세요.";return;}
+    if(isNaN(net)){$("err").textContent="순자산을 입력해주세요. (빚이 더 많으면 마이너스도 가능)";return;}
+    $("err").textContent="";
+    var b=bandOf(age), bm=BM[b];
+    var aTop=topPct(net,bm.net);
+    var score=100-aTop;
+    var grade,one;
+    if(score>=85){grade="S등급 · 최상위권";one="또래 사이에서 손꼽히는 자산가예요!";}
+    else if(score>=70){grade="A등급 · 상위권";one="또래보다 한참 앞서 있어요. 멋져요!";}
+    else if(score>=50){grade="B등급 · 평균 이상";one="또래 중앙값보다 잘 모았어요.";}
+    else if(score>=30){grade="C등급 · 성장 중";one="아직 쌓는 중이에요. 충분히 따라잡을 수 있어요.";}
+    else{grade="D등급 · 출발선";one="지금이 시작이에요. 비교에 기죽지 마세요!";}
+    R={band:b,score:score,grade:grade};
+
+    $("rBand").textContent="같은 "+bm.label+" 기준 · 내 자산 점수";
+    $("rScore").innerHTML=score+'<small>점</small>';
+    $("rGrade").textContent=grade;
+    $("rOne").textContent=one;
+    $("aTop").textContent="또래 중 상위 "+aTop+"%";
+    $("aSub").textContent=bm.label+" 순자산 중앙값 "+won(bm.net)+"원"+(bm.est?"(추정)":"")+" · 내 순자산 "+won(net)+"원";
+
+    // 연봉 감안 비교
+    var bandInc=bm.incomeMed;
+    var factor=Math.max(0.4,Math.min(2.5,income/bandInc));
+    var expNet=bm.net*Math.pow(factor,0.7);
+    var incTopV=topPct(net,expNet);
+    var peerMult=bm.net/bandInc, myMult=(income>0&&net>0?net/income:0);
+    $("incTop").textContent="상위 "+incTopV+"%";
+    $("incSub").textContent=bm.label+"는 보통 연봉의 "+peerMult.toFixed(1)+"배를 모아요 · 당신은 "+(myMult>0?myMult.toFixed(1)+"배":"아직 쌓는 중")+" (추정)";
+    // 10년 뒤 시뮬 (연 4% 수익, 소득의 20% 저축 가정)
+    var rate=0.04, yrSave=Math.max(0,income*0.2);
+    function fv(pp,sv,n){return pp*Math.pow(1+rate,n)+sv*((Math.pow(1+rate,n)-1)/rate);}
+    var f10=fv(net,yrSave,10), f10p=fv(net,yrSave+360,10);
+    $("simNow").innerHTML="지금처럼 모으면 <b>10년 뒤 약 "+won(f10)+"원</b><br><span style=\'font-size:12.5px;color:#a86a12;font-weight:600;\'>※ 연 4% 수익·소득의 20% 저축 가정</span>";
+    $("simPlus").innerHTML="여기서 <b>월 30만원</b>만 더 모으면 → <b style=\'color:#a86a12;\'>"+won(f10p)+"원</b> (+"+won(f10p-f10)+")";
+    // 상위권 공통점 + 행동 통계
+    $("rTraits").innerHTML=TRAITS.map(function(t,i){return '<div class="item"><span class="ic">'+(i+1)+'.</span><span>'+t+'</span></div>';}).join("");
+    $("rStats").textContent="📊 "+bm.label+"의 약 "+bm.own+"%가 내 집 보유 · 약 "+bm.invest+"%가 주식·펀드 투자 중 (추정)";
+
+    $("mixHead").textContent="📈 "+bm.label+"는 보통 이렇게 굴려요";
+    var adv;
+    if(score>=70) adv="또래보다 앞서 있으니 이제 '굴리는' 단계예요. 다만 받을 수 있는 환급·공제는 끝까지 챙기세요 — 안 받으면 손해예요.";
+    else if(score>=50) adv="좋은 흐름이에요. 저축률을 조금만 높이고 안 챙긴 지원금·환급금을 점검하면 상위권까지 금방이에요.";
+    else if(score>=30) adv="너무 조급해하지 마세요. 새는 고정비를 줄이고 받을 수 있는 혜택부터 챙기는 게 가장 빠른 출발이에요.";
+    else adv="지금은 출발선일 뿐이에요. 받을 수 있는 지원금·환급금을 챙기는 것만으로도 격차를 좁힐 수 있어요. 천천히, 같이 가요.";
+    $("rAdv").textContent=adv;
+
+    var mix=$("rMix");mix.innerHTML="";var cols=["#3182f6","#7c8aff","#ff8a3d","#26c6a8"];
+    bm.mix.forEach(function(pc,i){var row=document.createElement("div");row.className="barrow";row.innerHTML='<span class="bl">'+MIXLAB[i]+'</span><span class="bt"><span class="bv" style="background:'+cols[i]+'"></span></span><span class="bp">'+pc+'%</span>';row.setAttribute("data-pc",pc);mix.appendChild(row);});
+
+    $("rDisc").textContent="※ 비교 기준은 통계청·한국은행·금융감독원 '2025년 가계금융복지조사'의 연령대별 가구 순자산 중앙값입니다. 30세 미만·60대+ 중앙값은 미발표로 추정했고, 가구 단위 통계라 1인 가구는 차이가 있을 수 있어요. 소득 중앙값·자가/투자 비율·투자행태는 추정이며, 10년 시뮬은 가정(연 4%·저축 20%)에 따른 예측입니다. 본 결과는 참고용으로 투자 자문이 아닙니다.";
+
+    show("result");
+    requestAnimationFrame(function(){requestAnimationFrame(function(){
+      $("aFill").style.width=(100-aTop)+"%";
+      var rows=mix.querySelectorAll(".barrow");
+      for(var i=0;i<rows.length;i++){(function(r){r.querySelector(".bv").style.width=parseInt(r.getAttribute("data-pc"),10)+"%";})(rows[i]);}
+    });});
+  }
+  function renderShared(score,band){
+    var bm=BM[band]; if(!bm)return;
+    var grade,one,adv;
+    if(score>=85){grade="S등급 · 최상위권";one="또래 사이에서 손꼽히는 자산가예요!";}
+    else if(score>=70){grade="A등급 · 상위권";one="또래보다 한참 앞서 있어요. 멋져요!";}
+    else if(score>=50){grade="B등급 · 평균 이상";one="또래 중앙값보다 잘 모았어요.";}
+    else if(score>=30){grade="C등급 · 성장 중";one="아직 쌓는 중이에요. 충분히 따라잡을 수 있어요.";}
+    else{grade="D등급 · 출발선";one="지금이 시작이에요. 비교에 기죽지 마세요!";}
+    if(score>=70) adv="또래보다 앞서 있으니 이제 '굴리는' 단계예요. 다만 받을 수 있는 환급·공제는 끝까지 챙기세요 — 안 받으면 손해예요.";
+    else if(score>=50) adv="좋은 흐름이에요. 저축률을 조금만 높이고 안 챙긴 지원금·환급금을 점검하면 상위권까지 금방이에요.";
+    else if(score>=30) adv="너무 조급해하지 마세요. 새는 고정비를 줄이고 받을 수 있는 혜택부터 챙기는 게 가장 빠른 출발이에요.";
+    else adv="지금은 출발선일 뿐이에요. 받을 수 있는 지원금·환급금을 챙기는 것만으로도 격차를 좁힐 수 있어요. 천천히, 같이 가요.";
+    R={band:band,score:score,grade:grade};
+    $("rBand").textContent="같은 "+bm.label+" 기준 · 자산 점수";
+    $("rScore").innerHTML=score+'<small>점</small>';
+    $("rGrade").textContent=grade; $("rOne").textContent=one; $("rAdv").textContent=adv;
+    $("mixHead").textContent="📈 "+bm.label+"는 보통 이렇게 굴려요";
+    var mix=$("rMix");mix.innerHTML="";var cols=["#3182f6","#7c8aff","#ff8a3d","#26c6a8"];
+    bm.mix.forEach(function(pc,i){var row=document.createElement("div");row.className="barrow";row.innerHTML='<span class="bl">'+MIXLAB[i]+'</span><span class="bt"><span class="bv" style="background:'+cols[i]+'"></span></span><span class="bp">'+pc+'%</span>';row.setAttribute("data-pc",pc);mix.appendChild(row);});
+    $("rTraits").innerHTML=TRAITS.map(function(t,i){return '<div class="item"><span class="ic">'+(i+1)+'.</span><span>'+t+'</span></div>';}).join("");
+    $("rStats").textContent="📊 "+bm.label+"의 약 "+bm.own+"%가 내 집 보유 · 약 "+bm.invest+"%가 주식·펀드 투자 중 (추정)";
+    $("rDisc").textContent="※ 비교 기준은 통계청 '2025 가계금융복지조사' 연령대별 순자산 중앙값입니다. 친구가 공유한 점수 요약이며 투자 자문이 아닙니다.";
+    ["secNet","secInc","secSim"].forEach(function(id){var e=$(id);if(e)e.style.display="none";});
+    show("result");
+    requestAnimationFrame(function(){requestAnimationFrame(function(){var rows=mix.querySelectorAll(".barrow");for(var i=0;i<rows.length;i++){(function(r){r.querySelector(".bv").style.width=parseInt(r.getAttribute("data-pc"),10)+"%";})(rows[i]);}});});
+  }
+  function shareUrl(){return location.origin+location.pathname+(R?"?s="+R.score+"&b="+R.band:"");}
+  function doShare(){if(!R)return;var t="내 또래("+BM[R.band].label+") 자산 진단: "+R.score+"점 ("+R.grade+")! 너도 해봐.";var u=shareUrl();if(navigator.share)navigator.share({title:document.title,text:t,url:u}).catch(function(){});else doCopy(t+" "+u);}
+  function doCopy(c){var u=shareUrl(),txt=c||u;function d(){var b=$("copyBtn"),o=b.textContent;b.textContent="✅ 복사 완료!";setTimeout(function(){b.textContent=o;},1500);}if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(d).catch(function(){window.prompt("아래 링크를 복사하세요",txt);});else window.prompt("아래 링크를 복사하세요",txt);}
+  function openCh(ch){var u=encodeURIComponent(shareUrl()),t=encodeURIComponent(document.title);var url=ch==="x"?("https://twitter.com/intent/tweet?text="+t+"&url="+u):ch==="line"?("https://social-plugins.line.me/lineit/share?url="+u+"&text="+t):("https://www.facebook.com/sharer/sharer.php?u="+u);window.open(url,"_blank","noopener,noreferrer");}
+  function init(){
+    var sp=new URLSearchParams(location.search), ss=parseInt(sp.get("s"),10), bb=sp.get("b");
+    if(!isNaN(ss)&&ss>=0&&ss<=100&&BM[bb]){ renderShared(ss,bb); $("sb").style.display="block"; $("restartBtn").textContent="👉 나도 진단하기"; }
+    $("goBtn").addEventListener("click",diagnose);bindLive("net","netLive");bindLive("income","incomeLive");$("shareBtn").addEventListener("click",doShare);$("copyBtn").addEventListener("click",function(){doCopy();});
+    var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}$("restartBtn").addEventListener("click",function(){show("intro");});}
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();
+</script>
+</body>
+</html>
