@@ -166,6 +166,53 @@ a { color: inherit; text-decoration: none; }
 .services-title { text-align: center; margin-bottom: 26px; }
 .services-title h2 { font-size: 20px; font-weight: 800; color: var(--text-strong); letter-spacing: -0.5px; margin-bottom: 6px; }
 .services-title p { font-size: 13px; color: var(--text-soft); }
+.pillars { margin-bottom: 40px; }
+.pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.pillar-card { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 20px; box-shadow: var(--shadow-sm); transition: .18s; text-decoration: none; }
+.pillar-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--primary); }
+.pillar-card .pillar-emoji { font-size: 34px; line-height: 1; margin-bottom: 12px; }
+.pillar-card h3 { font-size: 17px; font-weight: 800; color: var(--text-strong); letter-spacing: -0.3px; margin-bottom: 6px; }
+.pillar-card p { font-size: 13px; color: var(--text-soft); line-height: 1.5; flex: 1; word-break: keep-all; }
+.pillar-card .pillar-arrow { margin-top: 14px; font-size: 13.5px; font-weight: 700; color: var(--primary); }
+.pillar-card.p-test { background: linear-gradient(135deg,#FFF3EB,#FFFDFB); border-color:#FFD9B8; }
+.pillar-card.p-test h3, .pillar-card.p-test .pillar-arrow { color: #E8590C; }
+.pillar-card.p-test:hover { border-color: #FF6F0F; }
+.pillar-card.p-biz { background: linear-gradient(135deg,#eefaf3,#fff); border-color:#bfe7d2; }
+.pillar-card.p-biz h3, .pillar-card.p-biz .pillar-arrow { color: var(--biz-dark); }
+.pillar-card.p-biz:hover { border-color: var(--biz); }
+.catblock { margin-bottom: 14px; }
+.catblock-title { font-size: 14px; font-weight: 800; color: var(--text-strong); margin-bottom: 10px; padding-left: 10px; border-left: 4px solid var(--border); letter-spacing: -0.3px; }
+.catblock.cat-welfare .catblock-title { border-left-color: var(--welfare); }
+.catblock.cat-worker .catblock-title { border-left-color: var(--worker); }
+.catblock.cat-home .catblock-title { border-left-color: var(--primary); }
+.catblock.cat-biz .catblock-title { border-left-color: var(--biz); }
+.chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 5px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 999px; padding: 9px 14px; font-size: 13px; font-weight: 600; color: var(--text); text-decoration: none; transition: .15s; }
+.chip:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+.menu-tabs .tabbar { display: flex; gap: 6px; background: #F2F4F6; border-radius: 14px; padding: 5px; margin-bottom: 16px; }
+.menu-tabs .mtab { flex: 1; text-align: center; font-size: 13px; font-weight: 700; color: var(--text-soft); padding: 10px 4px; border-radius: 10px; cursor: pointer; border: none; background: none; white-space: nowrap; font-family: inherit; transition: .15s; letter-spacing: -0.3px; }
+.menu-tabs .mtab.on { background: #fff; color: var(--text-strong); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.menu-tabs .mpanel { display: none; }
+.menu-tabs .mpanel.on { display: block; }
+.menu-tabs .chip-row { min-height: 44px; }
+.extra-divider { height: 1px; background: var(--border); margin: 30px 0 24px; }
+.extra-head { font-size: 18px; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 4px; }
+.extra-sub { font-size: 13px; color: var(--text-mute); margin-bottom: 16px; }
+.ecard { display: flex; align-items: center; gap: 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 18px; margin-bottom: 12px; text-decoration: none; color: inherit; box-shadow: var(--shadow-sm); transition: .15s; }
+.ecard:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.ecard .e-ico { font-size: 30px; flex-shrink: 0; }
+.ecard .e-bd { flex: 1; }
+.ecard .e-bd .e-tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; margin-bottom: 5px; }
+.ecard .e-bd h3 { font-size: 15.5px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 3px; }
+.ecard .e-bd p { font-size: 12.5px; color: var(--text-soft); }
+.ecard .e-arr { font-size: 18px; color: var(--text-mute); }
+.ecard.e-test { background: linear-gradient(135deg,#FFF6EF,#FFFDFB); border-color:#FFE0C4; }
+.ecard.e-test .e-tag { background:#FFE8D5; color:#E8590C; }
+.ecard.e-test h3 { color:#E8590C; }
+.ecard.e-biz { background: linear-gradient(135deg,#F0FBF5,#FFFFFF); border-color:#C8EAD7; }
+.ecard.e-biz .e-tag { background:#DDF3E7; color:#0B8A54; }
+.ecard.e-biz h3 { color:#0B8A54; }
+@media (max-width: 680px){ .pillar-grid { grid-template-columns: 1fr; } }
 .category-section { margin-bottom: 28px; }
 .category-section:last-child { margin-bottom: 0; }
 .category-header { margin-bottom: 12px; padding: 4px 0 4px 12px; border-left: 4px solid var(--border); display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
@@ -358,171 +405,66 @@ footer.site-footer .footer-cat-row a:hover { color: var(--primary); }
     </div>
   </div>
 </section>
+<section class="services container" id="benefits">
+  <div class="services-title reveal" style="margin-bottom:14px;">
+    <h2>💰 어떤 혜택을 찾으세요?</h2>
+    <p>관심 분야를 골라 바로 확인하세요</p>
+  </div>
+  <div class="menu-tabs reveal">
+    <div class="tabbar">
+      <button class="mtab on" data-tab="welfare">🤝 복지·지원금</button>
+      <button class="mtab" data-tab="worker">💼 근로자</button>
+      <button class="mtab" data-tab="home">🏠 주거·금융</button>
+      <button class="mtab" data-tab="biz">🏪 사업자</button>
+    </div>
+    <div class="mpanel on" data-tab="welfare">
+      <div class="chip-row">
+        <a href="/baby/" class="chip">👶 출산·육아 지원금</a>
+        <a href="/youth/" class="chip">🎓 청년 지원금</a>
+        <a href="/senior/" class="chip">👵 어르신·노후 지원금</a>
+        <a href="/welfare/" class="chip">🧩 한부모·복지 진단</a>
+      </div>
+    </div>
+    <div class="mpanel" data-tab="worker">
+      <div class="chip-row">
+        <a href="/tax/" class="chip">🧾 연말정산 환급</a>
+        <a href="/jobless/" class="chip">💼 실업급여 계산기</a>
+      </div>
+    </div>
+    <div class="mpanel" data-tab="home">
+      <div class="chip-row">
+        <a href="/loan/" class="chip">🏠 부동산 대출</a>
+        <a href="/rent/" class="chip">🏢 장기전세·공공임대</a>
+        <a href="/guarantee/" class="chip">🛡 전세보증보험</a>
+        <a href="/refund/" class="chip">💰 숨은 환급금 조회</a>
+        <a href="/utility/" class="chip">💡 요금감면 진단</a>
+      </div>
+    </div>
+    <div class="mpanel" data-tab="biz">
+      <div class="chip-row">
+        <a href="/business/" class="chip">🏪 사업자 지원금</a>
+        <a href="/closure/" class="chip">🌱 폐업·재도전 지원금</a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){var r=document.getElementById("benefits");if(!r)return;function act(n){var ts=r.querySelectorAll(".mtab"),ps=r.querySelectorAll(".mpanel");for(var i=0;i<ts.length;i++)ts[i].classList.toggle("on",ts[i].getAttribute("data-tab")===n);for(var j=0;j<ps.length;j++)ps[j].classList.toggle("on",ps[j].getAttribute("data-tab")===n);}var tb=r.querySelectorAll(".mtab");for(var k=0;k<tb.length;k++){(function(b){b.addEventListener("click",function(){act(b.getAttribute("data-tab"));});})(tb[k]);}var ot=document.querySelectorAll("[data-opentab]");for(var m=0;m<ot.length;m++){(function(a){a.addEventListener("click",function(){act(a.getAttribute("data-opentab"));});})(ot[m]);}if(location.hash==="#biz")act("biz");})();
+</script>
 <section class="services container">
-  <div class="services-title reveal">
-    <h2>무엇을 확인해 볼까요?</h2>
-    <p>관심 있는 분야에서 바로 골라보세요</p>
-  </div>
-
-  <!-- 1. 🤝 정부지원금·복지 -->
-  <div class="category-section cat-welfare" id="welfare">
-    <div class="category-header reveal">
-      <div class="ch-title"><span class="ch-emoji">🤝</span>정부지원금·복지</div>
-      <div class="ch-sub">생애주기별로 받을 수 있는 지원을 한 번에</div>
-    </div>
-    <div class="service-grid">
-      <a href="/baby/" class="service-card cat-welfare reveal">
-        <div class="service-icon">👶</div>
-        <div class="service-body">
-          <h3>출산·육아 지원금</h3>
-          <p class="desc">부모급여·아동수당·지자체 출산장려금 합산 계산</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="/youth/" class="service-card cat-welfare reveal">
-        <div class="service-icon">🎓</div>
-        <div class="service-body">
-          <h3>청년 지원금 통합</h3>
-          <p class="desc">청년도약계좌·청년월세·내일채움공제 매칭</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="/senior/" class="service-card cat-welfare reveal">
-        <div class="service-icon">👵</div>
-        <div class="service-body">
-          <h3>어르신·노후 지원금</h3>
-          <p class="desc">기초연금·노인일자리·장기요양·맞춤돌봄</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="/welfare/" class="service-card cat-welfare reveal">
-        <div class="service-icon">🧩</div>
-        <div class="service-body">
-          <h3>한부모·복지 통합 진단</h3>
-          <p class="desc">한부모·다자녀·차상위·기초생활 자격 판정</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- 2. 💼 근로자·직장인 -->
-  <div class="category-section cat-worker" id="worker">
-    <div class="category-header reveal">
-      <div class="ch-title"><span class="ch-emoji">💼</span>근로자·직장인</div>
-      <div class="ch-sub">실업급여·연말정산 한 번에 계산</div>
-    </div>
-    <div class="service-grid">
-      <a href="/tax/" class="service-card cat-worker reveal">
-        <div class="service-icon">🧾</div>
-        <div class="service-body">
-          <h3>연말정산 환급 진단</h3>
-          <p class="desc">예상 환급액 + 놓친 공제 항목 추천</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="/jobless/" class="service-card cat-worker reveal">
-        <div class="service-icon">💼</div>
-        <div class="service-body">
-          <h3>실업급여 계산기</h3>
-          <p class="desc">피보험기간·월급으로 일·기간·총액 자동 계산</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- 3. 🏪 사업자·자영업 -->
-  <div class="category-section cat-biz" id="biz">
-    <div class="category-header reveal">
-      <div class="ch-title"><span class="ch-emoji">🏪</span>사업자·자영업</div>
-      <div class="ch-sub">우리 가게가 받을 수 있는 지원과 진단</div>
-    </div>
-    <div class="service-grid">
-      <a href="/business/" class="service-card cat-biz reveal">
-        <div class="service-icon">🏪</div>
-        <div class="service-body">
-          <h3>사업자 지원금</h3>
-          <p class="desc">경영안정 바우처·정책자금·노란우산공제</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="/check/" class="service-card cat-biz reveal">
-        <div class="service-icon">📊</div>
-        <div class="service-body">
-          <h3>내 가게 경영진단</h3>
-          <p class="desc">매출·원가·이익률을 업종 평균과 비교</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="/marketing/" class="service-card cat-biz reveal">
-        <div class="service-icon">📣</div>
-        <div class="service-body">
-          <h3>마케팅 예산 계산기</h3>
-          <p class="desc">업종·매출별 권장 예산 + 채널 배분</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="/closure/" class="service-card cat-biz reveal">
-        <div class="service-icon">🌱</div>
-        <div class="service-body">
-          <h3>폐업·재도전 지원금</h3>
-          <p class="desc">희망리턴패키지·자영업 폐업급여·새출발기금</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- 4. 🏠 주거·금융·환급 -->
-  <div class="category-section cat-home" id="home-cat">
-    <div class="category-header reveal">
-      <div class="ch-title"><span class="ch-emoji">🏠</span>주거·금융·환급</div>
-      <div class="ch-sub">대출·환급금·요금감면 한 번에</div>
-    </div>
-    <div class="service-grid">
-      <a href="/loan/" class="service-card cat-home reveal">
-        <div class="service-icon">🏠</div>
-        <div class="service-body">
-          <h3>부동산 대출</h3>
-          <p class="desc">전세·매매·월세 대출 21종 비교 + 한도</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="/rent/" class="service-card cat-home reveal">
-        <div class="service-icon">🏢</div>
-        <div class="service-body">
-          <h3>장기전세·공공임대</h3>
-          <p class="desc">SH 장기전세·LH 행복주택·청년안심주택</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="/guarantee/" class="service-card cat-home reveal">
-        <div class="service-icon">🛡</div>
-        <div class="service-body">
-          <h3>전세보증보험 계산기</h3>
-          <p class="desc">HUG·HF·SGI 3사 보증료 비교</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="/refund/" class="service-card cat-home reveal">
-        <div class="service-icon">💰</div>
-        <div class="service-body">
-          <h3>숨은 환급금 조회</h3>
-          <p class="desc">국세청·휴면계좌·통신비·카드포인트 점검</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="/utility/" class="service-card cat-home reveal">
-        <div class="service-icon">💡</div>
-        <div class="service-body">
-          <h3>요금감면 자격 진단</h3>
-          <p class="desc">통신비·전기·가스·TV수신료·에너지바우처</p>
-        </div>
-        <span class="service-arrow">→</span>
-      </a>
-    </div>
-  </div>
+  <div class="extra-divider"></div>
+  <div class="extra-head reveal">✨ 혜택 찾기 외에도</div>
+  <div class="extra-sub reveal">잠깐 쉬어가거나, 사장님이라면 이쪽으로</div>
+  <a href="/test/" class="ecard e-test reveal">
+    <div class="e-ico">🎭</div>
+    <div class="e-bd"><span class="e-tag">개인 · 재미로</span><h3>머니 심리테스트</h3><p>내 돈 성향은? 친구랑 같이 해보는 무료 테스트</p></div>
+    <div class="e-arr">›</div>
+  </a>
+  <a href="/marketing-check/" class="ecard e-biz reveal">
+    <div class="e-ico">📈</div>
+    <div class="e-bd"><span class="e-tag">사장님용</span><h3>사업자 마케팅·경영 진단</h3><p>광고는 하는데 문의가 안 와요? 1분 B2B 마케팅 자가진단</p></div>
+    <div class="e-arr">›</div>
+  </a>
 </section>
 <section class="guides-section">
   <div class="container">

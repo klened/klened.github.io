@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2B 마케팅 자가진단 · 1분 진단</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--blue:#3182f6;--blue-dark:#1b64da;--ink:#191f28;--gray:#8b95a1;--gray-light:#f2f4f6;--line:#e5e8eb;--bg:#f9fafb;--hot:#e0542a;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);display:flex;justify-content:center;min-height:100vh;line-height:1.5;}
+button{font-family:inherit;}
+.app{width:100%;max-width:480px;background:#fff;min-height:100vh;overflow:hidden;}
+.screen{display:none;padding:32px 24px 44px;}
+.screen.active{display:block;animation:fade .4s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.intro{text-align:center;}
+.intro.active{display:flex;flex-direction:column;justify-content:center;min-height:100vh;}
+.badge{display:inline-block;background:#eef4ff;color:var(--blue);font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px;margin:0 auto 22px;}
+.intro .ic{font-size:60px;margin:6px 0 16px;}
+.intro h1{font-size:29px;font-weight:800;line-height:1.32;letter-spacing:-.6px;word-break:keep-all;}
+.intro p{color:var(--gray);font-size:16px;margin:16px 0 34px;word-break:keep-all;}
+.btn{width:100%;border:none;background:var(--blue);color:#fff;font-weight:700;font-size:17px;padding:17px;border-radius:14px;cursor:pointer;transition:.15s;letter-spacing:-.3px;}
+.btn:active{transform:scale(.98);background:var(--blue-dark);}
+.btn:disabled{background:#c5d2e6;cursor:not-allowed;}
+.btn.ghost{background:var(--gray-light);color:var(--ink);}
+.intro small{display:block;color:#b0b8c1;font-size:13px;margin-top:18px;}
+.topbar{display:flex;align-items:center;gap:12px;margin-bottom:30px;}
+.bar{flex:1;height:8px;background:var(--gray-light);border-radius:99px;overflow:hidden;}
+.bar-fill{height:100%;width:14%;background:var(--blue);border-radius:99px;transition:width .35s ease;}
+.qnum{font-size:13px;font-weight:700;color:var(--gray);white-space:nowrap;}
+.qtext{font-size:23px;font-weight:800;line-height:1.4;letter-spacing:-.5px;margin-bottom:6px;word-break:keep-all;}
+.qsub{font-size:14px;color:var(--gray);font-weight:500;margin-bottom:24px;}
+.opts{display:flex;flex-direction:column;gap:11px;}
+.opt{text-align:left;background:#fff;border:1.8px solid var(--line);border-radius:14px;padding:17px 18px;font-size:16px;font-weight:500;color:var(--ink);cursor:pointer;transition:.15s;word-break:keep-all;}
+.opt:active{transform:scale(.985);}
+.opt.on{border-color:var(--blue);background:#f5f8ff;color:var(--blue-dark);font-weight:700;}
+.opt.on::after{content:" \2713";color:var(--blue);font-weight:800;}
+.nextwrap{margin-top:18px;}
+.result{text-align:left;}
+.rcard{border-radius:22px;padding:28px 24px;color:#fff;margin-bottom:16px;background:linear-gradient(135deg,#4b8bf5,#1b64da);}
+.rcard .rk{font-size:13px;font-weight:700;opacity:.92;letter-spacing:.3px;}
+.rcard .rname{font-size:25px;font-weight:800;letter-spacing:-.5px;margin:7px 0 10px;}
+.rcard .rsub{font-size:15px;opacity:.97;font-weight:500;line-height:1.65;word-break:keep-all;}
+.sec{background:var(--bg);border-radius:16px;padding:20px;margin-bottom:14px;}
+.sec h3{font-size:14px;font-weight:700;color:var(--gray);margin-bottom:12px;}
+.sec .focus{font-size:18px;font-weight:800;color:var(--ink);line-height:1.5;letter-spacing:-.4px;word-break:keep-all;}
+.fstep{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);}
+.fstep:last-of-type{border-bottom:none;}
+.fstep .fn{flex:0 0 26px;height:26px;border-radius:8px;background:#e7eefc;color:var(--blue);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
+.fstep .fct{font-size:15.5px;font-weight:800;color:var(--ink);}
+.fstep .fcd{font-size:13.5px;color:#5c5280;line-height:1.55;margin-top:2px;word-break:keep-all;}
+.fstep .fch{font-size:12px;color:var(--blue);font-weight:700;margin-top:5px;}
+.fstep.hot{background:#fff4ef;border:1.5px solid #f6d4c5;border-radius:12px;padding:14px;border-bottom:1.5px solid #f6d4c5;margin:6px 0;}
+.fstep.hot .fn{background:#ffe0d4;color:var(--hot);}
+.fstep.hot .fct .hb{font-size:11px;font-weight:800;color:#fff;background:var(--hot);padding:2px 8px;border-radius:10px;margin-left:7px;vertical-align:middle;}
+.fstep.hot .fch{color:var(--hot);}
+.role{font-size:13.5px;color:#3a4150;line-height:1.6;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);word-break:keep-all;}
+.role b{color:var(--blue-dark);}
+.bench{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-bottom:11px;}
+.bench .bl{font-size:12.5px;font-weight:800;color:var(--blue);letter-spacing:.3px;margin-bottom:6px;}
+.bench .bt{font-size:15px;color:#3a4150;line-height:1.6;word-break:keep-all;}
+.bench .bt b{color:var(--ink);font-weight:800;}
+.bigest{background:#eef4ff;border-radius:12px;padding:14px 16px;text-align:center;margin-bottom:11px;}
+.bigest .e1{font-size:13px;font-weight:700;color:#5a6b8c;}
+.bigest .e2{font-size:24px;font-weight:900;color:var(--blue-dark);letter-spacing:-.5px;margin:3px 0;}
+.bigest .e3{font-size:12px;color:#8b95a1;}
+.primary{background:#fff;border:1.8px solid #cfe0fb;border-radius:14px;padding:17px;margin-bottom:6px;}
+.primary .pq{font-size:12px;font-weight:800;color:var(--blue);letter-spacing:.5px;margin-bottom:5px;}
+.primary .pc{font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.3px;}
+.cm{font-size:12.5px;color:var(--gray);font-weight:600;}
+.stp{display:flex;gap:10px;margin-bottom:8px;}.stp:last-child{margin-bottom:0;}
+.stp .sn{flex:0 0 22px;height:22px;border-radius:7px;background:#eef4ff;color:var(--blue);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.stp .sx{font-size:14px;color:#3a4150;line-height:1.5;word-break:keep-all;}
+.stp .sx b{color:var(--ink);font-weight:700;}
+.intro2{font-size:15px;color:#3a4150;line-height:1.72;margin-bottom:14px;word-break:keep-all;}
+.intro2 b{color:var(--blue-dark);}
+.grouplab{font-size:13px;font-weight:700;color:var(--gray);margin:14px 0 8px;}
+.nextlist .ni{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);}
+.nextlist .ni:last-child{border-bottom:none;}
+.nextlist .nn{flex:0 0 22px;height:22px;border-radius:7px;background:#eef4ff;color:var(--blue);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.nextlist .nt{font-size:14.5px;font-weight:700;color:var(--ink);}
+.nextlist .nm{font-size:12.5px;color:var(--gray);margin-top:1px;}
+.tags{display:flex;gap:8px;flex-wrap:wrap;}
+.tag{background:#eef4ff;color:#1b64da;font-size:14px;font-weight:700;padding:7px 13px;border-radius:99px;}
+.bktag{background:#fff;border:1.5px solid var(--line);color:#4a5160;font-size:14px;font-weight:700;padding:7px 13px;border-radius:99px;}
+.notetext{font-size:13px;color:var(--gray);line-height:1.6;word-break:keep-all;}
+.trap{background:#fff7f3;border:1px solid #f3ddcf;border-radius:14px;padding:15px 17px;font-size:14px;color:#7a4a30;line-height:1.65;margin-bottom:14px;word-break:keep-all;}
+.trap b{color:#c2401c;}
+.tnote{background:#f0f6ff;border:1px solid #d3e3fb;border-radius:14px;padding:14px 16px;font-size:14px;color:#33507e;line-height:1.65;margin-bottom:14px;word-break:keep-all;}
+.tnote b{color:var(--blue-dark);}
+.gloss{background:#f7f8fa;border:1px solid var(--line);border-radius:14px;padding:13px 15px;font-size:12.5px;color:#6b7684;line-height:1.7;margin-bottom:14px;word-break:keep-all;}
+.gloss b{color:#3a4150;}
+.disclaimer{font-size:11.5px;color:#b0b8c1;margin-top:18px;line-height:1.55;word-break:keep-all;text-align:center;}
+.rcard .rname{font-size:23px;font-weight:800;letter-spacing:-.5px;margin:6px 0 9px;}
+.fstep .fmap{font-size:12.5px;font-weight:700;margin-top:5px;}
+.fstep .fmap .ok{color:#1c7a4a;}.fstep .fmap .gap{color:#c2401c;}.fstep .fmap .sales{color:#9aa3b8;}
+.weak{background:#fff7f3;border:1px solid #f3ddcf;border-radius:14px;padding:15px 17px;margin-bottom:14px;font-size:14px;color:#7a4a30;line-height:1.66;word-break:keep-all;}
+.weak .wh{font-weight:800;color:#c2401c;margin-bottom:5px;font-size:14.5px;}
+.addcard{background:#fff;border:1.6px solid #cfe0fb;border-radius:13px;padding:14px 15px;margin-bottom:10px;}
+.addh{font-size:16.5px;font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap;letter-spacing:-.3px;}
+.addn{width:22px;height:22px;border-radius:7px;background:#eef4ff;color:var(--blue);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.atag{font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:8px;}
+.atag.keep{background:#e6f5ec;color:#1c7a4a;}.atag.add{background:#eef4ff;color:#1b64da;}
+.addwhy{font-size:13.5px;color:#3a4150;margin-top:6px;line-height:1.6;word-break:keep-all;}
+.estimate{font-size:12px;font-weight:700;color:#1b64da;background:#eef4ff;border-radius:9px;padding:7px 10px;margin-top:8px;}
+.estimate .estsub{font-weight:500;color:#8b95a1;}
+.psteps{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;}
+.pstp{display:flex;gap:9px;margin-bottom:6px;}.pstp:last-child{margin-bottom:0;}
+.pstp span{flex:0 0 19px;height:19px;border-radius:6px;background:#f2f4f6;color:#6b7684;font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.pstp .pd{font-size:13px;color:#4a5160;line-height:1.5;word-break:keep-all;}.pstp .pd b{color:var(--ink);}
+.mods{list-style:none;margin-top:10px;}.mods li{font-size:13px;color:#55607a;padding:6px 0 6px 16px;position:relative;line-height:1.55;word-break:keep-all;}
+.mods li::before{content:"\203A";position:absolute;left:3px;color:var(--blue);font-weight:800;}
+.talk{font-size:14.5px;line-height:1.74;color:#3a4150;word-break:keep-all;margin-bottom:12px;}
+.talk b{color:#11161f;font-weight:800;}
+.talk i{color:#1c7a4a;font-style:normal;font-weight:700;font-size:12.5px;}
+.sec.problem{background:#fff6f1;border:1px solid #f6ddd0;}
+.sec.problem h3{color:#c2401c;}
+.sec.fix{background:#f1faf4;border:1px solid #d4eede;}
+.sec.fix h3{color:#1c7a4a;}
+.fstep .fct{font-size:14.5px;}
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="screen intro active" id="intro">
+    <span class="badge">B2B 마케팅 · 1분 자가진단</span>
+    <div class="ic">🧭</div>
+    <h1>광고는 하는데 문의가<br>안 온다면, 어디가 막혔을까?</h1>
+    <p>업종을 고르면 그 업종의 표준 마케팅 흐름을 보여주고, 당신이 어디서 막혔는지·뭘 먼저 할지 짚어드려요.</p>
+    <button class="btn" id="startBtn">진단 시작하기 →</button>
+    <small>정밀 감사가 아니라 '방향 잡기'예요 · 7문항</small>
+  </section>
+  <section class="screen" id="quiz">
+    <div class="topbar"><div class="bar"><div class="bar-fill" id="barFill"></div></div><span class="qnum" id="qnum">1 / 7</span></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="qsub" id="qsub"></div>
+    <div class="opts" id="opts"></div>
+    <div class="nextwrap" id="nextwrap" style="display:none;"><button class="btn" id="nextBtn">결과 보기 →</button></div>
+  </section>
+  <section class="screen result" id="result"></section>
+</div>
+<script>
+(function(){
+"use strict";
+var SUBTYPES={
+ mfg:{name:"제조·부품 B2B",picture:"바이어가 검색하거나 전시회에서 발견 → 영업이 상담·견적 → 발주. 구매주기가 길고, 한 번 거래하면 오래 가는 관계 중심 구조예요.",role:"영업이 만날 '리드'를 검색·전시·콘텐츠로 만들어주고, 회사 신뢰를 온라인에 쌓는 것.",trap:"홈페이지가 오래돼 검색해도 안 나오고, 전시회 명함만 쌓고 후속이 끊기고, 매출을 영업 한두 명에게만 의존하는 경우가 많아요.",
+  flow:[{t:"발굴",b:"awareness",d:"바이어가 부품·업체를 검색하거나 전시회에서 처음 만나요.",ch:"검색광고 · 전시 · 카탈로그"},{t:"탐색·문의",b:"lead",d:"회사 신뢰도·스펙·납기를 확인하고 문의해요. 홈페이지·자료가 명함 역할.",ch:"홈페이지 · SEO"},{t:"상담·견적",b:"convert",d:"영업이 만나 단가·납기·조건을 조율해요.",ch:"영업"},{t:"발주·재거래",b:"retain",d:"품질·납기에 만족하면 재발주. 관계 자체가 자산이 돼요.",ch:"관계관리 · CRM"}],
+  channels:["search","expo","site","seo","outbound"],kpi:["견적·샘플 문의 수","CPL","상담→발주 전환율","CAC"]},
+ saas:{name:"IT·SaaS B2B",picture:"담당자가 문제를 검색해 콘텐츠로 유입 → 자료·무료체험으로 리드 → 너처링 → 데모 → 유료 전환. 고객이 스스로 검토하는 기간이 길어요.",role:"콘텐츠로 신뢰를 쌓아 리드를 모으고, 너처링(바로 안 사는 고객을 콘텐츠로 천천히 설득)으로 전환까지 끌고 가는 것.",trap:"바로 구매를 기대하거나, 타겟이 너무 넓거나, 리드만 모으고 너처링 없이 방치하는 경우가 많아요.",
+  flow:[{t:"인지",b:"awareness",d:"담당자가 업무 문제를 검색·콘텐츠·링크드인으로 발견해요.",ch:"SEO·콘텐츠 · 링크드인"},{t:"리드 확보",b:"lead",d:"가이드·웨비나·무료체험을 미끼로 잠재고객의 이메일 주소(=리드)를 확보해요.",ch:"랜딩 · 웨비나 · 이메일"},{t:"검토·전환",b:"convert",d:"비교·검토 후 데모(제품 시연)와 트라이얼(무료 체험)을 거쳐 유료로 전환돼요.",ch:"이메일 너처링 · 영업"},{t:"갱신·확장",b:"retain",d:"업셀·갱신으로 LTV를 키워요. 유지가 곧 수익.",ch:"CRM · CS"}],
+  channels:["seo","search","email","webinar","linkedin"],kpi:["데모·체험 신청(MQL)","CPL","체험→유료 전환율","CAC·LTV"]},
+ constr:{name:"건설·부동산 B2B",picture:"발주처가 검색하거나 소개로 문의 → 상담·현장·견적 → 계약. 시공사례·레퍼런스와 신뢰가 결정을 좌우해요.",role:"검색·랜딩으로 상담 문의를 만들고, 시공사례로 신뢰를 보여주는 것.",trap:"랜딩에 사례·신뢰요소가 부족하거나, 문의 폼이 복잡하거나, 검색에서 아예 안 잡히는 경우가 많아요.",
+  flow:[{t:"인지",b:"awareness",d:"발주처가 시공·자재·분양 업체를 검색·소개로 탐색해요.",ch:"검색광고 · SEO"},{t:"문의",b:"lead",d:"랜딩·폼으로 상담을 신청해요. 시공사례·포트폴리오가 신뢰를 만듦.",ch:"홈페이지 · 랜딩"},{t:"상담·계약",b:"convert",d:"영업이 현장·조건을 협의하고 계약으로 이어가요.",ch:"영업"},{t:"재거래·소개",b:"retain",d:"만족하면 재의뢰·소개로 이어져요.",ch:"관계관리"}],
+  channels:["search","site","outbound","seo"],kpi:["상담 문의 수","CPL","상담→계약 전환율","CAC"]},
+ pro:{name:"전문서비스(병원·법률·노무 등)",picture:"'지역+분야'로 검색하거나 후기·소개로 발견 → 상담 예약 → 방문·계약. 신뢰와 평판이 거의 전부예요.",role:"지역검색·콘텐츠로 신뢰를 쌓아 상담 예약을 만들고, 후기로 평판을 키우는 것.",trap:"블로그·후기 관리를 안 하거나, 지역 검색 노출이 약하거나, 예약 동선이 불편한 경우가 많아요.",
+  flow:[{t:"인지",b:"awareness",d:"'지역+분야'로 검색하거나 블로그·후기로 발견해요.",ch:"지역 SEO · 블로그 · 검색광고"},{t:"신뢰·문의",b:"lead",d:"후기·전문성 콘텐츠로 안심하고 상담을 예약해요.",ch:"콘텐츠 · 랜딩 · 예약폼"},{t:"방문·계약",b:"convert",d:"상담 후 방문·계약으로 이어가요.",ch:"상담 · 영업"},{t:"재방문·소개",b:"retain",d:"만족하면 재방문·지인 소개가 일어나요.",ch:"후기 · CRM"}],
+  channels:["seo","site","search","email"],kpi:["상담 예약 수","CPL","상담→계약 전환율","재방문·소개율"]}
+};
+var CHANNELS={
+ search:{name:"검색광고(네이버·구글)",metric:"CPL · 전환율",cost:"mid",organic:false,cpl:[4,8],steps:[["키워드 의도","사는 단계 키워드인가, 정보 탐색인가"],["문구·확장","검색어와 광고문구 일치 · 신뢰요소"],["랜딩 일치도","약속한 걸 랜딩이 바로 보여주나"],["전환추적·입찰","전환 잘 되는 키워드에 예산 집중"]]},
+ seo:{name:"SEO·콘텐츠(블로그·자료실)",metric:"오가닉 유입 · 리드",cost:"low",organic:true,steps:[["키워드 발굴","고객이 검색하는 문제·질문 수집"],["콘텐츠 제작","사례·가이드·비교표로 신뢰"],["전환 동선","글 끝에 자료·문의 CTA"],["측정·확장","유입 많은 글 위주로 확장"]]},
+ email:{name:"이메일·뉴스레터 너처링",metric:"오픈·클릭 · 전환",cost:"low",organic:true,steps:[["리스트 분류","리드를 관심·단계별로 정리"],["시퀀스 설계","가입→자료→사례→제안 순서"],["콘텐츠","팔지 말고 도움부터"],["핸드오프","반응 좋은 리드를 영업에"]]},
+ webinar:{name:"세미나·웨비나",metric:"신청·참석 · 리드",cost:"mid",organic:false,cpl:[8,20],steps:[["주제 선정","고객의 진짜 고민 1개"],["모객","검색·이메일·링크드인으로"],["진행","사례 중심, 영업 멘트 최소화"],["후속","참석자에게 1:1 제안"]]},
+ linkedin:{name:"링크드인(콘텐츠·아웃리치)",metric:"도달 · 연결 · 리드",cost:"low",organic:true,steps:[["타겟 정의","어떤 직무·산업인가"],["콘텐츠","업계 인사이트로 신뢰"],["연결·대화","팔기 전에 관계부터"],["전환","관심자에 자료·미팅 제안"]]},
+ site:{name:"홈페이지·랜딩·문의 폼",metric:"방문→문의 전환율",cost:"low",organic:true,steps:[["메시지","'무엇을 푸는 곳'인지 첫 화면에"],["신뢰","고객사·사례·수치 배치"],["폼 마찰↓","입력 항목 최소화"],["테스트","문의율 보며 문구·CTA 개선"]]},
+ outbound:{name:"영업·아웃바운드(콜드메일·콜)",metric:"응답률 · 미팅 수",cost:"low",organic:true,steps:[["ICP 리스트","이상적 고객사·담당자 정의"],["메시지","'당신 회사' 맞춤 한 줄"],["멀티터치","메일+콜+링크드인 조합"],["측정","응답·미팅율로 메시지 개선"]]},
+ expo:{name:"전시회·박람회",metric:"수집 명함 · 상담 수",cost:"high",organic:false,cpl:[30,60],steps:[["사전","참가 전 타겟에 미팅 예약"],["부스","한 줄 메시지로 발길 잡기"],["수집","명함·QR로 리드 확보"],["후속","2주 내 후속 연락·제안"]]},
+ meta:{name:"메타·유튜브(브랜딩·리타겟)",metric:"도달 · 리타겟 전환",cost:"mid",organic:false,cpl:[2,5],steps:[["목적 구분","신규 인지인가 리타겟인가"],["소재","문제 후킹·고객 사례"],["리타겟","사이트 방문자에 재노출"],["측정","보조 지표로, 검색·리드와 함께"]]}
+};
+var BOTTLE={
+ awareness:{name:"인지",fix:"신뢰를 쌓는 콘텐츠로 '검색되고 들리는' 회사가 된다.",channels:["seo","linkedin","webinar","meta"],books:["마케팅이다","보랏빛 소가 온다"]},
+ lead:{name:"리드",fix:"검색·랜딩으로 문의를 받고, 꺼지지 않는 유입 한 줄기를 만든다.",channels:["search","site","seo","email"],books:["티핑포인트","마케팅이다"]},
+ convert:{name:"상담·전환",fix:"랜딩·제안·너처링으로 '왜 우리인지'를 분명히 한다.",channels:["site","email","outbound"],books:["나는 왜 이 일을 하는가","제로 투 원"]},
+ retain:{name:"재계약·확장",fix:"기존 고객을 너처링·구조화해 재계약·확장을 만든다.",channels:["email","webinar","site"],books:["무인양품은 90%가 구조다","원칙"]},
+ diff:{name:"차별화",fix:"비교 대상이 없는 포지셔닝과 '왜'를 콘텐츠로 박는다.",channels:["seo","site","linkedin"],books:["제로 투 원","나는 왜 이 일을 하는가"]}
+};
+var BUDMID={b1:30,b2:175,b3:650,b4:1500},BUDLAB={b1:"월 50만 원 미만",b2:"월 50~300만 원",b3:"월 300~1,000만 원",b4:"월 1,000만 원 이상"};
+var GROUPS={g_search:["search","site","meta"],g_content:["seo","email","linkedin"],g_direct:["webinar","expo","outbound"]};
+var CH_STAGE={search:["awareness","lead"],seo:["awareness","lead"],site:["lead","convert"],email:["convert","retain"],webinar:["awareness","lead"],linkedin:["awareness"],outbound:["convert"],expo:["awareness","lead"],meta:["awareness"]};
+var GRID={
+ mfg:{
+  awareness:{gap:"제조 바이어는 검색이나 전시회에서 거래처를 처음 찾아요. 온라인에 우리가 안 보이면 후보군에도 못 들어요.",add:[["seo","기술자료·납품사례를 콘텐츠로 쌓아 검색에 잡히게 해요."],["expo","타겟 바이어가 모이는 전시회에서 직접 발굴해요."]]},
+  lead:{gap:"바이어는 검색하고 홈페이지에서 스펙·납기·사례를 확인한 뒤 문의해요. 그 길목이 비면 인지는 시켜도 문의가 안 남아요.",add:[["search","‘OO부품 제조’ 같은 검색에 잡히게 해요."],["site","스펙·납품사례·견적 폼을 갖춰 들어온 바이어가 바로 문의하게 해요."]]},
+  convert:{gap:"제조 거래는 결국 영업이 단가·납기로 클로징해요. 상담은 오는데 계약이 안 되면 제안·견적 단계의 신뢰요소가 약한 거예요.",add:[["site","고객사·납품사례·인증을 보여 ‘믿을 회사’임을 증명해요."],["outbound","받은 리드에 영업이 빠르게 1:1 제안으로 붙어요."]]},
+  retain:{gap:"제조는 한 번 거래하면 오래 가는 관계 사업이에요. 거래 후 연결고리가 없으면 재발주가 경쟁사로 새요.",add:[["email","발주 이력 고객에 신제품·단가 소식을 정기적으로 보내요."],["outbound","기존 거래처를 주기적으로 관리해 재발주·추가 품목을 끌어내요."]]},
+  diff:{gap:"제조는 ‘다 비슷한 부품’으로 보여 가격 비교만 당하기 쉬워요. 기술력·품질을 보여줄 콘텐츠가 없으면 단가 싸움이 돼요.",add:[["seo","기술·품질·사례를 콘텐츠로 박아 ‘아무 데나’가 아니게 만들어요."],["site","정밀도·납기·인증 같은 강점을 첫 화면에 분명히 걸어요."]]}
+ },
+ saas:{
+  awareness:{gap:"SaaS 고객은 업무 문제를 검색하다 콘텐츠로 우리를 처음 만나요. 콘텐츠가 없으면 검토 후보에 아예 안 올라요.",add:[["seo","고객이 검색하는 문제·키워드로 콘텐츠를 만들어 유입을 열어요."],["linkedin","업계 인사이트를 꾸준히 올려 담당자에게 인지시켜요."]]},
+  lead:{gap:"SaaS는 바로 안 사요. 자료·웨비나·체험으로 연락처를 먼저 확보해야 너처링을 시작할 수 있어요. 미끼가 없으면 방문자가 그냥 떠나요.",add:[["webinar","고객 고민 주제로 웨비나를 열어 참석자=리드를 모아요."],["site","가이드·체험 신청 랜딩으로 방문자가 연락처를 남기게 해요."]]},
+  convert:{gap:"들어온 리드는 검토 기간이 길어요. 데우는 너처링이 없으면 식어서 사라져요. 리드 수만 보고 방치하는 게 가장 흔한 실수예요.",add:[["email","가입·자료 받은 리드에 사례→가이드→제안 순서로 자동 메일을 보내요."],["site","가격·도입사례·데모 신청을 한 화면에 모아 검토 마찰을 줄여요."]]},
+  retain:{gap:"SaaS 수익은 유지·확장에서 나요. 온보딩·활용을 안 챙기면 갱신 시점에 이탈해요.",add:[["email","활용 팁·신기능을 정기 발송해 제품을 계속 쓰게 해요."],["webinar","기존 고객 대상 활용 세미나로 업셀·갱신을 만들어요."]]},
+  diff:{gap:"SaaS는 기능이 금세 비슷해져요. ‘왜 우리인가’를 포지셔닝으로 박지 않으면 기능·가격 비교로 끌려가요.",add:[["linkedin","문제 정의·관점을 콘텐츠로 발신해 카테고리를 선점해요."],["seo","비교·대안 키워드 콘텐츠로 ‘이 문제엔 우리’ 인식을 만들어요."]]}
+ },
+ constr:{
+  awareness:{gap:"발주처는 ‘지역+공종’으로 검색하거나 소개로 업체를 찾아요. 검색에 안 잡히면 소개에만 의존하게 돼요.",add:[["search","지역·공종 키워드 검색광고로 발주처 눈에 들어요."],["seo","시공사례·블로그로 검색 유입과 신뢰를 같이 쌓아요."]]},
+  lead:{gap:"발주처는 시공사례·포트폴리오를 보고 신뢰가 서야 상담을 신청해요. 사례 없는 홈페이지는 문의로 이어지지 않아요.",add:[["site","시공사례·후기·간편 문의 폼을 갖춰 상담 신청을 받아요."],["search","검색으로 들어온 발주처를 사례 랜딩으로 연결해요."]]},
+  convert:{gap:"현장·조건 협의는 영업이 해요. 상담은 오는데 계약이 안 되면 사례·신뢰·견적 명확성이 부족한 거예요.",add:[["site","규모별 시공사례와 절차·비용 안내로 계약 확신을 줘요."],["outbound","상담 신청에 빠르게 연락해 현장 미팅으로 이어요."]]},
+  retain:{gap:"건설은 소개·재의뢰 비중이 커요. 끝난 고객을 관리 안 하면 다음 일감과 소개가 끊겨요.",add:[["email","완공 고객에 점검·신규 공종 소식을 정기적으로 보내요."],["outbound","기존 발주처·협력사를 주기적으로 관리해 재의뢰를 만들어요."]]},
+  diff:{gap:"건설은 ‘어디나 비슷’해 보여 가격 비교가 돼요. 시공 품질·전문 분야를 보여줄 사례가 없으면 단가로만 평가돼요.",add:[["seo","전문 공종 사례를 콘텐츠로 쌓아 ‘이 분야 전문’으로 포지셔닝해요."],["site","인증·수상·대표 시공사례를 첫 화면에 내세워요."]]}
+ },
+ pro:{
+  awareness:{gap:"고객은 ‘지역+분야’로 검색하거나 후기로 우리를 찾아요. 지역검색·블로그가 약하면 발견 자체가 안 돼요.",add:[["seo","지역+분야 키워드로 블로그·콘텐츠를 만들어 검색에 잡히게 해요."],["search","상담 의도가 분명한 지역 키워드에 검색광고를 걸어요."]]},
+  lead:{gap:"전문서비스는 신뢰가 전부예요. 후기·전문성 콘텐츠로 안심해야 상담을 예약해요. 예약 동선이 불편하면 거기서 끊겨요.",add:[["site","후기·전문 분야·간편 예약 폼을 갖춰 상담 신청을 받아요."],["seo","자주 묻는 고민을 콘텐츠로 풀어 신뢰와 유입을 같이 만들어요."]]},
+  convert:{gap:"상담은 오는데 계약이 안 되면 첫 상담의 신뢰·후기·전문성 증명이 약한 거예요.",add:[["site","성공사례·후기·자격을 모아 ‘이 사람에게 맡기자’를 만들어요."],["email","상담 후 자료·후속 안내를 보내 결정을 도와요."]]},
+  retain:{gap:"전문서비스는 재방문·지인 소개가 큰 자산이에요. 끝난 고객을 안 챙기면 소개 고리가 안 생겨요.",add:[["email","기존 고객에 정기 정보·관리 소식을 보내 관계를 이어요."],["seo","후기·사례를 계속 쌓아 소개받은 사람이 검색해도 신뢰하게 해요."]]},
+  diff:{gap:"전문서비스는 ‘다 비슷한 전문가’로 보여요. 전문 분야·관점을 콘텐츠로 보여주지 않으면 가격·거리로만 선택돼요.",add:[["seo","특정 분야 전문성을 콘텐츠로 박아 ‘이 분야는 이 사람’을 만들어요."],["linkedin","전문 관점을 발신해 동종·기업 고객에게 권위를 쌓아요."]]}
+ }
+};
+var FLOW=[
+ {key:"sub",kind:"single",q:"우리 회사는 어떤 B2B인가요?",sub:"가장 가까운 것 하나",opts:[["제조·부품 B2B","mfg"],["IT·SaaS B2B","saas"],["건설·부동산 B2B","constr"],["전문서비스(병원·법률·노무 등)","pro"]]},
+ {key:"bottle",kind:"single",q:"지금 마케팅에서 가장 막힌 곳은?",sub:"딱 한 군데만 골라요",opts:[["시장이 우리를 잘 몰라요 (인지)","awareness"],["문의·리드가 안 모여요 (리드)","lead"],["상담은 오는데 계약이 안 돼요 (전환)","convert"],["한 번 거래하고 끝이에요 (재계약)","retain"],["경쟁사와 비슷해 가격 비교만 돼요 (차별화)","diff"]]},
+ {key:"deal",kind:"single",q:"1건 계약·거래의 평균 규모는?",sub:"객단가에 따라 채널 전략이 달라져요",opts:[["소액·반복 (건당 100만 원 이하)","low"],["중간 (수백만 원대)","mid"],["고액·프로젝트 (1천만 원 이상)","high"]]},
+ {key:"team",kind:"single",q:"마케팅은 지금 누가 하나요?",sub:"",opts:[["대표가 직접","ceo"],["직원 1명이 겸업","solo"],["마케팅 담당·팀이 있음","team"],["외주 대행에 맡김","agency"]]},
+ {key:"stage",kind:"single",q:"회사는 지금 어떤 단계인가요?",sub:"",opts:[["막 시작 — 되는지 검증 중","validate"],["성장 — 확장에 드라이브","grow"],["안정 — 효율을 높이는 중","stable"]]},
+ {key:"budget",kind:"single",q:"월 마케팅 예산은 어느 정도인가요?",sub:"",opts:[["50만 원 미만","b1"],["50~300만 원","b2"],["300~1,000만 원","b3"],["1,000만 원 이상","b4"]]},
+ {key:"channels",kind:"multi",q:"지금 고객을 어떻게 데려오나요?",sub:"하고 있는 것 모두 선택 (여러 개 가능)",opts:[["검색·광고  ·  검색광고·홈페이지·SNS광고","g_search"],["콘텐츠·SEO  ·  블로그·자료·링크드인·이메일","g_content"],["세미나·전시·영업  ·  웨비나·박람회·콜드콜","g_direct"],["아직 거의 없음","none"]]}
+];
+var A={channels:[]},idx=0;
+function $(id){return document.getElementById(id);}
+function show(id){var s=document.querySelectorAll(".screen");for(var i=0;i<s.length;i++)s[i].classList.remove("active");$(id).classList.add("active");window.scrollTo(0,0);}
+function start(){A={channels:[]};idx=0;show("quiz");render();}
+function render(){
+ var it=FLOW[idx];
+ $("qtext").textContent=it.q;$("qsub").textContent=it.sub||"";$("qsub").style.display=it.sub?"block":"none";
+ $("qnum").textContent=(idx+1)+" / "+FLOW.length;$("barFill").style.width=((idx+1)/FLOW.length*100)+"%";
+ var box=$("opts");box.innerHTML="";
+ it.opts.forEach(function(o){
+   var b=document.createElement("button");b.className="opt";b.textContent=o[0];
+   if(it.kind==="multi"&&A.channels.indexOf(o[1])>=0)b.className="opt on";
+   b.addEventListener("click",function(){
+     if(it.kind==="single"){A[it.key]=o[1];idx++;(idx<FLOW.length)?render():finish();}
+     else{if(o[1]==="none"){A.channels=(A.channels.indexOf("none")>=0)?[]:["none"];}else{A.channels=A.channels.filter(function(x){return x!=="none";});var p=A.channels.indexOf(o[1]);p>=0?A.channels.splice(p,1):A.channels.push(o[1]);}render();}
+   });
+   box.appendChild(b);
+ });
+ var nw=$("nextwrap");
+ if(it.kind==="multi"){nw.style.display="block";$("nextBtn").disabled=A.channels.length===0;}else nw.style.display="none";
+}
+function score(){
+ var s={};for(var k in CHANNELS)s[k]=0;
+ SUBTYPES[A.sub].channels.forEach(function(id,i){s[id]+=(5-i);});
+ BOTTLE[A.bottle].channels.forEach(function(id){if(s[id]!=null)s[id]+=4;});
+ var low=(A.budget==="b1"||A.budget==="b2");
+ for(var c in CHANNELS){var ch=CHANNELS[c];
+   if(low){if(ch.organic)s[c]+=2;if(ch.cost==="high")s[c]-=4;}
+   if(A.budget==="b4"&&!ch.organic)s[c]+=1;
+   if(A.stage==="validate"&&ch.organic)s[c]+=1;
+   if(A.stage==="stable"&&(c==="email"||c==="seo"))s[c]+=2;}
+ if(A.deal==="high"){s.outbound+=3;s.webinar+=3;s.linkedin+=2;s.email+=2;s.site+=1;}
+ if(A.deal==="low"){s.search+=2;s.seo+=2;s.site+=2;s.meta+=2;}
+ if(A.team==="ceo"||A.team==="solo"){s.webinar-=2;s.expo-=2;s.linkedin-=1;}
+ return s;
+}
+function fmt(n){return Math.round(n).toLocaleString();}
+function finish(){
+ var st=SUBTYPES[A.sub], bt=BOTTLE[A.bottle], cell=GRID[A.sub][A.bottle];
+ var cur=[];A.channels.forEach(function(g){if(GROUPS[g])cur=cur.concat(GROUPS[g]);});
+ function covers(stage){return cur.filter(function(c){return (CH_STAGE[c]||[]).indexOf(stage)>=0;});}
+ function cn(c){return CHANNELS[c].name.replace(/\(.*\)/,"").trim();}
+ var isDiff=(A.bottle==="diff");
+ var botCov=isDiff?cell.add.some(function(a){return cur.indexOf(a[0])>=0;}):(covers(A.bottle).length>0);
+ var stageName="";st.flow.forEach(function(f){if(f.b===A.bottle)stageName=f.t;});
+ var sn=isDiff?"차별화":stageName;
+ var NM={mfg:"제조·부품 B2B",saas:"IT·SaaS B2B",constr:"건설·부동산 B2B",pro:"전문서비스 B2B"}[A.sub];
+ var TEAM2={ceo:"대표님이 직접 챙기시는",solo:"직원 한 분이 겸업으로 도맡는",team:"마케팅 팀을 두고 운영하시는",agency:"외주 대행에 맡기시는"};
+ var GLAB={g_search:"검색·광고",g_content:"콘텐츠·SEO",g_direct:"세미나·전시·영업"};
+ var curLabel=(cur.length?A.channels.filter(function(g){return g!=="none";}).map(function(g){return GLAB[g];}).join(", "):"");
+ var flowNames=st.flow.map(function(f){return f.t;});
+ var coveredNames=[],gapNames=[],rows="";
+ st.flow.forEach(function(f,i){
+   var ch=covers(f.b), hot=(!isDiff&&f.b===A.bottle), stat;
+   if(ch.length){coveredNames.push(f.t);stat='<span class="ok">✅ '+ch.map(cn).join(", ")+'</span>';}
+   else if(f.b==="convert"&&!hot){stat='<span class="sales">영업 담당</span>';}
+   else {gapNames.push(f.t);stat='<span class="gap">⚠️ 비어 있음</span>';}
+   rows+='<div class="fstep'+(hot?" hot":"")+'"><div class="fn">'+(i+1)+'</div><div style="flex:1"><div class="fct">'+f.t+(hot?'<span class="hb">막힌 곳</span>':'')+'</div><div class="fmap">'+stat+'</div></div></div>';
+ });
+ var h="";
+ h+='<div class="rcard"><div class="rk">1분 진단 결과</div><div class="rname">'+NM+'</div><div class="rsub">막힌 곳 · '+sn+'</div></div>';
+ var sit='<b>'+NM+'</b>이고, '+BUDLAB[A.budget]+' 예산을 '+TEAM2[A.team]+' 상황이에요. ';
+ var cov;
+ if(!cur.length)cov='아직 이렇다 할 마케팅 채널이 없어서, 사실상 '+flowNames.join(' → ')+' 전 단계가 다 열려 있는 셈이에요.';
+ else if(coveredNames.length&&gapNames.length)cov='지금 쓰시는 <b>'+curLabel+'</b>로 '+coveredNames.join('·')+'까지는 닿는데, <b>'+gapNames.join('·')+'</b> 단계가 비어 있어요.';
+ else if(coveredNames.length)cov='지금 쓰시는 <b>'+curLabel+'</b>로 주요 단계는 대체로 커버하고 계세요.';
+ else cov='지금 쓰시는 <b>'+curLabel+'</b>로는 핵심 단계가 아직 비어 있어요.';
+ h+='<div class="sec"><h3>📍 지금 상황은</h3><div class="talk">'+sit+cov+'</div>'+rows+'</div>';
+ var weak;
+ if(isDiff)weak='<b>지금 진짜 문제는 ‘차별화’예요.</b> '+cell.gap;
+ else if(botCov)weak='<b>지금 진짜 문제는 ‘'+sn+'’ 단계예요.</b> 채널은 있는데 막혀 있어요. '+cell.gap;
+ else weak='<b>지금 진짜 문제는 ‘'+sn+'’ 단계예요.</b> 여기가 비어 있다 보니 — '+cell.gap;
+ h+='<div class="sec problem"><h3>🔴 지금 진짜 문제</h3><div class="talk">'+weak+'</div></div>';
+ var lead=botCov?'채널을 더 벌이기보다, 지금 쓰는 걸 제대로 손보는 게 먼저예요. 순서는 이래요.':'여러 개 벌이지 말고, 이 빈 곳부터 딱 하나만 메우면 돼요. 순서는 이래요.';
+ h+='<div class="sec fix"><h3>🟢 그래서, 이렇게 풀어요</h3><div class="talk">'+lead+'</div>';
+ h+=cell.add.map(function(a,i){
+   var c=a[0],why=a[1],pc=CHANNELS[c],used=cur.indexOf(c)>=0;
+   var frameLab=(i===0)?'가장 먼저':'이게 자리 잡으면';
+   var est="";
+   if(pc.cpl){var mid=BUDMID[A.budget],lo=Math.max(1,Math.floor(mid/pc.cpl[1])),hi=Math.ceil(mid/pc.cpl[0]);est='<div class="estimate">'+BUDLAB[A.budget]+'이면 대략 <b>월 '+lo+'~'+hi+'건</b> 문의를 기대해볼 수 있어요. <span class="estsub">(CPL '+pc.cpl[0]+'~'+pc.cpl[1]+'만 가정·참고치)</span></div>';}
+   var steps=(i===0)?('<div class="psteps">'+pc.steps.map(function(s,j){return '<div class="pstp"><span>'+(j+1)+'</span><div class="pd"><b>'+s[0]+'</b> — '+s[1]+'</div></div>';}).join("")+'</div>'):'';
+   return '<div class="addcard"><div class="addh"><span class="atag '+(used?"keep":"add")+'">'+frameLab+'</span>'+pc.name+'</div><div class="addwhy">'+why+(used?' <i>(이미 쓰고 계시니 강화)</i>':'')+'</div>'+est+steps+'</div>';
+ }).join("");
+ var tips=[];
+ if(A.deal==="high")tips.push("객단가가 높으니 영업·세미나 같은 직접 채널 비중도 같이 키우면 좋아요.");
+ if(A.deal==="low")tips.push("객단가가 낮으니 손 덜 가는 검색·콘텐츠로 자동 유입을 만드는 게 유리해요.");
+ if(A.team==="ceo"||A.team==="solo")tips.push("지금은 "+(A.team==="ceo"?"대표님이 직접":"혼자 겸업으로")+" 하시니, 채널을 늘리기보다 위 한두 개에 집중하세요.");
+ if(A.team==="agency")tips.push("대행에 맡기더라도 핵심 채널 하나는 직접 들여다봐야 노하우가 남아요.");
+ if(A.stage==="validate")tips.push("아직 검증 단계니 돈 드는 광고 전에 오가닉(검색·콘텐츠)으로 작게 시작하세요.");
+ if(A.stage==="stable")tips.push("안정 단계니 신규 유입보다 전환·재구매 효율을 끌어올리는 데 집중하세요.");
+ if(tips.length)h+='<ul class="mods">'+tips.map(function(t){return '<li>'+t+'</li>';}).join("")+'</ul>';
+ h+='</div>';
+ h+='<button class="btn ghost" id="againBtn">다시 진단하기</button>';
+ h+='<p class="disclaimer">정밀 감사가 아니라 ‘방향 잡기’예요. 추정 수치는 업종·소재·시즌에 따라 달라지는 참고치입니다.</p>';
+ $("result").innerHTML=h;
+ $("againBtn").addEventListener("click",function(){show("intro");});
+ show("result");
+}
+$("startBtn").addEventListener("click",start);
+$("nextBtn").addEventListener("click",function(){if(A.channels.length)finish();});
+})();
+</script>
+</body>
+</html>
