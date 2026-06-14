@@ -189,31 +189,32 @@ a { color: inherit; text-decoration: none; }
 .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip { display: inline-flex; align-items: center; gap: 5px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 999px; padding: 9px 14px; font-size: 13px; font-weight: 600; color: var(--text); text-decoration: none; transition: .15s; }
 .chip:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); transform: translateY(-1px); }
-.menu-tabs .tabbar { display: flex; gap: 6px; background: #F2F4F6; border-radius: 14px; padding: 5px; margin-bottom: 16px; }
+.menu-tabs .tabbar { display: flex; gap: 6px; background: #F2F4F6; border-radius: 14px; padding: 5px; margin-bottom: 22px; }
 .menu-tabs .mtab { flex: 1; text-align: center; font-size: 13px; font-weight: 700; color: var(--text-soft); padding: 10px 4px; border-radius: 10px; cursor: pointer; border: none; background: none; white-space: nowrap; font-family: inherit; transition: .15s; letter-spacing: -0.3px; }
 .menu-tabs .mtab.on { background: #fff; color: var(--text-strong); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
 .menu-tabs .mtab:not(.on):hover { background: rgba(255,255,255,0.6); color: var(--text-strong); }
 .menu-tabs .mpanel { display: none; }
 .menu-tabs .mpanel.on { display: block; }
-.menu-tabs .chip-row { min-height: 44px; }
+.menu-tabs .chip-row { min-height: 48px; padding-bottom: 4px; }
 .extra-divider { height: 1px; background: var(--border); margin: 22px 0 26px; }
 .extra-head { font-size: 18px; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 4px; }
 .extra-sub { font-size: 13px; color: var(--text-mute); margin-bottom: 16px; }
-.ecard { display: flex; align-items: center; gap: 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 18px; margin-bottom: 12px; text-decoration: none; color: inherit; box-shadow: var(--shadow-sm); transition: .15s; }
-.ecard:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-.ecard .e-ico { font-size: 30px; flex-shrink: 0; }
-.ecard .e-bd { flex: 1; }
-.ecard .e-bd .e-tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; margin-bottom: 5px; }
-.ecard .e-bd h3 { font-size: 15.5px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 3px; }
-.ecard .e-bd p { font-size: 12.5px; color: var(--text-soft); }
-.ecard .e-arr { font-size: 18px; color: var(--text-mute); }
+.ecard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ecard { display: flex; flex-direction: column; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 22px 20px; text-decoration: none; color: inherit; box-shadow: var(--shadow-sm); transition: .15s; }
+.ecard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.ecard .e-ico { font-size: 32px; margin-bottom: 12px; }
+.ecard .e-tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; margin-bottom: 8px; }
+.ecard h3 { font-size: 16px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 5px; }
+.ecard p { font-size: 13px; color: var(--text-soft); line-height: 1.55; flex: 1; word-break: keep-all; margin-bottom: 14px; }
+.ecard .e-cta { font-size: 13.5px; font-weight: 700; }
 .ecard.e-test { background: linear-gradient(135deg,#FFF6EF,#FFFDFB); border-color:#FFE0C4; }
 .ecard.e-test .e-tag { background:#FFE8D5; color:#E8590C; }
-.ecard.e-test h3 { color:#E8590C; }
+.ecard.e-test h3, .ecard.e-test .e-cta { color:#E8590C; }
 .ecard.e-biz { background: linear-gradient(135deg,#F0FBF5,#FFFFFF); border-color:#C8EAD7; }
 .ecard.e-biz .e-tag { background:#DDF3E7; color:#0B8A54; }
-.ecard.e-biz h3 { color:#0B8A54; }
-@media (max-width: 680px){ .pillar-grid { grid-template-columns: 1fr; } .menu-tabs .mtab { font-size: 12px; padding: 10px 2px; letter-spacing: -0.4px; } .ecard { padding: 16px 14px; gap: 11px; } }
+.ecard.e-biz h3, .ecard.e-biz .e-cta { color:#0B8A54; }
+@media (max-width: 600px){ .ecard-grid { grid-template-columns: 1fr; } }
+@media (max-width: 680px){ .pillar-grid { grid-template-columns: 1fr; } .menu-tabs .mtab { font-size: 12px; padding: 10px 2px; letter-spacing: -0.4px; } .ecard { padding: 18px 16px; } }
 .category-section { margin-bottom: 28px; }
 .category-section:last-child { margin-bottom: 0; }
 .category-header { margin-bottom: 12px; padding: 4px 0 4px 12px; border-left: 4px solid var(--border); display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
@@ -407,7 +408,7 @@ footer.site-footer .footer-cat-row a:hover { color: var(--primary); }
   </div>
 </section>
 <section class="services container" id="benefits">
-  <div class="services-title reveal" style="margin-bottom:14px;">
+  <div class="services-title reveal" style="margin-bottom:24px;">
     <h2>💰 어떤 혜택을 찾으세요?</h2>
     <p>관심 분야를 골라 바로 확인하세요</p>
   </div>
@@ -456,16 +457,22 @@ footer.site-footer .footer-cat-row a:hover { color: var(--primary); }
   <div class="extra-divider"></div>
   <div class="extra-head reveal">✨ 혜택 찾기 외에도</div>
   <div class="extra-sub reveal">잠깐 쉬어가거나, 사장님이라면 이쪽으로</div>
-  <a href="/test/" class="ecard e-test reveal">
-    <div class="e-ico">🎭</div>
-    <div class="e-bd"><span class="e-tag">개인 · 재미로</span><h3>머니 심리테스트</h3><p>내 돈 성향은? 친구랑 같이 해보는 무료 테스트</p></div>
-    <div class="e-arr">›</div>
-  </a>
-  <a href="/marketing-check/" class="ecard e-biz reveal">
-    <div class="e-ico">📈</div>
-    <div class="e-bd"><span class="e-tag">사장님용</span><h3>사업자 마케팅·경영 진단</h3><p>광고는 하는데 문의가 안 와요? 1분 B2B 마케팅 자가진단</p></div>
-    <div class="e-arr">›</div>
-  </a>
+  <div class="ecard-grid">
+    <a href="/test/" class="ecard e-test reveal">
+      <div class="e-ico">🎭</div>
+      <span class="e-tag">개인 · 재미로</span>
+      <h3>머니 심리테스트</h3>
+      <p>내 돈 성향은? 친구랑 같이 해보는 무료 테스트</p>
+      <span class="e-cta">테스트하러 가기 →</span>
+    </a>
+    <a href="/marketing-check/" class="ecard e-biz reveal">
+      <div class="e-ico">📈</div>
+      <span class="e-tag">사장님용</span>
+      <h3>사업자 마케팅·경영 진단</h3>
+      <p>광고는 하는데 문의가 안 와요? 1분 B2B 마케팅 자가진단</p>
+      <span class="e-cta">진단하러 가기 →</span>
+    </a>
+  </div>
 </section>
 {% comment %} 홈에서 숨김 — 정책 가이드 (필요시 주석 해제)
 <section class="guides-section">
