@@ -57,6 +57,12 @@
   .gtrack{height:16px;background:#eef0f3;border-radius:99px;overflow:hidden;}
   .gfill{display:block;height:100%;width:0;border-radius:99px;transition:width 1s cubic-bezier(.22,1,.36,1);}
   .glabels{display:flex;justify-content:space-between;margin-top:9px;font-size:12.5px;font-weight:700;color:var(--gray);}
+  .statsec .statrow{display:flex;align-items:center;gap:10px;margin:12px 0;}
+  .statsec .sl{flex:0 0 96px;font-size:14px;font-weight:700;color:#333;white-space:nowrap;}
+  .statsec .st{flex:1;height:15px;background:#eef0f4;border-radius:8px;overflow:hidden;}
+  .statsec .sf{display:block;height:100%;width:0;border-radius:8px;transition:width .9s cubic-bezier(.2,.8,.2,1);}
+  .statsec .sv{flex:0 0 34px;text-align:right;font-size:13px;font-weight:800;color:#888;}
+  .rcard .rquip{margin-top:11px;font-size:14.5px;font-weight:700;color:#fff;background:rgba(255,255,255,0.2);padding:9px 15px;border-radius:18px;display:inline-block;line-height:1.55;word-break:keep-all;}
   .share-row{display:flex;gap:10px;margin:18px 0 8px;}
   .share-row .btn{font-size:15px;padding:15px;}
   .compare{font-size:13.5px;color:var(--gray);font-weight:600;}
@@ -105,17 +111,19 @@
       <div class="rtype" id="rTypeLabel">나의 유형</div>
       <div class="rname" id="rName"></div>
       <div class="rsub" id="rSub"></div>
+      <div class="rquip" id="rQuip"></div>
       <div class="pctbadge" id="rPct"></div>
     </div>
     <div class="sec hooksec"><h3>🎬 이런 적, 있지 않으세요?</h3><p id="rHook"></p></div>
+    <div class="sec statsec"><h3>📊 투자 능력치</h3><div id="rStats"></div></div>
     <div class="sec"><h3>📊 내 위치</h3><div class="gauge"><div class="gtrack"><div class="gfill" id="gFill"></div></div><div class="glabels"><span id="gMin"></span><span id="gMax"></span></div></div></div>
     <div class="sec portrait"><h3>📖 깊은 분석</h3><div id="rPortrait"></div></div>
-    <div class="sec"><h3>✨ 강점</h3><div class="tags" id="rStrength"></div></div>
     <div class="sec"><h3>👥 비슷한 유형은 보통 이래요</h3><div class="rlist" id="rBehav"></div></div>
     <div class="sec" id="rAssetSec"><h3>💡 어울리는 자산 & 그 이유</h3><p id="rAsset"></p></div>
     <div class="sec" id="rCheckSec"><h3>⚠️ 이런 투자는 조심해요</h3><div class="rlist" id="rCheck"></div></div>
     <div class="sec"><h3>💛 이런 마음, 너무 자연스러워요</h3><div class="rlist" id="rBlind"></div></div>
     <div class="sec closingsec"><p id="rClose"></p></div>
+    <button class="btn" id="imgBtn" style="background:#ff8a3d;margin-bottom:10px;">📸 결과 이미지로 공유 / 저장</button>
     <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유하기</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
     <div class="chan-row"><button class="chan" data-ch="x">X</button><button class="chan chl" data-ch="line">LINE</button><button class="chan chf" data-ch="fb">f</button></div>
     <p class="compare">친구에게 보내고 비교해보세요!</p>
@@ -130,7 +138,10 @@
   var Q = [{"q": "100만원을 굴린다면 나는?", "a": [["무조건 원금 보장! 예·적금", 0], ["안전 위주로, 채권 중심", 1], ["반반 섞어서 분산", 2], ["대부분 주식 등 공격적으로", 3]]}, {"q": "투자한 게 한 달 만에 20% 떨어졌다. 나는?", "a": [["못 견디고 바로 판다", 0], ["불안해서 일부 판다", 1], ["일단 지켜본다", 2], ["오히려 더 산다 (저가 매수)", 3]]}, {"q": "친구가 '이거 곧 오른다'며 추천. 나는?", "a": [["위험한 건 패스", 0], ["소액만 살짝 넣어본다", 1], ["어느 정도 넣어본다", 2], ["기회다! 크게 베팅", 3]]}, {"q": "내가 바라는 수익률은?", "a": [["잃지만 않으면 충분", 0], ["예금보다 조금만 높게", 1], ["적당한 수익이면 OK", 2], ["크게 벌고 싶다, 위험 감수", 3]]}, {"q": "내 투자 지식 수준은?", "a": [["잘 모른다", 0], ["기초 정도는 안다", 1], ["어느 정도 안다", 2], ["차트·재무제표도 본다", 3]]}, {"q": "이 돈, 언제 쓸 예정인가요?", "a": [["곧 써야 한다 (1년 내)", 0], ["2~3년 안에", 1], ["5년 정도 여유", 2], ["오래 묻어둘 수 있다", 3]]}, {"q": "'고위험 고수익'이라는 말에?", "a": [["위험은 무조건 피하고 싶다", 0], ["조심스럽다", 1], ["일부는 괜찮다", 2], ["수익을 위해 감수할 만하다", 3]]}, {"q": "투자 손실 때문에 잠 못 잘 것 같은가?", "a": [["작은 손실도 스트레스다", 0], ["큰 손실은 많이 힘들다", 1], ["어느 정도는 견딘다", 2], ["투자엔 손실도 당연하다", 3]]}];
   var TIERS = [{"max": 20, "emoji": "🛡️", "name": "안정형", "type": "CONSERVATIVE", "sub": "원금 보전이 최우선, 잃지 않는 투자", "grad": "linear-gradient(135deg,#26c6a8,#1eb396)", "bar": "#1eb396", "desc": "당신은 무엇보다 원금을 지키는 것이 중요한 신중한 투자자예요. 작은 손실도 불편하게 느끼죠. 변동성이 큰 자산보다 안전하게 지키는 쪽이 마음 편한 타입이에요.", "strength": ["뛰어난 안정성", "손실 방어", "흔들리지 않음"], "asset": "예·적금, MMF, 국공채 같은 원금 보전형이 잘 맞아요. 가격이 거의 안 움직이고 약속된 이자가 또박또박 들어와서, '잃으면 어쩌지' 하는 불안을 가장 크게 덜어주거든요.", "caution": "너무 안전만 추구하면 물가상승만큼도 못 따라갈 수 있어요. 아주 일부만 분산해 굴려보는 것도 방법이에요.", "check": "예·적금에만 묶여 있어 물가상승률조차 못 따라가고 있진 않나요? 아주 일부는 굴려볼 만해요.", "hook": "📉 빨간 숫자(마이너스)를 보면 잠이 안 오는 타입. '원금만 지키면 됐다' 싶은 적 많죠.", "portrait": ["당신은 무엇보다 원금을 지키는 게 중요한 신중한 투자자예요. 작은 손실도 불편하게 느끼죠.", "변동성 큰 자산보다 안전하게 지키는 쪽이 마음 편한, 흔들리지 않는 타입이에요."], "blind": ["손실이 불편한 거, 겁이 많아서가 아니에요. 소중한 걸 지키려는 건강한 본능이에요.", "안전만 추구해도 괜찮아요. 아주 일부만 천천히 굴려봐도 충분하니 부담 갖지 마세요."], "close": "원금을 지키는 당신의 신중함, 그 자체로 훌륭한 전략이에요. 💛", "behaviors": ["예금·적금 만기가 되면 고민 없이 다시 예치해요.", "주가 급락 뉴스가 뜨면 '안 하길 잘했다' 싶으면서도 가슴이 철렁해요.", "원금이 줄 가능성이 조금이라도 있으면 아예 시작을 안 해요."], "cautions": ["'원금 보장'이라는 말만 믿고 잘 모르는 상품에 가입하는 것 — 보장 조건에 함정이 숨어 있는 경우가 많아요.", "예금만 고집하다 물가상승에 자산의 '실질 가치'가 조금씩 깎이는 것 — 가장 흔히 놓치는 위험이에요."]}, {"max": 40, "emoji": "🌱", "name": "안정추구형", "type": "MODERATE-LOW", "sub": "안전을 기본으로, 약간의 수익을 더하는 타입", "grad": "linear-gradient(135deg,#7cc04a,#639922)", "bar": "#639922", "desc": "원금 보전을 기본으로 하되, 예금보다는 조금 더 나은 수익을 원하는 신중한 투자자예요. 위험은 최소화하면서 조금씩 굴려가는 스타일이죠.", "strength": ["신중함", "안정 속 수익", "리스크 관리"], "asset": "채권형·채권혼합형 펀드, 우량 배당주가 어울려요. 채권은 주식보다 가격 변동이 작고, 우량 배당주는 망할 걱정이 적으면서 꾸준한 배당이 나와서 — '안전을 지키며 예금보다 조금 더'라는 당신의 목표에 딱 맞거든요.", "caution": "안정적인 만큼 수익도 완만해요. 장기로 꾸준히 가는 게 핵심이에요.", "check": "안전만 좇다 좋은 분산 기회를 놓치고 있진 않나요? 우량 자산을 소액부터 시작해보세요.", "hook": "🌱 예금보단 조금 더, 하지만 위험한 건 패스. '안전하게 조금씩'이 당신 스타일이죠.", "portrait": ["원금 보전을 기본으로 하되, 예금보다는 나은 수익을 원하는 신중한 투자자예요.", "위험은 최소화하면서 조금씩 굴려가는, 거북이처럼 꾸준한 스타일이에요."], "blind": ["조금씩 굴리는 신중함, 답답한 게 아니라 현명한 거예요.", "수익이 더디게 느껴져도 괜찮아요. 꾸준함이 결국 복리로 돌아와요."], "close": "안전 속에서 한 걸음씩 나아가는 당신, 그 페이스가 딱 좋아요. 💛", "behaviors": ["목돈은 예금에 두되, 일부만 '안전한' 펀드에 넣어봐요.", "수익률보다 '안 잃는 것'을 먼저 따져요.", "투자하다가도 조금만 불안하면 금방 빼고 싶어져요."], "cautions": ["'안전한데 수익 높다'는 말 — 세상에 그런 건 거의 없어요. 보통 위험이 숨어 있어요.", "조금 불안하다고 자주 사고팔다 수수료·세금만 까먹는 것 — 안정형일수록 '오래 묻어두기'가 답이에요."]}, {"max": 60, "emoji": "⚖️", "name": "위험중립형", "type": "NEUTRAL", "sub": "수익과 위험의 균형을 추구하는 밸런스형", "grad": "linear-gradient(135deg,#3182f6,#1b64da)", "bar": "#3182f6", "desc": "당신은 적당한 위험은 감수하되, 그만큼의 수익을 기대하는 균형 잡힌 투자자예요. 한쪽으로 치우치지 않고 분산하는 감각이 좋아요.", "strength": ["균형 감각", "분산 투자", "유연함"], "asset": "혼합형 펀드, 인덱스(ETF), 우량주 분산이 잘 맞아요. 시장 전체에 골고루 투자하면 한두 종목이 무너져도 타격이 작고, 장기적으론 시장과 함께 우상향하는 경향이 있어서 — 균형을 중시하는 당신에게 가장 마음 편한 방식이에요.", "caution": "균형이 강점이지만, 목표와 기간을 정해두면 흔들림 없이 갈 수 있어요.", "check": "이것저것 조금씩 넣었지만 '왜 샀는지' 모르는 종목이 섞여 있진 않나요? 투자 원칙을 점검해보세요.", "hook": "⚖️ '반반 섞어서' 분산해두고, 오르든 내리든 비교적 담담했던 적 있죠.", "portrait": ["적당한 위험은 감수하되 그만큼의 수익을 기대하는 균형 잡힌 투자자예요.", "한쪽으로 치우치지 않고 분산하는 감각이 좋은, 무난한 우등생 타입이에요."], "blind": ["분산해두고 담담한 거, 우유부단이 아니라 균형 감각이에요.", "원칙이 흐릿해도 괜찮아요. 목표 하나만 정하면 흔들림이 줄어요."], "close": "한쪽에 치우치지 않는 당신, 가장 단단한 투자자예요. 💛", "behaviors": ["주식과 안전자산을 '반반' 정도로 섞어두려 해요.", "올라도 내려도 비교적 담담하게 지켜보는 편이에요.", "한 곳에 몰빵하기보다 여러 곳에 나눠 담아요."], "cautions": ["분산한다며 비슷한 걸 여러 개 사는 '무늬만 분산' — 실제론 다 같이 움직여요.", "원칙 없이 '남들 사는 거' 따라 사는 것 — 흔들릴 때 버티기 어려워요."]}, {"max": 80, "emoji": "🚀", "name": "적극투자형", "type": "AGGRESSIVE", "sub": "손실을 감수하고 높은 수익을 노리는 타입", "grad": "linear-gradient(135deg,#ffb04a,#ff8a3d)", "bar": "#ff8a3d", "desc": "당신은 어느 정도의 손실은 감수하고 적극적으로 수익을 노리는 투자자예요. 시장 변동에도 비교적 담대하게 대응하는 편이죠.", "strength": ["과감한 도전", "변동성 내성", "성장 지향"], "asset": "주식형 펀드, 성장 우량주, 테마 ETF가 어울려요. 변동성이 큰 만큼 장기 기대수익도 높아서, 손실을 견딜 수 있는 당신의 담대함과 잘 맞거든요. 단, '우량'과 '분산'이 받쳐줄 때 그 담대함이 빛나요.", "caution": "수익만큼 손실도 클 수 있어요. 한 종목에 몰빵보다는 분산이 안전망이 돼요.", "check": "수익에 취해 한 종목·테마에 비중이 쏠려 있진 않나요? 분산이 진짜 실력이에요.", "hook": "🚀 떨어졌을 때 '오히려 기회 아냐?' 싶어 더 사본 적, 한 번쯤 있죠.", "portrait": ["어느 정도의 손실은 감수하고 적극적으로 수익을 노리는 투자자예요. 시장 변동에도 비교적 담대하죠.", "성장에 베팅하는 추진력이 강한, 공격수 같은 타입이에요."], "blind": ["떨어졌을 때 더 사는 담대함, 무모한 게 아니라 배짱이에요.", "가끔 흔들려도 괜찮아요. 분산이라는 안전망만 챙기면 충분해요."], "close": "성장에 베팅할 줄 아는 당신, 멋져요. 안전망 하나만 더 두면 든든해요. 💛", "behaviors": ["하락장이 오면 '오히려 기회'라며 더 사들여요.", "수익률 높은 종목·테마에 관심이 많아요.", "어느 정도 손실은 '있을 수 있는 일'로 받아들여요."], "cautions": ["수익에 취해 한 종목·한 테마에 비중이 쏠리는 것 — 그 하나가 무너지면 전체가 흔들려요.", "'이번엔 다르다'는 확신으로 무리하게 베팅하는 것 — 가장 비싼 수업료가 되곤 해요."]}, {"max": 100, "emoji": "🔥", "name": "공격투자형", "type": "VERY-AGGRESSIVE", "sub": "높은 위험도 감수하는 하이리스크 하이리턴", "grad": "linear-gradient(135deg,#f368a8,#e84393)", "bar": "#e84393", "desc": "당신은 큰 수익을 위해 높은 위험도 기꺼이 감수하는 공격적인 투자자예요. 변동성을 기회로 보는 대담한 타입이죠. 그만큼 큰 손실 가능성도 늘 함께한다는 점만 기억하세요.", "strength": ["대담한 베팅", "높은 위험 감수", "기회 포착"], "asset": "개별 성장주, 고위험 자산까지 소화할 수 있는 성향이에요. 큰 변동을 견딜 수 있다면 그만큼 큰 수익 기회도 잡을 수 있어서죠. 다만 이건 '잃어도 되는 여유자금'일 때만 강점이 돼요. 그 선이 곧 당신의 생존선이에요.", "caution": "잃어도 괜찮은 '여유자금' 안에서만 하세요. 레버리지·빚투는 한순간에 무너질 수 있어요.", "check": "혹시 빚투·레버리지·코인 몰빵 중이진 않나요? 잃어도 되는 여유자금 안에서만 하세요.", "hook": "🔥 '고위험 고수익'이라는 말에 가슴이 뛰는 타입. 변동성을 기회로 보는 당신이죠.", "portrait": ["큰 수익을 위해 높은 위험도 기꺼이 감수하는 공격적인 투자자예요. 변동성을 기회로 보는 대담함이 있죠.", "그만큼 큰 손실 가능성도 늘 함께한다는 걸 누구보다 잘 아는 타입이에요."], "blind": ["고위험에 가슴 뛰는 거, 무책임한 게 아니에요. 기회를 보는 당신만의 눈이에요.", "손실이 와도 자책 마세요. '잃어도 되는 돈' 안에서라면 그건 수업료일 뿐이에요."], "close": "변동성을 기회로 보는 당신의 대담함, 진짜 강점이에요. 여유자금 안에서만요. 💛", "behaviors": ["'고위험 고수익'이라는 말에 가슴이 뛰어요.", "급등 가능성이 보이면 큰 비중을 과감히 실어요.", "변동성을 위험이 아니라 '기회'로 봐요."], "cautions": ["빚투·레버리지·신용 — 오를 땐 천국이지만 내릴 땐 한순간에 모든 걸 잃을 수 있어요.", "'한 방'을 노린 코인·테마 몰빵 — 운이 한 번 따라도, 반복되면 결국 잃는 게임이에요."]}];
   var GMIN="🛡️ 안정", GMAX="🔥 공격", BADGE_PRE="위험 감수 점수 ", BADGE_SUF="점";
-  var idx=0, total=0, current=null, pct=0, ageBand=20;
+  var idx=0, total=0, current=null, pct=0, ageBand=20, curIdx=0;
+  var RSTATLAB=["🛡️ 안정성","🚀 수익추구","💪 변동내성","⚖️ 분산력","🔥 과감함"];
+  var RSTATS=[[5,1,1,3,1],[4,2,2,3,2],[3,3,3,5,3],[2,4,4,3,4],[1,5,5,2,5]];
+  var RQUIP=["마이너스? 내 사전엔 없는 단어 🛡️ 원금아 거기 가만히 있어.","예금보단 쪼끔만 더. 거북이도 결국 결승선 통과함 🌱","한 쪽에 안 건다. 계란은 나눠 담는 게 국룰 ⚖️","떨어지면? 오히려 좋아, 줍줍 타임 🚀","고위험 고수익에 심장이 뛴다 🔥 단, 여유자금 한정!"];
   function $(id){return document.getElementById(id);}
   function show(id){var s=document.querySelectorAll(".screen");for(var i=0;i<s.length;i++){s[i].classList.remove("active");}$(id).classList.add("active");window.scrollTo(0,0);}
   function start(){beginQuiz();}
@@ -157,14 +168,15 @@
     $("rTypeLabel").textContent="나의 유형 · "+t.type;
     $("rPct").textContent=BADGE_PRE+pct+BADGE_SUF;
     $("rHook").textContent=t.hook;$("rPortrait").innerHTML=(t.portrait||[]).map(function(x){return "<p>"+x+"</p>";}).join("");
+    curIdx=TIERS.indexOf(t);$("rQuip").textContent=RQUIP[curIdx]||t.sub;
+    var stEl=$("rStats");if(stEl){stEl.innerHTML="";var _sv=RSTATS[curIdx]||[];for(var _si=0;_si<RSTATLAB.length;_si++){var _sr=document.createElement("div");_sr.className="statrow";_sr.innerHTML='<span class="sl">'+RSTATLAB[_si]+'</span><span class="st"><span class="sf" style="background:'+(t.bar||"#3182f6")+'"></span></span><span class="sv">'+_sv[_si]+'/5</span>';_sr.setAttribute("data-v",_sv[_si]);stEl.appendChild(_sr);}}
     $("rClose").textContent=t.close||"";$("rBlind").innerHTML=(t.blind||[]).map(function(x){return '<div class="item"><span class="ic">💛</span><span>'+x+'</span></div>';}).join("");
-    var st=$("rStrength");st.innerHTML="";
-    for(var j=0;j<t.strength.length;j++){var sp=document.createElement("span");sp.className="tag";sp.textContent="#"+t.strength[j];st.appendChild(sp);}
     if(t.asset){ $("rAssetSec").style.display="block"; $("rAsset").textContent=t.asset; } else { $("rAssetSec").style.display="none"; }
     $("rBehav").innerHTML=(t.behaviors||[]).map(function(x){return '<div class="item"><span class="ic">🔹</span><span>'+x+'</span></div>';}).join("");
     if(t.cautions){ $("rCheckSec").style.display="block"; $("rCheck").innerHTML=t.cautions.map(function(x){return '<div class="item"><span class="ic">⚠️</span><span>'+x+'</span></div>';}).join(""); } else { $("rCheckSec").style.display="none"; }
     $("gMin").textContent=GMIN; $("gMax").textContent=GMAX;
     show("result");
+    (function(){var srows=document.querySelectorAll("#rStats .statrow");requestAnimationFrame(function(){requestAnimationFrame(function(){for(var i=0;i<srows.length;i++){(function(row,i){var v=parseInt(row.getAttribute("data-v"),10)||0;var sf=row.querySelector(".sf");setTimeout(function(){sf.style.width=(v/5*100)+"%";},80+i*90);})(srows[i],i);}});});})();
     requestAnimationFrame(function(){ requestAnimationFrame(function(){ var g=$("gFill"); g.style.background=t.bar||"#3182f6"; g.style.width=pct+"%"; }); });
   }
   function shareUrl(){return location.origin+location.pathname+"?p="+pct;}
@@ -182,6 +194,32 @@
     else{ window.prompt("아래 링크를 복사하세요",txt); }
   }
   function openCh(ch){var u=encodeURIComponent(shareUrl()),t=encodeURIComponent(document.title);var url=ch==="x"?("https://twitter.com/intent/tweet?text="+t+"&url="+u):ch==="line"?("https://social-plugins.line.me/lineit/share?url="+u+"&text="+t):("https://www.facebook.com/sharer/sharer.php?u="+u);window.open(url,"_blank","noopener,noreferrer");}
+  function _wrap(c,t,cx,y,mw,lh){var line="",ls=[];for(var i=0;i<t.length;i++){var s2=line+t[i];if(c.measureText(s2).width>mw&&line){ls.push(line);line=t[i];}else line=s2;}ls.push(line);for(var j=0;j<ls.length;j++)c.fillText(ls[j],cx,y+j*lh);return ls.length;}
+  function _rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+  function buildCard(){var t=current,cv=document.createElement("canvas");cv.width=1080;cv.height=1350;var x=cv.getContext("2d");
+    var cols=(t.grad.match(/#[0-9a-fA-F]{6}/g))||["#3182f6","#1b64da"];
+    var g=x.createLinearGradient(0,0,300,1350);g.addColorStop(0,cols[0]);g.addColorStop(1,cols[1]);x.fillStyle=g;x.fillRect(0,0,1080,1350);
+    var FF='"Pretendard Variable",Pretendard,sans-serif';x.textAlign="center";
+    x.fillStyle="rgba(255,255,255,0.9)";x.font="700 38px "+FF;x.fillText("나의 투자 성향",540,118);
+    x.font="130px "+FF;x.fillText(t.emoji,540,278);
+    x.fillStyle="#fff";x.font="800 68px "+FF;_wrap(x,t.name,540,366,960,76);
+    x.fillStyle="rgba(255,255,255,0.96)";x.font="600 35px "+FF;_wrap(x,RQUIP[curIdx]||t.sub,540,436,910,46);
+    var pl="위험 감수 점수 "+pct+"점";x.font="700 36px "+FF;var pw=x.measureText(pl).width,pad=42,bw=pw+pad*2,bx=540-bw/2,by=516,bh=80;
+    x.fillStyle="rgba(255,255,255,0.96)";_rr(x,bx,by,bw,bh,40);x.fill();x.fillStyle=cols[1];x.fillText(pl,540,by+53);
+    x.font="700 40px "+FF;x.fillStyle="rgba(255,255,255,0.92)";x.fillText("📊 투자 능력치",540,650);
+    var sv=RSTATS[curIdx]||[],sy=724,sp=86,tx=430,tw=520,th=30;
+    for(var si=0;si<RSTATLAB.length;si++){var yy=sy+si*sp;
+      x.textAlign="left";x.fillStyle="#fff";x.font="700 37px "+FF;x.fillText(RSTATLAB[si],128,yy+8);
+      x.fillStyle="rgba(255,255,255,0.25)";_rr(x,tx,yy-22,tw,th,15);x.fill();
+      x.fillStyle="rgba(255,255,255,0.96)";_rr(x,tx,yy-22,Math.max(th,tw*sv[si]/5),th,15);x.fill();
+      x.textAlign="right";x.fillStyle="rgba(255,255,255,0.9)";x.font="800 32px "+FF;x.fillText(sv[si]+"/5",1000,yy+5);}
+    x.textAlign="center";x.fillStyle="rgba(255,255,255,0.92)";x.font="600 38px "+FF;x.fillText("나도 테스트하러 가기 👉 klened.github.io/test",540,1300);
+    return cv;}
+  function shareImage(){if(!current)return;var btn=$("imgBtn"),ot=btn.textContent;btn.disabled=true;btn.textContent="🖼️ 이미지 만드는 중...";
+    function go(){var cv=buildCard();cv.toBlob(function(blob){btn.textContent=ot;btn.disabled=false;var file=new File([blob],"risk-result.png",{type:"image/png"});
+      if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file],text:"나의 투자 성향 결과! 너도 해봐 👉 "+shareUrl()}).catch(function(){});}
+      else{var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="risk-result.png";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){alert("결과 이미지를 저장했어요! 📸 인스타·카톡에 올려보세요.");},200);}},"image/png");}
+    if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go,go);}else go();}
   function init(){
     var sp=new URLSearchParams(location.search), pp=parseInt(sp.get("p"),10);
     if(!isNaN(pp)&&pp>=0&&pp<=100){ renderResult(pp); $("sb").style.display="block"; $("restartBtn").textContent="👉 나도 테스트하기"; }
@@ -189,7 +227,7 @@
     $("shareBtn").addEventListener("click",doShare);
     $("copyBtn").addEventListener("click",function(){doCopy();});
     var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}
-    $("restartBtn").addEventListener("click",function(){show("intro");});
+    $("imgBtn").addEventListener("click",shareImage);$("restartBtn").addEventListener("click",function(){show("intro");});
   }
   if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
 })();

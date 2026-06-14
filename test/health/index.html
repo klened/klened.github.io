@@ -57,6 +57,12 @@
   .gtrack{height:16px;background:#eef0f3;border-radius:99px;overflow:hidden;}
   .gfill{display:block;height:100%;width:0;border-radius:99px;transition:width 1s cubic-bezier(.22,1,.36,1);}
   .glabels{display:flex;justify-content:space-between;margin-top:9px;font-size:12.5px;font-weight:700;color:var(--gray);}
+  .statsec .statrow{display:flex;align-items:center;gap:10px;margin:12px 0;}
+  .statsec .sl{flex:0 0 96px;font-size:14px;font-weight:700;color:#333;white-space:nowrap;}
+  .statsec .st{flex:1;height:15px;background:#eef0f4;border-radius:8px;overflow:hidden;}
+  .statsec .sf{display:block;height:100%;width:0;border-radius:8px;transition:width .9s cubic-bezier(.2,.8,.2,1);}
+  .statsec .sv{flex:0 0 34px;text-align:right;font-size:13px;font-weight:800;color:#888;}
+  .rcard .rquip{margin-top:11px;font-size:14.5px;font-weight:700;color:#fff;background:rgba(255,255,255,0.2);padding:9px 15px;border-radius:18px;display:inline-block;line-height:1.55;word-break:keep-all;}
   .share-row{display:flex;gap:10px;margin:18px 0 8px;}
   .share-row .btn{font-size:15px;padding:15px;}
   .compare{font-size:13.5px;color:var(--gray);font-weight:600;}
@@ -105,16 +111,18 @@
       <div class="rtype" id="rTypeLabel">나의 유형</div>
       <div class="rname" id="rName"></div>
       <div class="rsub" id="rSub"></div>
+      <div class="rquip" id="rQuip"></div>
       <div class="pctbadge" id="rPct"></div>
     </div>
     <div class="sec hooksec"><h3>🎬 이런 적, 있지 않으세요?</h3><p id="rHook"></p></div>
+    <div class="sec statsec"><h3>📊 재무 능력치</h3><div id="rStats"></div></div>
     <div class="sec"><h3>📊 내 위치</h3><div class="gauge"><div class="gtrack"><div class="gfill" id="gFill"></div></div><div class="glabels"><span id="gMin"></span><span id="gMax"></span></div></div></div>
     <div class="sec portrait"><h3>📖 깊은 분석</h3><div id="rPortrait"></div></div>
-    <div class="sec"><h3>✨ 강점</h3><div class="tags" id="rStrength"></div></div>
     <div class="sec"><h3>👥 비슷한 유형은 보통 이래요</h3><div class="rlist" id="rBehav"></div></div>
     <div class="sec" id="rAssetSec"><h3>💡 지금 챙기면 좋은 것</h3><p id="rAsset"></p></div>
     <div class="sec"><h3>💛 이런 마음, 너무 자연스러워요</h3><div class="rlist" id="rBlind"></div></div>
     <div class="sec closingsec"><p id="rClose"></p></div>
+    <button class="btn" id="imgBtn" style="background:#ff8a3d;margin-bottom:10px;">📸 결과 이미지로 공유 / 저장</button>
     <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유하기</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
     <div class="chan-row"><button class="chan" data-ch="x">X</button><button class="chan chl" data-ch="line">LINE</button><button class="chan chf" data-ch="fb">f</button></div>
     <p class="compare">친구에게 보내고 비교해보세요!</p>
@@ -129,7 +137,10 @@
   var Q = [{"q": "이번 달 생활비, 다음 월급 전까지 충분한가요?", "a": [["매우 빠듯하다", 0], ["조금 빠듯하다", 1], ["그럭저럭 맞다", 2], ["여유가 있다", 3]]}, {"q": "갑자기 100만원이 필요해지면?", "a": [["막막하다", 0], ["빚을 내야 할 듯", 1], ["어떻게든 마련은 된다", 2], ["비상금으로 충분", 3]]}, {"q": "매달 카드값·대출 상환 부담은?", "a": [["매우 크다", 0], ["부담되는 편", 1], ["감당할 만하다", 2], ["거의 없다", 3]]}, {"q": "미래(노후·목돈)를 위해 저축하고 있나요?", "a": [["전혀 못 한다", 0], ["가끔 조금", 1], ["조금씩 한다", 2], ["꾸준히 한다", 3]]}, {"q": "돈 걱정으로 스트레스받는 정도는?", "a": [["매우 자주", 0], ["종종", 1], ["가끔", 2], ["거의 없다", 3]]}, {"q": "내 수입과 지출을 파악하고 있나요?", "a": [["전혀 모른다", 0], ["대충 안다", 1], ["어느 정도 안다", 2], ["정확히 안다", 3]]}, {"q": "돈 때문에 원하는 걸 포기한 적은?", "a": [["자주 있다", 0], ["종종 있다", 1], ["가끔 있다", 2], ["거의 없다", 3]]}, {"q": "1년 뒤 내 재정이 나아질 거라 보나요?", "a": [["비관적이다", 0], ["잘 모르겠다", 1], ["조금 나아질 듯", 2], ["자신 있다", 3]]}];
   var TIERS = [{"max": 20, "emoji": "⚠️", "name": "위태로운 단계", "type": "AT-RISK", "sub": "지금 작은 조치가 큰 차이를 만들어요", "grad": "linear-gradient(135deg,#f368a8,#e84393)", "bar": "#e84393", "desc": "지금은 재정에 여유가 거의 없어 작은 변수에도 흔들리기 쉬운 상태예요. 하지만 너무 걱정 마세요. 받을 수 있는 지원금·환급금부터 챙기는 것만으로도 숨통이 트일 수 있어요.", "strength": ["개선 여지 큼", "작은 변화로 큰 효과"], "asset": "먼저 '안 챙긴 내 돈'부터 — 숨은 환급금·정부 지원금·요금감면을 점검해보세요. 새는 돈을 막는 게 1순위예요.", "caution": "빚으로 막기 전에, 받을 수 있는 혜택을 먼저 챙기세요. 고정 지출부터 하나씩 줄여보는 걸 추천해요.", "hook": "💳 월급은 들어왔는데 카드값·고정비 빠지면 남는 게 없고, 갑자기 큰돈 들 일이 생기면 가슴이 철렁한 적 있죠.", "portrait": ["지금은 재정에 여유가 거의 없어 작은 변수에도 흔들리기 쉬운 상태예요.", "하지만 너무 걱정 마세요. 받을 수 있는 지원금·환급금부터 챙기면 숨통이 트일 수 있어요."], "blind": ["지금 여유가 없는 거, 당신이 못나서가 아니에요. 누구에게나 이런 시기가 있어요.", "혼자 끙끙대지 말고, 받을 수 있는 지원금·환급금부터 챙겨보세요. 생각보다 큰 힘이 돼요."], "close": "이 테스트를 한 것만으로도 이미 한 걸음 나아간 거예요. 천천히, 같이 가요. 💛", "behaviors": ["월급날 잠깐 여유, 며칠 뒤 다시 빠듯해요.", "비상금이 거의 없어 갑작스런 지출이 두려워요.", "'다음 달엔 모아야지' 하지만 잘 안 돼요."]}, {"max": 40, "emoji": "😥", "name": "빠듯한 단계", "type": "TIGHT", "sub": "버티고는 있지만 여유가 부족해요", "grad": "linear-gradient(135deg,#ffb04a,#ff8a3d)", "bar": "#ff8a3d", "desc": "하루하루 굴러가긴 하지만 저축이나 비상금까지는 손이 닿지 않는 상태예요. 지출 구조를 한 번 정리하고, 작게라도 비상금을 시작하면 한결 안정돼요.", "strength": ["버티는 힘", "현실 감각"], "asset": "작은 비상금 통장부터 시작하고, 받을 수 있는 지원금을 같이 챙기면 속도가 붙어요.", "caution": "비상금이 없으면 작은 사고에도 빚으로 이어져요. 월 몇 만원이라도 자동저축을 걸어두세요.", "hook": "😮‍💨 하루하루 굴러는 가는데, 저축이나 비상금까진 도무지 손이 안 닿는 느낌이죠.", "portrait": ["버티고는 있지만 여유가 부족한 상태예요. 저축까지 가기엔 빠듯하죠.", "지출 구조를 한 번 정리하고 작게라도 비상금을 시작하면 한결 안정돼요."], "blind": ["저축까지 손이 안 닿는 거, 의지가 부족해서가 아니라 여유가 빠듯해서예요.", "작게 시작해도 괜찮아요. 월 몇 만원 자동저축 한 줄이 시작이에요."], "close": "버티며 하루하루 해내는 당신, 그것만으로도 대단해요. 💛", "behaviors": ["고정비 빼면 저축까지 손이 잘 안 가요.", "적금을 들었다 깬 적이 있어요.", "큰 지출은 카드 할부로 메꿔요."]}, {"max": 60, "emoji": "🙂", "name": "보통 단계", "type": "OK", "sub": "기본은 되어 있는 안정권 초입", "grad": "linear-gradient(135deg,#3182f6,#1b64da)", "bar": "#3182f6", "desc": "큰 무리 없이 생활이 굴러가고, 약간의 여유도 있는 보통 단계예요. 여기서 저축률을 조금만 높이고 목표를 정하면 빠르게 튼튼해질 수 있어요.", "strength": ["안정적인 기본", "개선 동력"], "asset": "목표(목돈·노후) 하나를 정하고, 연말정산·환급 같은 '챙기면 버는 돈'도 빠짐없이 받으세요.", "caution": "지금이 습관 만들기 좋은 때예요. 저축을 '먼저 떼고 쓰는' 구조로 바꿔보세요.", "hook": "🙂 큰 무리는 없지만, '이대로 괜찮나? 더 잘할 순 없나?' 싶은 마음이 들 때가 있죠.", "portrait": ["기본은 되어 있는 안정권 초입이에요. 약간의 여유도 있죠.", "여기서 저축률을 조금만 높이고 목표를 정하면 빠르게 튼튼해질 수 있어요."], "blind": ["'이대로 괜찮나' 싶은 마음, 그건 더 잘하고 싶은 좋은 신호예요.", "조급해 마세요. 지금 습관 하나만 더하면 충분히 튼튼해져요."], "close": "기본을 잘 갖춘 당신, 좋은 흐름을 타고 있어요. 💛", "behaviors": ["저축은 하는데 '이게 맞나' 싶어요.", "비상금은 있지만 목돈까진 아직이에요.", "가끔 충동구매로 계획이 흔들려요."]}, {"max": 80, "emoji": "💪", "name": "양호한 단계", "type": "HEALTHY", "sub": "여유와 대비가 갖춰진 든든한 상태", "grad": "linear-gradient(135deg,#3fb6c9,#2b9fd4)", "bar": "#2b9fd4", "desc": "비상금과 저축이 갖춰져 웬만한 일에는 흔들리지 않는 든든한 상태예요. 이제는 '지키기'를 넘어 '불리기'를 고민해볼 단계죠.", "strength": ["탄탄한 기반", "위기 대비 완료"], "asset": "투자·자산 배분으로 한 단계 더. 받을 수 있는 공제·환급도 끝까지 챙기면 효율이 올라가요.", "caution": "안주하지 말고 자산을 굴리는 전략을 더해보세요. 단, 무리한 투자는 금물!", "hook": "💪 비상금도 있고 저축도 굴러가서, 웬만한 일엔 크게 흔들리지 않죠.", "portrait": ["여유와 대비가 갖춰진 든든한 상태예요. 웬만한 일에는 흔들리지 않죠.", "이제는 '지키기'를 넘어 '불리기'를 고민해볼 단계예요."], "blind": ["여기서 만족해도 괜찮고, 더 욕심내도 좋아요. 둘 다 당신의 선택이에요.", "불리기가 부담되면 천천히 해도 돼요. 이미 충분히 든든하니까요."], "close": "흔들리지 않는 토대를 만든 당신, 정말 잘해왔어요. 💛", "behaviors": ["비상금·저축이 자리잡혀 웬만하면 안 흔들려요.", "이제 '불리는 법'을 알아보기 시작했어요.", "가끔 '더 잘할 수 있는데' 싶어요."]}, {"max": 100, "emoji": "🛡️", "name": "튼튼한 단계", "type": "STRONG", "sub": "재정이 매우 안정적인 최상위권", "grad": "linear-gradient(135deg,#26c6a8,#1eb396)", "bar": "#1eb396", "desc": "수입·지출·저축·대비가 모두 잘 잡힌, 재정적으로 매우 건강한 상태예요. 돈 걱정에서 비교적 자유로운 단계죠. 이 상태를 유지하면서 자산을 키워가면 돼요.", "strength": ["최상위 안정성", "여유로운 선택권", "흔들림 없음"], "asset": "자산 배분·세금 최적화로 효율을 높이세요. 받을 수 있는 혜택은 '안 받으면 손해'니 끝까지 챙기고요.", "caution": "안정적일수록 방심은 금물. 정기적으로 점검만 해주면 충분해요.", "hook": "🛡️ 돈 걱정에서 비교적 자유롭고, 수입·지출·저축이 착착 돌아가는 게 느껴지죠.", "portrait": ["수입·지출·저축·대비가 모두 잘 잡힌, 재정적으로 매우 건강한 상태예요.", "돈 걱정에서 비교적 자유로운 단계라, 이제 자산을 키워갈 차례예요."], "blind": ["방심만 안 하면 돼요. 지금처럼만 해도 충분히 훌륭해요.", "가끔 점검만 해주면 이 안정은 계속될 거예요."], "close": "돈 걱정에서 자유로운 당신, 그 자리까지 정말 수고 많았어요. 💛", "behaviors": ["돈 걱정에 잠 설치는 일이 거의 없어요.", "자동저축·투자가 알아서 굴러가요.", "주변에서 돈 관리 잘한다는 말을 들어요."]}];
   var GMIN="⚠️ 위태", GMAX="🛡️ 튼튼", BADGE_PRE="재무 건강 점수 ", BADGE_SUF="점";
-  var idx=0, total=0, current=null, pct=0, ageBand=20;
+  var idx=0, total=0, current=null, pct=0, ageBand=20, curIdx=0;
+  var HSTATLAB=["💰 저축력","🏦 비상금","📉 지출관리","🛡️ 위기대비","😌 돈 여유"];
+  var HSTATS=[[1,1,2,1,1],[2,1,3,2,2],[3,3,3,3,3],[4,4,4,4,3],[5,5,4,5,5]];
+  var HQUIP=["통장은 텅장, 그래도 시작이 반! 숨은 환급금부터 줍자 🌱","버티는 것도 능력이다. 비상금 한 줄부터 시작 💪","기본기는 탑재 완료. 여기서 한 끗만 더 🙂","웬만한 일엔 안 흔들림. 이제 '불리기' 모드 💪","돈 걱정에서 자유로운 인생 만렙 🛡️ 잘 해왔어요!"];
   function $(id){return document.getElementById(id);}
   function show(id){var s=document.querySelectorAll(".screen");for(var i=0;i<s.length;i++){s[i].classList.remove("active");}$(id).classList.add("active");window.scrollTo(0,0);}
   function start(){beginQuiz();}
@@ -156,12 +167,13 @@
     $("rTypeLabel").textContent="나의 유형 · "+t.type;
     $("rPct").textContent=BADGE_PRE+pct+BADGE_SUF;
     $("rHook").textContent=t.hook;$("rPortrait").innerHTML=(t.portrait||[]).map(function(x){return "<p>"+x+"</p>";}).join("");
+    curIdx=TIERS.indexOf(t);$("rQuip").textContent=HQUIP[curIdx]||t.sub;
+    var stEl=$("rStats");if(stEl){stEl.innerHTML="";var _sv=HSTATS[curIdx]||[];for(var _si=0;_si<HSTATLAB.length;_si++){var _sr=document.createElement("div");_sr.className="statrow";_sr.innerHTML='<span class="sl">'+HSTATLAB[_si]+'</span><span class="st"><span class="sf" style="background:'+(t.bar||"#3182f6")+'"></span></span><span class="sv">'+_sv[_si]+'/5</span>';_sr.setAttribute("data-v",_sv[_si]);stEl.appendChild(_sr);}}
     $("rBehav").innerHTML=(t.behaviors||[]).map(function(x){return '<div class="item"><span class="ic">🔹</span><span>'+x+'</span></div>';}).join("");$("rClose").textContent=t.close||"";$("rBlind").innerHTML=(t.blind||[]).map(function(x){return '<div class="item"><span class="ic">💛</span><span>'+x+'</span></div>';}).join("");
-    var st=$("rStrength");st.innerHTML="";
-    for(var j=0;j<t.strength.length;j++){var sp=document.createElement("span");sp.className="tag";sp.textContent="#"+t.strength[j];st.appendChild(sp);}
     if(t.asset){ $("rAssetSec").style.display="block"; $("rAsset").textContent=t.asset; } else { $("rAssetSec").style.display="none"; }
     $("gMin").textContent=GMIN; $("gMax").textContent=GMAX;
     show("result");
+    (function(){var srows=document.querySelectorAll("#rStats .statrow");requestAnimationFrame(function(){requestAnimationFrame(function(){for(var i=0;i<srows.length;i++){(function(row,i){var v=parseInt(row.getAttribute("data-v"),10)||0;var sf=row.querySelector(".sf");setTimeout(function(){sf.style.width=(v/5*100)+"%";},80+i*90);})(srows[i],i);}});});})();
     requestAnimationFrame(function(){ requestAnimationFrame(function(){ var g=$("gFill"); g.style.background=t.bar||"#3182f6"; g.style.width=pct+"%"; }); });
   }
   function shareUrl(){return location.origin+location.pathname+"?p="+pct;}
@@ -179,6 +191,32 @@
     else{ window.prompt("아래 링크를 복사하세요",txt); }
   }
   function openCh(ch){var u=encodeURIComponent(shareUrl()),t=encodeURIComponent(document.title);var url=ch==="x"?("https://twitter.com/intent/tweet?text="+t+"&url="+u):ch==="line"?("https://social-plugins.line.me/lineit/share?url="+u+"&text="+t):("https://www.facebook.com/sharer/sharer.php?u="+u);window.open(url,"_blank","noopener,noreferrer");}
+  function _wrap(c,t,cx,y,mw,lh){var line="",ls=[];for(var i=0;i<t.length;i++){var s2=line+t[i];if(c.measureText(s2).width>mw&&line){ls.push(line);line=t[i];}else line=s2;}ls.push(line);for(var j=0;j<ls.length;j++)c.fillText(ls[j],cx,y+j*lh);return ls.length;}
+  function _rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+  function buildCard(){var t=current,cv=document.createElement("canvas");cv.width=1080;cv.height=1350;var x=cv.getContext("2d");
+    var cols=(t.grad.match(/#[0-9a-fA-F]{6}/g))||["#3182f6","#1b64da"];
+    var g=x.createLinearGradient(0,0,300,1350);g.addColorStop(0,cols[0]);g.addColorStop(1,cols[1]);x.fillStyle=g;x.fillRect(0,0,1080,1350);
+    var FF='"Pretendard Variable",Pretendard,sans-serif';x.textAlign="center";
+    x.fillStyle="rgba(255,255,255,0.9)";x.font="700 38px "+FF;x.fillText("나의 재무 건강",540,118);
+    x.font="130px "+FF;x.fillText(t.emoji,540,278);
+    x.fillStyle="#fff";x.font="800 68px "+FF;_wrap(x,t.name,540,366,960,76);
+    x.fillStyle="rgba(255,255,255,0.96)";x.font="600 35px "+FF;_wrap(x,HQUIP[curIdx]||t.sub,540,436,910,46);
+    var pl="재무 건강 점수 "+pct+"점";x.font="700 36px "+FF;var pw=x.measureText(pl).width,pad=42,bw=pw+pad*2,bx=540-bw/2,by=516,bh=80;
+    x.fillStyle="rgba(255,255,255,0.96)";_rr(x,bx,by,bw,bh,40);x.fill();x.fillStyle=cols[1];x.fillText(pl,540,by+53);
+    x.font="700 40px "+FF;x.fillStyle="rgba(255,255,255,0.92)";x.fillText("📊 재무 능력치",540,650);
+    var sv=HSTATS[curIdx]||[],sy=724,sp=86,tx=430,tw=520,th=30;
+    for(var si=0;si<HSTATLAB.length;si++){var yy=sy+si*sp;
+      x.textAlign="left";x.fillStyle="#fff";x.font="700 37px "+FF;x.fillText(HSTATLAB[si],128,yy+8);
+      x.fillStyle="rgba(255,255,255,0.25)";_rr(x,tx,yy-22,tw,th,15);x.fill();
+      x.fillStyle="rgba(255,255,255,0.96)";_rr(x,tx,yy-22,Math.max(th,tw*sv[si]/5),th,15);x.fill();
+      x.textAlign="right";x.fillStyle="rgba(255,255,255,0.9)";x.font="800 32px "+FF;x.fillText(sv[si]+"/5",1000,yy+5);}
+    x.textAlign="center";x.fillStyle="rgba(255,255,255,0.92)";x.font="600 38px "+FF;x.fillText("나도 테스트하러 가기 👉 klened.github.io/test",540,1300);
+    return cv;}
+  function shareImage(){if(!current)return;var btn=$("imgBtn"),ot=btn.textContent;btn.disabled=true;btn.textContent="🖼️ 이미지 만드는 중...";
+    function go(){var cv=buildCard();cv.toBlob(function(blob){btn.textContent=ot;btn.disabled=false;var file=new File([blob],"health-result.png",{type:"image/png"});
+      if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file],text:"나의 재무 건강 점수! 너도 해봐 👉 "+shareUrl()}).catch(function(){});}
+      else{var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="health-result.png";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){alert("결과 이미지를 저장했어요! 📸 인스타·카톡에 올려보세요.");},200);}},"image/png");}
+    if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go,go);}else go();}
   function init(){
     var sp=new URLSearchParams(location.search), pp=parseInt(sp.get("p"),10);
     if(!isNaN(pp)&&pp>=0&&pp<=100){ renderResult(pp); $("sb").style.display="block"; $("restartBtn").textContent="👉 나도 테스트하기"; }
@@ -186,7 +224,7 @@
     $("shareBtn").addEventListener("click",doShare);
     $("copyBtn").addEventListener("click",function(){doCopy();});
     var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}
-    $("restartBtn").addEventListener("click",function(){show("intro");});
+    $("imgBtn").addEventListener("click",shareImage);$("restartBtn").addEventListener("click",function(){show("intro");});
   }
   if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
 })();

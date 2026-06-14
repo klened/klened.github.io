@@ -54,6 +54,12 @@
   .sec p{font-size:15.5px;line-height:1.65;word-break:keep-all;}
   .tags{display:flex;gap:8px;flex-wrap:wrap;}
   .tag{background:#fff;border:1px solid var(--line);font-size:13px;font-weight:600;padding:6px 12px;border-radius:99px;}
+  .statsec .statrow{display:flex;align-items:center;gap:10px;margin:12px 0;}
+  .statsec .sl{flex:0 0 96px;font-size:14px;font-weight:700;color:#333;white-space:nowrap;}
+  .statsec .st{flex:1;height:15px;background:#eef0f4;border-radius:8px;overflow:hidden;}
+  .statsec .sf{display:block;height:100%;width:0;border-radius:8px;transition:width .9s cubic-bezier(.2,.8,.2,1);}
+  .statsec .sv{flex:0 0 34px;text-align:right;font-size:13px;font-weight:800;color:#888;}
+  .rcard .rquip{margin-top:11px;font-size:14.5px;font-weight:700;color:#fff;background:rgba(255,255,255,0.2);padding:9px 15px;border-radius:18px;display:inline-block;line-height:1.55;word-break:keep-all;}
   .share-row{display:flex;gap:10px;margin:18px 0 8px;}
   .share-row .btn{font-size:15px;padding:15px;}
   .compare{font-size:13.5px;color:var(--gray);font-weight:600;}
@@ -101,14 +107,16 @@
       <div class="code" id="rCode"></div>
       <div class="rname" id="rName"></div>
       <div class="rsub" id="rSub"></div>
+      <div class="rquip" id="rQuip"></div>
       <div class="axes" id="rAxes"></div>
     </div>
     <div class="sec hooksec"><h3>🎬 이런 적, 있지 않으세요?</h3><p id="rHook"></p></div>
+    <div class="sec statsec"><h3>📊 머니 능력치</h3><div id="rStats"></div></div>
     <div class="sec portrait"><h3>📖 깊은 분석</h3><div id="rPortrait"></div></div>
-    <div class="sec"><h3>✨ 강점</h3><div class="tags" id="rStrength"></div></div>
     <div class="sec"><h3>💰 당신에게 어울리는 재테크</h3><p id="rFin"></p></div>
     <div class="sec"><h3>💛 이런 마음, 너무 자연스러워요</h3><div class="rlist" id="rBlind"></div></div>
     <div class="sec closingsec"><p id="rClose"></p></div>
+    <button class="btn" id="imgBtn" style="background:#ff8a3d;margin-bottom:10px;">📸 결과 이미지로 공유 / 저장</button>
     <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유하기</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
     <div class="chan-row"><button class="chan" data-ch="x">X</button><button class="chan chl" data-ch="line">LINE</button><button class="chan chf" data-ch="fb">f</button></div>
     <p class="compare">친구는 어떤 유형일까? 보내서 비교해보세요!</p>
@@ -141,6 +149,35 @@
     for(var ax=0;ax<4;ax++){ code+=AXES[ax][(cnt[ax][1]>cnt[ax][0])?1:0]; }
     renderResult(code);
   }
+  var STATLAB16=["💰 저축력","🛍 소비욕","🧮 계획력","🚀 모험심","🤝 나눔력"];
+  var QUIP16={SPGM:"느려도 괜찮아, 거북이가 결국 이긴다 🐢 통장은 안 비움.",SPGT:"내 살림 남 살림 다 챙김. 알뜰의 신 강림 🏡",SPRM:"모으는 건 기본, 굴리는 게 진짜 실력 📊",SPRT:"내 자산도 키우고 같이도 키운다 🌱 큰 그림러.",SIGM:"평소엔 알뜰, 가끔 갑자기 지름 🐿️ 반전 매력.",SIGT:"나한텐 짠돌이, 너한텐 산타 🎁 정이 많아 탈.",SIRM:"평소 개미, 기회 땐 화끈하게 베팅 🎲",SIRT:"모으다가도 사람·기회엔 올인 🔥 의리가 곧 나.",FPGM:"쓸 땐 쓴다, 단 예산 안에서 💳 똑똑한 플렉스.",FPGT:"오늘은 내가 쏜다, 물론 계획대로 🍽️ 센스 만렙.",FPRM:"즐기면서 투자도 과감하게 🚀 인생 한 번뿐.",FPRT:"크게 쓰고 크게 베푼다, 판을 키우는 사람 🎉",FIGM:"끌리면 산다, 현재가 곧 정답 🛍️ 욜로!",FIGT:"한턱 쏘기 장인, 어디서든 인싸 🥳",FIRM:"지름과 베팅의 짜릿함 헌터 💸 브레이크는 어디에…",FIRT:"사람·재미·기회에 올인 🎰 인생은 화끈하게."};
+  function statsFromCode(c){return [c.indexOf("S")>=0?5:2,c.indexOf("F")>=0?5:2,c.indexOf("P")>=0?5:2,c.indexOf("R")>=0?5:2,c.indexOf("T")>=0?5:2];}
+  function _wrap(c,t,cx,y,mw,lh){var line="",ls=[];for(var i=0;i<t.length;i++){var s2=line+t[i];if(c.measureText(s2).width>mw&&line){ls.push(line);line=t[i];}else line=s2;}ls.push(line);for(var j=0;j<ls.length;j++)c.fillText(ls[j],cx,y+j*lh);return ls.length;}
+  function _rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+  function buildCard(){var code=current.code,t=current.t;var cv=document.createElement("canvas");cv.width=1080;cv.height=1350;var x=cv.getContext("2d");
+    var cols=code.charAt(0)==="S"?["#3182f6","#1b64da"]:["#f368a8","#e84393"];
+    var g=x.createLinearGradient(0,0,300,1350);g.addColorStop(0,cols[0]);g.addColorStop(1,cols[1]);x.fillStyle=g;x.fillRect(0,0,1080,1350);
+    var FF='"Pretendard Variable",Pretendard,sans-serif';x.textAlign="center";
+    x.fillStyle="rgba(255,255,255,0.9)";x.font="700 38px "+FF;x.fillText("나의 머니 유형",540,118);
+    x.font="130px "+FF;x.fillText(t.e,540,278);
+    x.fillStyle="#fff";x.font="800 68px "+FF;_wrap(x,t.n,540,366,960,76);
+    x.fillStyle="rgba(255,255,255,0.96)";x.font="600 35px "+FF;_wrap(x,QUIP16[code]||t.s,540,436,910,46);
+    var pl=code;x.font="800 38px "+FF;var pw=x.measureText(pl).width,pad=44,bw=pw+pad*2,bx=540-bw/2,by=516,bh=80;
+    x.fillStyle="rgba(255,255,255,0.96)";_rr(x,bx,by,bw,bh,40);x.fill();x.fillStyle=cols[1];x.fillText(pl,540,by+54);
+    x.font="700 40px "+FF;x.fillStyle="rgba(255,255,255,0.92)";x.fillText("📊 머니 능력치",540,650);
+    var sv=statsFromCode(code),sy=724,sp=86,tx=430,tw=520,th=30;
+    for(var si=0;si<STATLAB16.length;si++){var yy=sy+si*sp;
+      x.textAlign="left";x.fillStyle="#fff";x.font="700 37px "+FF;x.fillText(STATLAB16[si],128,yy+8);
+      x.fillStyle="rgba(255,255,255,0.25)";_rr(x,tx,yy-22,tw,th,15);x.fill();
+      x.fillStyle="rgba(255,255,255,0.96)";_rr(x,tx,yy-22,Math.max(th,tw*sv[si]/5),th,15);x.fill();
+      x.textAlign="right";x.fillStyle="rgba(255,255,255,0.9)";x.font="800 32px "+FF;x.fillText(sv[si]+"/5",1000,yy+5);}
+    x.textAlign="center";x.fillStyle="rgba(255,255,255,0.92)";x.font="600 38px "+FF;x.fillText("나도 테스트하러 가기 👉 klened.github.io/test",540,1300);
+    return cv;}
+  function shareImage(){if(!current)return;var btn=$("imgBtn"),ot=btn.textContent;btn.disabled=true;btn.textContent="🖼️ 이미지 만드는 중...";
+    function go(){var cv=buildCard();cv.toBlob(function(blob){btn.textContent=ot;btn.disabled=false;var file=new File([blob],"type16-result.png",{type:"image/png"});
+      if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file],text:"나의 머니 유형 결과! 너도 해봐 👉 "+shareUrl()}).catch(function(){});}
+      else{var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="type16-result.png";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){alert("결과 이미지를 저장했어요! 📸 인스타·카톡에 올려보세요.");},200);}},"image/png");}
+    if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go,go);}else go();}
   function renderResult(code){
     if(!T[code])return;
     var tags=[]; for(var ti=0;ti<4;ti++){ tags.push(POLE[code.charAt(ti)]); }
@@ -150,6 +187,9 @@
     $("rCode").textContent=code;
     $("rName").textContent=t.n;
     $("rSub").textContent=t.s;
+    $("rQuip").textContent=QUIP16[code]||t.s;
+    var _barCol=code.charAt(0)==="S"?"#3182f6":"#e84393",_sv=statsFromCode(code);
+    var stEl=$("rStats");if(stEl){stEl.innerHTML="";for(var _si=0;_si<STATLAB16.length;_si++){var _sr=document.createElement("div");_sr.className="statrow";_sr.innerHTML='<span class="sl">'+STATLAB16[_si]+'</span><span class="st"><span class="sf" style="background:'+_barCol+'"></span></span><span class="sv">'+_sv[_si]+'/5</span>';_sr.setAttribute("data-v",_sv[_si]);stEl.appendChild(_sr);}}
     $("rHook").textContent=t.hook;
     var c0=code.charAt(0),c1=code.charAt(1),c2=code.charAt(2),c3=code.charAt(3);
     var paras=[AX[c0]+" "+AX[c1], AX[c2]+" "+AX[c3], "이 네 가지 색이 모여, 당신은 '"+t.n+"' — "+t.s+"가 되는 거예요."];
@@ -159,9 +199,8 @@
     $("rBlind").innerHTML=(t.blind||[]).map(function(x){return '<div class="item"><span class="ic">💛</span><span>'+x+'</span></div>';}).join("");
     var ax=$("rAxes");ax.innerHTML="";
     tags.forEach(function(x){var sp=document.createElement("span");sp.className="at";sp.textContent=x;ax.appendChild(sp);});
-    var st=$("rStrength");st.innerHTML="";
-    t.g.forEach(function(x){var sp=document.createElement("span");sp.className="tag";sp.textContent="#"+x;st.appendChild(sp);});
     show("result");
+    (function(){var srows=document.querySelectorAll("#rStats .statrow");requestAnimationFrame(function(){requestAnimationFrame(function(){for(var i=0;i<srows.length;i++){(function(row,i){var v=parseInt(row.getAttribute("data-v"),10)||0;var sf=row.querySelector(".sf");setTimeout(function(){sf.style.width=(v/5*100)+"%";},80+i*90);})(srows[i],i);}});});})();
   }
   function shareUrl(){return location.origin+location.pathname+(current?"?t="+current.code:"");}
   function doShare(){
@@ -177,7 +216,7 @@
     var sp=new URLSearchParams(location.search), st=(sp.get("t")||"").toUpperCase();
     if(T[st]){ renderResult(st); $("sb").style.display="block"; $("restartBtn").textContent="👉 나도 테스트하기"; }
     $("startBtn").addEventListener("click",start);$("shareBtn").addEventListener("click",doShare);$("copyBtn").addEventListener("click",function(){doCopy();});
-    var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}$("restartBtn").addEventListener("click",function(){show("intro");});}
+    var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}$("imgBtn").addEventListener("click",shareImage);$("restartBtn").addEventListener("click",function(){show("intro");});}
   if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
 })();
 </script>

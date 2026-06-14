@@ -63,6 +63,12 @@
   .customsec h3{color:#a86a12;}
   .customsec p{font-size:15.5px;line-height:1.72;margin-bottom:11px;word-break:keep-all;}
   .customsec p:last-child{margin-bottom:0;}
+  .statsec .statrow{display:flex;align-items:center;gap:10px;margin:12px 0;}
+  .statsec .sl{flex:0 0 96px;font-size:14px;font-weight:700;color:#333;white-space:nowrap;}
+  .statsec .st{flex:1;height:15px;background:#eef0f4;border-radius:8px;overflow:hidden;}
+  .statsec .sf{display:block;height:100%;width:0;border-radius:8px;transition:width .9s cubic-bezier(.2,.8,.2,1);}
+  .statsec .sv{flex:0 0 34px;text-align:right;font-size:13px;font-weight:800;color:#888;}
+  .rcard .rquip{margin-top:11px;font-size:14.5px;font-weight:700;color:#fff;background:rgba(255,255,255,0.2);padding:9px 15px;border-radius:18px;display:inline-block;line-height:1.55;word-break:keep-all;}
   .tags{display:flex;gap:8px;flex-wrap:wrap;}
   .tag{background:#fff;border:1px solid var(--line);font-size:13px;font-weight:600;padding:6px 12px;border-radius:99px;}
   .funlabel{font-size:11px;font-weight:600;color:var(--gray);background:var(--gray-light);padding:3px 8px;border-radius:99px;margin-left:6px;vertical-align:middle;}
@@ -117,18 +123,19 @@
       <div class="rtype" id="rTypeLabel">나의 머니 캐릭터</div>
       <div class="rname" id="rName"></div>
       <div class="rsub" id="rSub"></div>
+      <div class="rquip" id="rQuip"></div>
       <div class="pctbadge" id="rPct"></div>
     </div>
+    <div class="sec statsec"><h3>📊 내 머니 능력치</h3><div id="rStats"></div></div>
     <div class="sec hooksec"><h3>🎬 이런 적, 있지 않으세요?</h3><p id="rHook"></p></div>
-    <div class="sec idsec"><p id="rIdentity"></p></div>
     <div class="sec customsec"><h3>🎯 당신만의 머니 분석</h3><div id="rCustom"></div></div>
     <div class="sec" id="barsSec"><h3>📊 나의 머니 성향 분포</h3><div id="rBars"></div></div>
-    <div class="sec"><h3>✨ 이게 당신의 강점이에요</h3><div class="tags" id="rStrength"></div></div>
     <div class="sec"><h3>👥 비슷한 유형은 보통 이래요</h3><div class="rlist" id="rBehav"></div></div>
     <div class="sec"><h3>💛 이런 마음, 너무 자연스러워요</h3><div class="rlist" id="rBlind"></div></div>
     <div class="sec"><h3>💰 당신에게 어울리는 재테크</h3><p id="rFin"></p></div>
     <div class="sec"><h3>🧬 비슷한 MBTI <span class="funlabel">재미로 보기</span></h3><p id="rMbti"></p></div>
     <div class="sec"><h3>💞 친구와 머니 궁합</h3><p class="compat-guide">친구는 어떤 유형일까요? 골라서 확인하세요!</p><div class="cbtns" id="cBtns"></div><div class="cresult" id="cResult"></div></div>
+    <button class="btn" id="imgBtn" style="background:#ff8a3d;margin-bottom:10px;">📸 결과 이미지로 공유 / 저장</button>
     <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유하기</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
     <div class="chan-row"><button class="chan" data-ch="x">X</button><button class="chan chl" data-ch="line">LINE</button><button class="chan chf" data-ch="fb">f</button></div>
     <p class="compare">친구에게 보내고 궁합까지 맞춰보세요!</p>
@@ -145,6 +152,8 @@
   var FIN={avoid:"신경 쓰기 싫은 당신에겐 \u0027한 번 세팅하면 끝\u0027인 방식이 딱이에요. 자동이체 적금이나 알아서 굴러가는 적립식 분산투자처럼, 손 안 가는 재테크가 잘 맞아요.",worship:"에너지 넘치는 당신에겐 \u0027목표가 보이는\u0027 재테크가 어울려요. \u0027여행 통장\u0027, \u0027드림 통장\u0027처럼 쓰고 싶은 목표별로 계좌를 나눠두면 모으는 것도 즐거워져요.",status:"안목 좋은 당신에겐 \u0027나를 키우는\u0027 투자가 잘 맞아요. 보여주기용 소비 대신 그 감각으로 우량 자산이나 자기계발에 투자하면 진짜 가치가 쌓여요.",vigil:"이미 지키기 고수인 당신, 이제 안전자산의 일부만 \u0027천천히 불리기\u0027로 옮겨봐도 좋아요. 무리 없는 적립식·분산 투자가 당신 스타일에 딱이에요."};
   var BEHAV={"avoid": ["통장 잔고를 정확히는 몰라요.", "가계부 앱은 깔았다 안 봐요.", "돈 얘기가 나오면 슬쩍 화제를 돌려요."], "worship": ["세일·신상에 마음이 자주 흔들려요.", "'이번 달엔 아껴야지' 다짐 후 다음 날 지름.", "사고 나서 '왜 샀지' 한 적이 있어요."], "status": ["남들 시선에 소비가 좌우될 때가 있어요.", "SNS 보다 갖고 싶은 게 생겨요.", "좋은 것·브랜드를 알아보는 눈이 있어요."], "vigil": ["가계부·비상금을 꼼꼼히 챙겨요.", "돈 쓰고 나면 잘 썼나 한 번 더 생각해요.", "받을 수 있는 혜택은 다 챙기려 해요."]};
   var TYPES=["avoid","worship","status","vigil"];
+  var QUIP={avoid:"통장 잔고? 모르는 게 약. 돈아, 너는 네 갈 길 가라 🍃",worship:"일단 지르고 통장은 나중에 운다 💸 인생은 한 방이니까!",status:"내가 곧 브랜드. 플렉스가 나의 자기소개서 ✨",vigil:"1원도 못 나간다. 통장 지킴이 모드 ON 🛡️"};
+  var STATS={avoid:[2,3,1,1,5],worship:[2,5,3,2,2],status:[2,5,3,3,1],vigil:[5,1,4,5,3]},STATLAB=["💰 저축력","🛍 소비욕","📈 투자력","🧮 계획력","🧘 멘탈방어"];
   function getCompat(a,b){return COMPAT[[a,b].sort().join("|")];}
   function hearts(n){var s="";for(var i=0;i<5;i++){s+=i<n?"❤️":"🤍";}return s;}
   var idx=0, score={avoid:0,worship:0,status:0,vigil:0}, ans={}, ageBand=20, currentType="avoid", current=null;
@@ -181,8 +190,9 @@
     $("rSub").textContent=r.sub;
     $("rTypeLabel").textContent="나의 머니 캐릭터 · "+r.type;
     $("rPct").textContent=r.pctLabel;
+    $("rQuip").textContent=QUIP[best]||r.sub;
     $("rHook").textContent=r.hook;
-    $("rIdentity").textContent=r.identity;
+    var stEl=$("rStats");if(stEl){stEl.innerHTML="";var _sv=STATS[best]||[];for(var _si=0;_si<STATLAB.length;_si++){var _sr=document.createElement("div");_sr.className="statrow";_sr.innerHTML='<span class="sl">'+STATLAB[_si]+'</span><span class="st"><span class="sf" style="background:'+r.color+'"></span></span><span class="sv">'+_sv[_si]+'/5</span>';_sr.setAttribute("data-v",_sv[_si]);stEl.appendChild(_sr);}}
     if(shared){var _cs=document.querySelector(".customsec");if(_cs)_cs.style.display="none";}
     else{
     var paras=[];
@@ -194,7 +204,6 @@
     paras.push(CLOSING[best]);
     $("rCustom").innerHTML=paras.map(function(t){return "<p>"+t+"</p>";}).join("");
     }
-    var st=$("rStrength");st.innerHTML="";r.strength.forEach(function(x){var sp=document.createElement("span");sp.className="tag";sp.textContent="#"+x;st.appendChild(sp);});
     $("rBehav").innerHTML=(BEHAV[best]||[]).map(function(x){return '<div class="item"><span class="ic">🔹</span><span>'+x+'</span></div>';}).join("");
     $("rBlind").innerHTML=r.blind.map(function(x){return '<div class="item"><span class="ic">💛</span><span>'+x+'</span></div>';}).join("");
     $("rFin").textContent=FIN[best];
@@ -221,6 +230,7 @@
       cb.appendChild(b);
     });
     show("result");
+    (function(){var srows=document.querySelectorAll("#rStats .statrow");requestAnimationFrame(function(){requestAnimationFrame(function(){for(var i=0;i<srows.length;i++){(function(row,i){var v=parseInt(row.getAttribute("data-v"),10)||0;var sf=row.querySelector(".sf");setTimeout(function(){sf.style.width=(v/5*100)+"%";},80+i*90);})(srows[i],i);}});});})();
     if(shared||typeof bars==="undefined"||!bars)return;
     var rows=bars.querySelectorAll(".barrow");
     requestAnimationFrame(function(){requestAnimationFrame(function(){
@@ -238,6 +248,50 @@
     if(navigator.share){navigator.share({title:document.title,text:text,url:url}).catch(function(){});}else{doCopy(text+" "+url);}
   }
   function doCopy(c){var url=shareUrl();var txt=c||url;function done(){var b=$("copyBtn");var o=b.textContent;b.textContent="✅ 복사 완료!";setTimeout(function(){b.textContent=o;},1500);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){window.prompt("아래 링크를 복사하세요",txt);});}else{window.prompt("아래 링크를 복사하세요",txt);}}
+  function _wrap(c,t,cx,y,mw,lh){var line="",ls=[];for(var i=0;i<t.length;i++){var s2=line+t[i];if(c.measureText(s2).width>mw&&line){ls.push(line);line=t[i];}else line=s2;}ls.push(line);for(var j=0;j<ls.length;j++)c.fillText(ls[j],cx,y+j*lh);return ls.length;}
+  function _rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+  async function buildCard(){
+    if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(e){}}
+    var r=current,cv=document.createElement("canvas");cv.width=1080;cv.height=1350;var x=cv.getContext("2d");
+    var cols=(r.grad.match(/#[0-9a-fA-F]{6}/g))||["#3182f6","#1b64da"];
+    var g=x.createLinearGradient(0,0,300,1350);g.addColorStop(0,cols[0]);g.addColorStop(1,cols[1]);
+    x.fillStyle=g;x.fillRect(0,0,1080,1350);
+    var FF='"Pretendard Variable",Pretendard,"Apple SD Gothic Neo",sans-serif';
+    x.textAlign="center";
+    x.fillStyle="rgba(255,255,255,0.9)";x.font="700 38px "+FF;x.fillText("나의 머니 캐릭터 · "+r.type,540,118);
+    x.font="130px "+FF;x.fillText(r.emoji,540,278);
+    x.fillStyle="#fff";x.font="800 68px "+FF;_wrap(x,r.name,540,366,960,76);
+    x.fillStyle="rgba(255,255,255,0.96)";x.font="600 35px "+FF;_wrap(x,QUIP[currentType]||r.sub,540,436,910,46);
+    var pl=r.pctLabel;x.font="700 36px "+FF;var pw=x.measureText(pl).width,pad=42,bw=pw+pad*2,bx=540-bw/2,by=516,bh=80;
+    x.fillStyle="rgba(255,255,255,0.96)";_rr(x,bx,by,bw,bh,40);x.fill();
+    x.fillStyle=cols[1];x.fillText(pl,540,by+53);
+    x.font="700 40px "+FF;x.fillStyle="rgba(255,255,255,0.92)";x.fillText("📊 내 머니 능력치",540,650);
+    var sv=STATS[currentType]||[],sy=724,sp=86,tx=430,tw=520,th=30;
+    for(var si=0;si<STATLAB.length;si++){var yy=sy+si*sp;
+      x.textAlign="left";x.fillStyle="#fff";x.font="700 37px "+FF;x.fillText(STATLAB[si],128,yy+8);
+      x.fillStyle="rgba(255,255,255,0.25)";_rr(x,tx,yy-22,tw,th,15);x.fill();
+      x.fillStyle="rgba(255,255,255,0.96)";_rr(x,tx,yy-22,Math.max(th,tw*sv[si]/5),th,15);x.fill();
+      x.textAlign="right";x.fillStyle="rgba(255,255,255,0.9)";x.font="800 32px "+FF;x.fillText(sv[si]+"/5",1000,yy+5);
+    }
+    x.textAlign="center";x.fillStyle="rgba(255,255,255,0.92)";x.font="600 38px "+FF;x.fillText("나도 테스트하러 가기 👉 klened.github.io/test",540,1300);
+    return cv;
+  }
+  async function shareImage(){
+    if(!current)return;var btn=$("imgBtn"),ot=btn.textContent;btn.disabled=true;btn.textContent="🖼️ 이미지 만드는 중...";
+    try{
+      var cv=await buildCard();
+      cv.toBlob(function(blob){
+        btn.textContent=ot;btn.disabled=false;
+        var file=new File([blob],"money-result.png",{type:"image/png"});
+        if(navigator.canShare&&navigator.canShare({files:[file]})){
+          navigator.share({files:[file],text:"나의 머니 캐릭터 결과! 너도 해봐 👉 "+shareUrl()}).catch(function(){});
+        }else{
+          var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="money-result.png";document.body.appendChild(a);a.click();a.remove();
+          setTimeout(function(){alert("결과 이미지를 저장했어요! 📸 인스타 스토리·카톡에 올려보세요.");},200);
+        }
+      },"image/png");
+    }catch(e){btn.textContent=ot;btn.disabled=false;}
+  }
   function openCh(ch){var u=encodeURIComponent(shareUrl()),t=encodeURIComponent(document.title);var url=ch==="x"?("https://twitter.com/intent/tweet?text="+t+"&url="+u):ch==="line"?("https://social-plugins.line.me/lineit/share?url="+u+"&text="+t):("https://www.facebook.com/sharer/sharer.php?u="+u);window.open(url,"_blank","noopener,noreferrer");}
   function init(){
     var sp=new URLSearchParams(location.search), st=sp.get("t");
@@ -246,7 +300,7 @@
     $("shareBtn").addEventListener("click",doShare);
     $("copyBtn").addEventListener("click",function(){doCopy();});
     var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}
-    $("restartBtn").addEventListener("click",function(){show("intro");});
+    $("imgBtn").addEventListener("click",shareImage);$("restartBtn").addEventListener("click",function(){show("intro");});
   }
   if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
 })();

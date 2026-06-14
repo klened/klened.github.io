@@ -140,6 +140,7 @@
       <p class="gsub" id="rStats" style="margin-top:13px;"></p>
     </div>
     <div class="sec adv"><h3 style="color:#1b64da;">🧭 앞으로 이렇게 해보세요</h3><p id="rAdv"></p></div>
+    <button class="btn" id="imgBtn" style="background:#ff8a3d;margin-bottom:10px;">📸 결과 이미지로 공유 / 저장</button>
     <div class="share-row"><button class="btn" id="shareBtn">📤 결과 공유</button><button class="btn ghost" id="copyBtn">🔗 링크 복사</button></div>
     <div class="chan-row"><button class="chan" data-ch="x">X</button><button class="chan chl" data-ch="line">LINE</button><button class="chan chf" data-ch="fb">f</button></div>
     <button class="restart" id="restartBtn">다시 진단하기</button>
@@ -271,12 +272,46 @@
   function shareUrl(){return location.origin+location.pathname+(R?"?s="+R.score+"&b="+R.band:"");}
   function doShare(){if(!R)return;var t="내 또래("+BM[R.band].label+") 자산 진단: "+R.score+"점 ("+R.grade+")! 너도 해봐.";var u=shareUrl();if(navigator.share)navigator.share({title:document.title,text:t,url:u}).catch(function(){});else doCopy(t+" "+u);}
   function doCopy(c){var u=shareUrl(),txt=c||u;function d(){var b=$("copyBtn"),o=b.textContent;b.textContent="✅ 복사 완료!";setTimeout(function(){b.textContent=o;},1500);}if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(d).catch(function(){window.prompt("아래 링크를 복사하세요",txt);});else window.prompt("아래 링크를 복사하세요",txt);}
+  function _wrap(c,t,cx,y,mw,lh){var line="",ls=[];for(var i=0;i<t.length;i++){var s2=line+t[i];if(c.measureText(s2).width>mw&&line){ls.push(line);line=t[i];}else line=s2;}ls.push(line);for(var j=0;j<ls.length;j++)c.fillText(ls[j],cx,y+j*lh);return ls.length;}
+  function _rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+  function _gi(sc){
+    if(sc>=85)return{l:"S등급",n:"최상위권",o:"또래 사이에서 손꼽히는 자산가예요!",c:["#f5b942","#e0851a"]};
+    if(sc>=70)return{l:"A등급",n:"상위권",o:"또래보다 한참 앞서 있어요. 멋져요!",c:["#3182f6","#1b64da"]};
+    if(sc>=50)return{l:"B등급",n:"평균 이상",o:"또래 중앙값보다 잘 모았어요.",c:["#26c6a8","#1aa088"]};
+    if(sc>=30)return{l:"C등급",n:"성장 중",o:"아직 쌓는 중, 충분히 따라잡을 수 있어요.",c:["#ff9a3d","#f0701a"]};
+    return{l:"D등급",n:"출발선",o:"지금이 시작이에요. 비교에 기죽지 마세요!",c:["#7c8aff","#5a6bff"]};
+  }
+  function buildCard(){
+    var bm=BM[R.band],gi=_gi(R.score),aTop=100-R.score;
+    var cv=document.createElement("canvas");cv.width=1080;cv.height=1350;var x=cv.getContext("2d");
+    var g=x.createLinearGradient(0,0,300,1350);g.addColorStop(0,gi.c[0]);g.addColorStop(1,gi.c[1]);x.fillStyle=g;x.fillRect(0,0,1080,1350);
+    var FF='"Pretendard Variable",Pretendard,sans-serif';x.textAlign="center";
+    x.fillStyle="rgba(255,255,255,0.9)";x.font="700 40px "+FF;x.fillText("같은 "+bm.label+" 기준 · 또래 자산 진단",540,160);
+    x.fillStyle="#fff";x.font="800 102px "+FF;x.fillText(gi.l,540,335);
+    x.fillStyle="rgba(255,255,255,0.95)";x.font="600 50px "+FF;x.fillText(gi.n,540,415);
+    x.strokeStyle="rgba(255,255,255,0.35)";x.lineWidth=2;x.beginPath();x.moveTo(330,478);x.lineTo(750,478);x.stroke();
+    x.fillStyle="rgba(255,255,255,0.92)";x.font="600 46px "+FF;x.fillText("또래("+bm.label+") 중 내 자산은",540,595);
+    x.fillStyle="#fff";x.font="800 152px "+FF;x.fillText("상위 "+aTop+"%",540,775);
+    var ps="자산점수 "+R.score+" / 100점";x.font="700 46px "+FF;var pw=x.measureText(ps).width,pad=50,bw=pw+pad*2,bx=540-bw/2,by=885,bh=98;
+    x.fillStyle="rgba(255,255,255,0.96)";_rr(x,bx,by,bw,bh,49);x.fill();x.fillStyle=gi.c[1];x.fillText(ps,540,by+64);
+    x.fillStyle="rgba(255,255,255,0.95)";x.font="500 44px "+FF;_wrap(x,gi.o,540,1070,900,60);
+    x.fillStyle="rgba(255,255,255,0.92)";x.font="600 40px "+FF;x.fillText("나도 진단하기 👉 klened.github.io/test",540,1290);
+    return cv;
+  }
+  function shareImage(){
+    if(!R)return;var btn=$("imgBtn"),ot=btn.textContent;btn.disabled=true;btn.textContent="🖼️ 이미지 만드는 중...";
+    function go(){var cv=buildCard();cv.toBlob(function(blob){btn.textContent=ot;btn.disabled=false;var file=new File([blob],"asset-result.png",{type:"image/png"});
+      if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file],text:"내 또래 자산 진단 결과! 너도 해봐 👉 "+shareUrl()}).catch(function(){});}
+      else{var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="asset-result.png";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){alert("결과 이미지를 저장했어요! 📸 인스타·카톡에 올려보세요.");},200);}
+    },"image/png");}
+    if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go,go);}else go();
+  }
   function openCh(ch){var u=encodeURIComponent(shareUrl()),t=encodeURIComponent(document.title);var url=ch==="x"?("https://twitter.com/intent/tweet?text="+t+"&url="+u):ch==="line"?("https://social-plugins.line.me/lineit/share?url="+u+"&text="+t):("https://www.facebook.com/sharer/sharer.php?u="+u);window.open(url,"_blank","noopener,noreferrer");}
   function init(){
     var sp=new URLSearchParams(location.search), ss=parseInt(sp.get("s"),10), bb=sp.get("b");
     if(!isNaN(ss)&&ss>=0&&ss<=100&&BM[bb]){ renderShared(ss,bb); $("sb").style.display="block"; $("restartBtn").textContent="👉 나도 진단하기"; }
     $("goBtn").addEventListener("click",diagnose);bindLive("net","netLive");bindLive("income","incomeLive");$("shareBtn").addEventListener("click",doShare);$("copyBtn").addEventListener("click",function(){doCopy();});
-    var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}$("restartBtn").addEventListener("click",function(){show("intro");});}
+    var _ch=document.querySelectorAll(".chan");for(var _i=0;_i<_ch.length;_i++){_ch[_i].addEventListener("click",function(){openCh(this.getAttribute("data-ch"));});}$("imgBtn").addEventListener("click",shareImage);$("restartBtn").addEventListener("click",function(){show("intro");});}
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();
 </script>
