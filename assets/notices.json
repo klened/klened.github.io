@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05T00:04:44.789406Z",
+  "updated": "2026-07-06T00:10:17.871240Z",
   "source": "공공데이터포털 (LH 분양임대공고문 조회) 자동 갱신",
   "lookbackDays": 60,
   "count": 93,
@@ -145,16 +145,6 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020233&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=09&mi=1026"
     },
     {
-      "title": "[정정공고]2026년 1차 대구경북지역 든든전세주택 입주자 모집공고(분양전환형)",
-      "category": "주거복지",
-      "subtype": "매입임대",
-      "region": "대구광역시 외",
-      "posted": "2026.06.29",
-      "deadline": "2026.07.15",
-      "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020250&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
-    },
-    {
       "title": "[정정공고]2026년 1차 대구경북지역 든든전세주택 입주자 모집공고(비분양전환형)",
       "category": "주거복지",
       "subtype": "매입임대",
@@ -163,6 +153,16 @@
       "deadline": "2026.07.15",
       "status": "공고중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020251&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
+    },
+    {
+      "title": "[정정공고]2026년 1차 대구경북지역 든든전세주택 입주자 모집공고(분양전환형)",
+      "category": "주거복지",
+      "subtype": "매입임대",
+      "region": "대구광역시 외",
+      "posted": "2026.06.29",
+      "deadline": "2026.07.15",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020250&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
     },
     {
       "title": "부천시 취·창업 청년 지원 주택 예비입주자 모집공고",
@@ -205,6 +205,16 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020264&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=24&mi=1069"
     },
     {
+      "title": "[경기남부] 26년 2차 청년 매입임대주택 예비입주자 모집공고",
+      "category": "주거복지",
+      "subtype": "매입임대",
+      "region": "경기도",
+      "posted": "2026.06.30",
+      "deadline": "2026.07.15",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020240&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
+    },
+    {
       "title": "[경기남부] 신혼·신생아 매입임대주택Ⅱ(전세형) 예비입주자 모집공고",
       "category": "주거복지",
       "subtype": "매입임대",
@@ -223,16 +233,6 @@
       "deadline": "2026.07.15",
       "status": "공고중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020241&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
-    },
-    {
-      "title": "[경기남부] 26년 2차 청년 매입임대주택 예비입주자 모집공고",
-      "category": "주거복지",
-      "subtype": "매입임대",
-      "region": "경기도",
-      "posted": "2026.06.30",
-      "deadline": "2026.07.15",
-      "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020240&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
     },
     {
       "title": "[경기남부] 신혼·신생아 매입임대주택Ⅰ 예비입주자 모집공고",
@@ -705,6 +705,16 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0007713&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
+      "title": "대전둔산1 영구임대상가 입점자 모집공고",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "대전광역시",
+      "posted": "2026.07.03",
+      "deadline": "2026.07.13",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=LN-0002835&ccrCnntSysDsCd=04&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
       "title": "천안성정4 영구임대상가 입점자 모집공고(장기미임대)",
       "category": "상가",
       "subtype": "임대상가(추첨)",
@@ -793,16 +803,6 @@
       "deadline": "2026.07.13",
       "status": "공고중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=LN-0002836&ccrCnntSysDsCd=04&uppAisTpCd=22&aisTpCd=24&mi=1069"
-    },
-    {
-      "title": "대전둔산1 영구임대상가 입점자 모집공고",
-      "category": "상가",
-      "subtype": "임대상가(추첨)",
-      "region": "대전광역시",
-      "posted": "2026.07.03",
-      "deadline": "2026.07.13",
-      "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=LN-0002835&ccrCnntSysDsCd=04&uppAisTpCd=22&aisTpCd=24&mi=1069"
     },
     {
       "title": "[인천지역본부]26년 4차 신혼·신생아Ⅱ(전세형) 예비입주자 모집공고(인천,부천)",
