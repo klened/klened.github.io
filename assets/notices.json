@@ -1,9 +1,19 @@
 {
-  "updated": "2026-08-22T23:23:52.590127Z",
+  "updated": "2026-08-23T23:23:54.079043Z",
   "source": "공공데이터포털 (LH 분양임대공고문 조회) 자동 갱신",
   "lookbackDays": 60,
   "count": 97,
   "notices": [
+    {
+      "title": "[수원시]수원시 역세권 새빛 청년존(Zone) 4호 및 1호 예비입주자 모집공고",
+      "category": "주거복지",
+      "subtype": "매입임대",
+      "region": "경기도",
+      "posted": "2026.08.13",
+      "deadline": "2026.08.28",
+      "status": "접수중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020560&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
+    },
     {
       "title": "남양주진접2 근린생활시설용지 공급공고(18개월 거치, 5년 무이자)",
       "category": "토지",
@@ -133,16 +143,6 @@
       "deadline": "2027.06.30",
       "status": "공고중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=0000061155&ccrCnntSysDsCd=02&uppAisTpCd=05&aisTpCd=05&mi=1027"
-    },
-    {
-      "title": "[수원시]수원시 역세권 새빛 청년존(Zone) 4호 및 1호 예비입주자 모집공고",
-      "category": "주거복지",
-      "subtype": "매입임대",
-      "region": "경기도",
-      "posted": "2026.08.13",
-      "deadline": "2026.08.28",
-      "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020560&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
     },
     {
       "title": "이천장호원 B2블록 통합공공임대주택 예비입주자 모집공고",
