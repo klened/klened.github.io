@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-10T02:10:51.059637Z",
+  "updated": "2026-10-11T01:40:26.919919Z",
   "source": "공공데이터포털 (LH 분양임대공고문 조회) 자동 갱신",
   "lookbackDays": 60,
   "count": 92,
@@ -35,16 +35,6 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020841&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
     },
     {
-      "title": "[전북지역본부]2026년 3차 청년매입임대주택 예비입주자 모집공고",
-      "category": "주거복지",
-      "subtype": "매입임대",
-      "region": "전북특별자치도",
-      "posted": "2026.09.30",
-      "deadline": "2026.10.14",
-      "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020821&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
-    },
-    {
       "title": "[전북지역본부]2026년 3차 신혼·신생아 매입임대주택Ⅱ(전세형) 예비입주자 모집공고",
       "category": "주거복지",
       "subtype": "매입임대",
@@ -73,6 +63,16 @@
       "deadline": "2026.10.23",
       "status": "공고중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020802&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
+    },
+    {
+      "title": "[전북지역본부]2026년 3차 청년매입임대주택 예비입주자 모집공고",
+      "category": "주거복지",
+      "subtype": "매입임대",
+      "region": "전북특별자치도",
+      "posted": "2026.09.30",
+      "deadline": "2026.10.14",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020821&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
     },
     {
       "title": "양산 삼성파크빌 자격완화 입주자 선착순 모집(2026.09.30)",
@@ -235,16 +235,6 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020859&ccrCnntSysDsCd=03&uppAisTpCd=39&aisTpCd=42&mi=1026"
     },
     {
-      "title": "성남복정1지구 도시지원시설용지 공급 공고",
-      "category": "토지",
-      "subtype": "토지",
-      "region": "경기도",
-      "posted": "2026.10.01",
-      "deadline": "2026.10.15",
-      "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008042&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
-    },
-    {
       "title": "시흥장현지구 블록형단독주택용지 공급공고(2순위)",
       "category": "토지",
       "subtype": "토지",
@@ -263,6 +253,16 @@
       "deadline": "2026.10.27",
       "status": "공고중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008019&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "성남복정1지구 도시지원시설용지 공급 공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.10.01",
+      "deadline": "2026.10.15",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008042&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
       "title": "[서울지역본부] 26년 2차 비분양전환형 든든전세주택 입주자 모집공고",
@@ -715,16 +715,6 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=LN-0002872&ccrCnntSysDsCd=04&uppAisTpCd=22&aisTpCd=24&mi=1069"
     },
     {
-      "title": "남양주진접2 공공주택지구 업무시설용지 공급공고",
-      "category": "토지",
-      "subtype": "토지",
-      "region": "경기도",
-      "posted": "2026.10.08",
-      "deadline": "2026.10.29",
-      "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008057&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
-    },
-    {
       "title": "남양주양정역세권 점포겸용 단독주택용지 공급 공고",
       "category": "토지",
       "subtype": "토지",
@@ -733,6 +723,16 @@
       "deadline": "2026.10.29",
       "status": "공고중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008020&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "남양주진접2 공공주택지구 업무시설용지 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.10.08",
+      "deadline": "2026.10.29",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008057&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
       "title": "(재공고)서울양원S1 희망상가 입점자 모집공고(공공지원형)",
