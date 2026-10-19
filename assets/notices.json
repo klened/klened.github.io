@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-18T00:43:12.745229Z",
+  "updated": "2026-10-19T00:56:34.713477Z",
   "source": "공공데이터포털 (LH 분양임대공고문 조회) 자동 갱신",
   "lookbackDays": 60,
   "count": 91,
@@ -11,7 +11,7 @@
       "region": "대구광역시 외",
       "posted": "2026.10.06",
       "deadline": "2026.10.21",
-      "status": "공고중",
+      "status": "접수중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020877&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
     },
     {
@@ -165,16 +165,6 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=LN-0002872&ccrCnntSysDsCd=04&uppAisTpCd=22&aisTpCd=24&mi=1069"
     },
     {
-      "title": "남양주진접2 공공주택지구 업무시설용지 공급공고",
-      "category": "토지",
-      "subtype": "토지",
-      "region": "경기도",
-      "posted": "2026.10.08",
-      "deadline": "2026.10.29",
-      "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008057&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
-    },
-    {
       "title": "남양주양정역세권 점포겸용 단독주택용지 공급 공고",
       "category": "토지",
       "subtype": "토지",
@@ -183,6 +173,16 @@
       "deadline": "2026.10.29",
       "status": "공고중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008020&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "남양주진접2 공공주택지구 업무시설용지 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.10.08",
+      "deadline": "2026.10.29",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008057&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
       "title": "(재공고)서울양원S1 희망상가 입점자 모집공고(공공지원형)",
@@ -425,16 +425,6 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020904&ccrCnntSysDsCd=03&uppAisTpCd=06&aisTpCd=10&mi=1026"
     },
     {
-      "title": "하남미사지구 자족시설용지 공급 공고(18개월거치, 5년무이자)",
-      "category": "토지",
-      "subtype": "토지",
-      "region": "경기도",
-      "posted": "2026.10.13",
-      "deadline": "2026.10.20",
-      "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008067&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
-    },
-    {
       "title": "화성향남2 근린생활시설·일반상업·단독주택[점포겸용] 등 공급 공고 [2년 또는 3년 무이자할부]",
       "category": "토지",
       "subtype": "토지",
@@ -443,6 +433,16 @@
       "deadline": "2026.10.22",
       "status": "공고중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008027&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "하남미사지구 자족시설용지 공급 공고(18개월거치, 5년무이자)",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.10.13",
+      "deadline": "2026.10.20",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008067&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
       "title": "서울등촌9 영구임대상가 입점자 모집공고(7701-106)",
@@ -845,16 +845,6 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008061&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
-      "title": "[정정공고] 성남금토 주차장, 점포겸용 단독주택 선착순 수의계약 공고",
-      "category": "토지",
-      "subtype": "토지",
-      "region": "경기도",
-      "posted": "2026.10.12",
-      "deadline": "2027.03.31",
-      "status": "상담요청",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008069&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
-    },
-    {
       "title": "장항국가생태산업단지 단독주택용지 수의계약 공고",
       "category": "토지",
       "subtype": "토지",
@@ -865,6 +855,16 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008001&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
+      "title": "[정정공고] 성남금토 주차장, 점포겸용 단독주택 선착순 수의계약 공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.10.12",
+      "deadline": "2027.03.31",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008069&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
       "title": "괴산미니 A2BL 공동주택용지 수의계약 공급 공고",
       "category": "토지",
       "subtype": "토지",
@@ -873,6 +873,16 @@
       "deadline": "2027.10.11",
       "status": "상담요청",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008068&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "[토지리턴제] 원주무실 근린생활시설용지 수의계약 공급 공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "강원특별자치도",
+      "posted": "2026.10.15",
+      "deadline": "2026.11.30",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008076&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
       "title": "[토지리턴제] 원주태장2지구 종교시설용지 수의계약 공급 공고",
@@ -903,16 +913,6 @@
       "deadline": "2026.11.30",
       "status": "상담요청",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008077&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
-    },
-    {
-      "title": "[토지리턴제] 원주무실 근린생활시설용지 수의계약 공급 공고",
-      "category": "토지",
-      "subtype": "토지",
-      "region": "강원특별자치도",
-      "posted": "2026.10.15",
-      "deadline": "2026.11.30",
-      "status": "상담요청",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008076&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     }
   ]
 }
