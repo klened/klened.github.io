@@ -1,19 +1,9 @@
 {
-  "updated": "2026-10-23T01:19:54.644442Z",
+  "updated": "2026-10-24T01:24:54.817681Z",
   "source": "공공데이터포털 (LH 분양임대공고문 조회) 자동 갱신",
   "lookbackDays": 60,
-  "count": 81,
+  "count": 84,
   "notices": [
-    {
-      "title": "[정정공고][경기남부] 든든전세 매입임대주택 예비입주자 모집공고(비분양전환)",
-      "category": "주거복지",
-      "subtype": "매입임대",
-      "region": "경기도",
-      "posted": "2026.10.19",
-      "deadline": "2026.10.23",
-      "status": "접수중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020927&ccrCnntSysDsCd=03&uppAisTpCd=13&aisTpCd=26&mi=1026"
-    },
     {
       "title": "양산사송A-4BL LH희망상가 입점자 모집공고(공공지원형-선착순수의계약)",
       "category": "상가",
@@ -635,6 +625,46 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008103&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
+      "title": "2026년 경북권 LH희망상가(일반형-수의) 입점자 모집",
+      "category": "상가",
+      "subtype": "임대상가(공모ㆍ심사)",
+      "region": "경상북도",
+      "posted": "2026.10.23",
+      "deadline": "2026.11.23",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020915&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=38&mi=1069"
+    },
+    {
+      "title": "2026년 대구권 LH희망상가(일반형-수의) 입점자 모집",
+      "category": "상가",
+      "subtype": "임대상가(공모ㆍ심사)",
+      "region": "대구광역시",
+      "posted": "2026.10.23",
+      "deadline": "2026.11.23",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020914&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=38&mi=1069"
+    },
+    {
+      "title": "시흥거모 S-1블록 공공분양주택 입주자모집공고",
+      "category": "분양주택",
+      "subtype": "분양주택",
+      "region": "경기도",
+      "posted": "2026.10.23",
+      "deadline": "2026.11.17",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=0000061186&ccrCnntSysDsCd=02&uppAisTpCd=05&aisTpCd=05&mi=1027"
+    },
+    {
+      "title": "시흥하중 A1블록 신혼희망타운(공공분양) 잔여세대 추가입주자모집공고",
+      "category": "공공분양(신혼희망)",
+      "subtype": "공공분양(신혼희망)",
+      "region": "경기도",
+      "posted": "2026.10.23",
+      "deadline": "2026.11.03",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=0000061165&ccrCnntSysDsCd=02&uppAisTpCd=39&aisTpCd=39&mi=1027"
+    },
+    {
       "title": "행정중심복합도시 상업업무용지, 근린생활시설용지 공급공고",
       "category": "토지",
       "subtype": "토지",
@@ -715,16 +745,6 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008068&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
-      "title": "[토지리턴제] 원주무실 근린생활시설용지 수의계약 공급 공고",
-      "category": "토지",
-      "subtype": "토지",
-      "region": "강원특별자치도",
-      "posted": "2026.10.15",
-      "deadline": "2026.11.30",
-      "status": "상담요청",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008076&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
-    },
-    {
       "title": "[토지리턴제] 원주태장2지구 종교시설용지 수의계약 공급 공고",
       "category": "토지",
       "subtype": "토지",
@@ -753,6 +773,16 @@
       "deadline": "2026.11.30",
       "status": "상담요청",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008077&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "[토지리턴제] 원주무실 근린생활시설용지 수의계약 공급 공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "강원특별자치도",
+      "posted": "2026.10.15",
+      "deadline": "2026.11.30",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008076&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
       "title": "제주동부 공공지원민간임대주택 공급촉진지구 대토(점포겸용 단독주택용지) 공급 공고",
