@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-24T01:24:54.817681Z",
+  "updated": "2026-10-25T00:54:35.058755Z",
   "source": "공공데이터포털 (LH 분양임대공고문 조회) 자동 갱신",
   "lookbackDays": 60,
   "count": 84,
@@ -575,16 +575,6 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=0000061190&ccrCnntSysDsCd=02&uppAisTpCd=06&aisTpCd=08&mi=1026"
     },
     {
-      "title": "[정정공고] [토지리턴제 및 거치식할부 중복 적용] 하남미사지구 자족시설용지(2필지) 공급 공고",
-      "category": "토지",
-      "subtype": "토지",
-      "region": "경기도",
-      "posted": "2026.10.22",
-      "deadline": "2026.10.28",
-      "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008110&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
-    },
-    {
       "title": "성남복정1지구 근린생활시설·주차장 용지 재공급 공고",
       "category": "토지",
       "subtype": "토지",
@@ -593,6 +583,16 @@
       "deadline": "2026.11.05",
       "status": "공고중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008106&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "[정정공고] [토지리턴제 및 거치식할부 중복 적용] 하남미사지구 자족시설용지(2필지) 공급 공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "경기도",
+      "posted": "2026.10.22",
+      "deadline": "2026.10.28",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008110&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
       "title": "제주동부 공공지원민간임대주택 공급촉진지구 점포겸용 단독주택용지 재공급 공고",
