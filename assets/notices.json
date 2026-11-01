@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-31T02:07:04.088150Z",
+  "updated": "2026-11-01T01:58:55.763750Z",
   "source": "공공데이터포털 (LH 분양임대공고문 조회) 자동 갱신",
   "lookbackDays": 60,
   "count": 87,
@@ -33,16 +33,6 @@
       "deadline": "2026.11.04",
       "status": "공고중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=0000061190&ccrCnntSysDsCd=02&uppAisTpCd=06&aisTpCd=08&mi=1026"
-    },
-    {
-      "title": "성남복정1지구 근린생활시설·주차장 용지 재공급 공고",
-      "category": "토지",
-      "subtype": "토지",
-      "region": "경기도",
-      "posted": "2026.10.22",
-      "deadline": "2026.11.05",
-      "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008106&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     },
     {
       "title": "2026년 경북권 LH희망상가(일반형-수의) 입점자 모집",
@@ -145,16 +135,6 @@
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020946&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=43&mi=1069"
     },
     {
-      "title": "김포마송 B5BL(김포마송LH5단지) LH희망상가 입점자 모집공고(공공지원형)",
-      "category": "상가",
-      "subtype": "임대상가(추첨)",
-      "region": "경기도",
-      "posted": "2026.10.26",
-      "deadline": "2026.11.06",
-      "status": "공고중",
-      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020953&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=24&mi=1069"
-    },
-    {
       "title": "파주운정3 A24BL(물향기마을11단지) LH희망상가 입점자 모집공고(공공지원형)",
       "category": "상가",
       "subtype": "임대상가(추첨)",
@@ -193,6 +173,16 @@
       "deadline": "2026.11.06",
       "status": "공고중",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020954&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=24&mi=1069"
+    },
+    {
+      "title": "김포마송 B5BL(김포마송LH5단지) LH희망상가 입점자 모집공고(공공지원형)",
+      "category": "상가",
+      "subtype": "임대상가(추첨)",
+      "region": "경기도",
+      "posted": "2026.10.26",
+      "deadline": "2026.11.06",
+      "status": "공고중",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=2015122300020953&ccrCnntSysDsCd=03&uppAisTpCd=22&aisTpCd=24&mi=1069"
     },
     {
       "title": "김포한강 Aa12BL(김포한강LH1단지) LH희망상가 입점자 모집공고(공공지원형)",
@@ -873,6 +863,16 @@
       "deadline": "2027.10.22",
       "status": "상담요청",
       "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008108&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
+    },
+    {
+      "title": "남양주양정역세권 도시개발사업 기업이전용지 공급공고",
+      "category": "토지",
+      "subtype": "토지",
+      "region": "전국",
+      "posted": "2026.10.30",
+      "deadline": "2026.11.26",
+      "status": "상담요청",
+      "url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?panId=BN-0008135&ccrCnntSysDsCd=01&uppAisTpCd=01&aisTpCd=01&mi=1062"
     }
   ]
 }
